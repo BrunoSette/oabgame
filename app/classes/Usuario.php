@@ -10,7 +10,15 @@ class Usuario {
 
     public function get_profile()
     {
-        
+        $sql = "SELECT * FROM tb_usuario WHERE (email=:user_email)";
+        $stmt = DB::prepare($sql);
+
+        $stmt->bindParam("user_email", $_SESSION["EMAIL"]);
+        $stmt->execute();
+
+        $user = $stmt->fetch();
+
+        return $user;
     }
 
     // Verifica se ha email passado por parametro cadastrado no banco de dados
