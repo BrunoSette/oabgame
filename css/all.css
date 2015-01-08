@@ -187,6 +187,9 @@ background-color: #2f4b93;
 
 .tooltip {position: absolute; background-color: #fff; right: 5%; width: 265px; border-radius: 15px; top: 75px; box-sizing: border-box; padding: 5px;}
 .tooltip button:hover {cursor: pointer}
+.tooltip .image-profile img {margin: 0 auto; display: block;}
+.tooltip .txt-profile {text-align: right}
+.tooltip .txt-profile > div {margin: 5px auto; display: table;}
 
 /* tools */
 
@@ -234,7 +237,7 @@ background-color: #2f4b93;
 
 /* icones */
 
-.fui-info, .fui-user, .fui-mail, .fui-gear, .fui-chat, .fui-check, .fui-alert, .fui-facebook, .fui-cross, .fui-youtube, .fui-googleplus, .fui-triangle-up, .fui-mail, .fui-triangle-down
+.fui-info, .fui-user, .fui-mail, .fui-gear, .fui-chat, .fui-check, .fui-alert, .fui-facebook, .fui-cross, .fui-youtube, .fui-googleplus, .fui-triangle-up, .fui-mail, .fui-triangle-down, .fui-exit
 {
   display: inline-block;
   font-family: 'Flat-UI-Icons';
@@ -260,6 +263,7 @@ background-color: #2f4b93;
 .fui-triangle-up:before { content: "\e000"; }
 .fui-mail:before { content: "\e01e"; }
 .fui-triangle-down:before {content: "\e004";}
+.fui-exit:before { content: "\e026"; }
 
 .iconbar {  -webkit-backface-visibility: hidden; *zoom: 1; }
 .iconbar:before, .iconbar:after { display: table; content: ""; }

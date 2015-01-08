@@ -100,6 +100,8 @@ function isCorrect(resposta)
                 error: function(e) { console.info(e); }
             });
 
+            if (verificaPontuacao()) atualizaPerfil();
+
             data = {"pontuation" : RESPOSTA_CORRETA};
             valueScore = RESPOSTA_CORRETA
         }

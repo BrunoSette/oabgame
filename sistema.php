@@ -67,22 +67,22 @@ if(!isset($_SESSION["FBID"]))
 			
 			<div class= "tooltip" style="display: none; top: 70px; background-color:#ECF0F1">
 				<div style="position: fixed; color: #ECF0F1; top: 55px; right: 6.5%;"><i class="fui-triangle-up"></i></div>
-				<!-- <div class="mb5 mt5">
-					<img src="img/profile_nivel/homem/nivel-1.png" alt="" style="margin: 0 auto; display: block;">
-				</div> -->
-				
-				<div style="text-align: right">
-					<div style="margin: 5px auto; display: table;">
-						<div class="left" style="margin-right: 20px;">
+				<div class="mb5 mt5 image-profile">
+					<!-- <img src="img/profile_nivel/homem/nivel-1.png" alt="" /> -->
+				</div>
+				<div class="txt-profile">
+					<div>
+						<div class="left mr25">
 							<img src="img/coin.png" class="left mr5" alt=" "> <i id="userCash"><?php echo $_SESSION["MOEDAS"]; ?></i>
 						</div>
-						<div class="left" style="margin-right: 20px;">
+						<div class="left mr25">
 							<i id="userScore"><?php echo $_SESSION["PONTUACAO"]; ?></i>
 							<p class="small">pontos</p>
 						</div>
+						<p class="txt-center nivel"></p>
 					</div>
 				</div> 
-				<button class="btn btn-info w100 mt5 mb5" id="linkSair">Sair</button>
+				<button class="btn btn-info w100 mt5 mb5" id="linkSair"><i class="fui-exit"></i> Sair do Jogo</button>
 			</div>  
 
             <div class="iconbar iconbar-horizontal" style="display: none">
