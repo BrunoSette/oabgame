@@ -91,17 +91,21 @@ function badge_acertos_seguidos()
 
 	if (concedeBadge)
 	{
-		var myModal = new Modal();
-                        myModal.setTitulo("Parabéns, você recebeu um badge!");
-                        myModal.setTexto(img);
-                        myModal.showModal('F');
-
         $.ajax({
             type: "post",
             url: rootUrl + "/Badges/concede_badge",
             data: JSON.stringify(data),
             dataType: "json",
-            success: function(e) {console.info(e);}, 
+            success: function(e)
+            {
+            	if(e.result == true)
+            	{
+            		var myModal = new Modal();
+                        myModal.setTitulo("Parabéns, você recebeu um badge!");
+                        myModal.setTexto(img);
+                        myModal.showModal('F');
+            	}
+            }, 
             error: function(e) {console.info(e);}
     	});
 
