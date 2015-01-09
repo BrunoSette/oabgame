@@ -1,13 +1,3 @@
-function closeModal(selected)
-{   
-    $(selected).remove();
-
-    if (modaisAbertos - 1 == 0)
-        $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
-
-    modaisAbertos--; openedModal = false;
-}
-
 function getMoedas()
 {
     return parseInt($("#userCash").html());
@@ -231,12 +221,6 @@ function pularPergunta()
     findQuestion();
 }
 
-// $("#modal-action").on('click', function() 
-// {  
-//     //closeModal();
-//     console.info("teste"); 
-// });
-
 $(".box-modal").delegate('#sendNotification', 'click', function() {
     var comment = $(".box-modal textarea").val();
     var error = $(".box-modal input[name=ans]:checked").val();
@@ -274,7 +258,7 @@ $(".box-modal").delegate('#sendNotification', 'click', function() {
     closeModal();
 });
 
-$("#notifica-erro").bind("click", function(){ notificaErro(); });
+//$("#notifica-erro").bind("click", function(){ notificaErro(); });
 
 $("form > .btn-danger").bind("click", function(){
     ga('send', 'event', 'Respostas', 'Responder');
@@ -282,37 +266,12 @@ $("form > .btn-danger").bind("click", function(){
     isCorrect(resposta);
 });
 
-// $(".box-modal").delegate('#modal-action', 'click', function() { 
-//     var tipo = $(this).attr("data-tipo");
-
-//     if(tipo == "prox")
-//     {
-//         $("input[name='option']").attr('checked', false);
-//         findQuestion();
-//     }
-//     console.info("aqui");
-// });
-
-
 $(document).ready(function() {
 
     var eliminouResposta = false;
     var sair = false;
 
     var score = getMoedas();
-
-    $("body").on('click', ".modal-action", function(){
-        var tipo = $(this).attr("data-tipo");
-        var selected = $(this).parent("p").parent(".box-content").parent(".box-modal");
-
-        if(tipo == "prox")
-        {
-            $("input[name='option']").attr('checked', false);
-            findQuestion();
-        }
-
-        closeModal(selected);
-    });
 
     $("#eliminar-resposta").bind("click", function() {
         if (score > 5)
@@ -354,28 +313,8 @@ $(document).ready(function() {
             bloqueaShowDoMilhao();
     });
     
-    $("#close").bind("click", function(){ 
-        closeModal(); 
-    });
-
-    if (!openedModal) verificarPrimeiroAcesso();
-    if (!openedModal) verificarAnuncios();
-
+    verificarPrimeiroAcesso();
     obtemRanking();
-
-    $("#linkSair").bind("click", function() {
-
-        sair = true;
-        $.ajax({
-            type: "get",
-            url: rootUrl + "Usuario/logout",
-            success: function()
-            {
-                $.removeCookie('usuario');
-                goPage("logout.php");
-            }
-        });
-    });
 
 	findQuestion();
 });

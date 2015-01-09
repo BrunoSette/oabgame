@@ -103,51 +103,6 @@ var Modal = function()
     }
 }
 
-// inicialmente vamos verificar apenas um anuncio padrão (enquete)
-function verificarAnuncios()
-{
-	$.ajax({
-        type: "get",
-        url: rootUrl + "/Anuncios/user_anuncio",
-        dataType: "json",
-        success: function(result)
-        { 
-        	if (!result.result) // exibir anuncio
-        	{
-        		openedModal = true;
-
-        		var html = "<p>Responda o formulário abaixo e <b>ganhe E$15</b>.</p>";
-        			html += "<form action='javascript:void(0)' id='formOpiniao' class='form form-aligned'>";
-			        html += "<div class='control-group'>";
-			        html += "<label for=''>O que está achando do jogo? </label><br />";
-			        html += "<input type='radio' name='ans' value='1'> Bom<br />"
-			        html += "<input type='radio' name='ans' value='2'> Regular<br />"
-			        html += "<input type='radio' name='ans' value='3'> Ruim<br />"
-			        html += "<br />"
-			        html += "<label for=''>No que podemos melhorar? (Opcional)</label><br />";
-			        html += "<textarea class='mt10' name='comment'></textarea>"
-			        html += "<input type='hidden' name='type' value='1'>"
-			        html += "</div>";
-			        html += "</form>"
-
-			    var footer = "<p class='right'>";
-			        footer += "<button class='btn btn-cancel' id='modal-action' data-tipo='fechar'>Não responder</button>";
-			        footer += "<button class='btn btn-info ml5' id='sendNotification'>Enviar</button>";
-			        footer += "</p>";
-
-    			$(".box-overlay").css("opacity", '1').css('visibility', 'visible');
-    			$(".box-modal > .box-content").css('visibility', 'visible');
-    			$(".box-modal h3").css("background-color", "#3498db").text("Pesquisa de opinião");
-    			$(".box-modal > .box-content > div > p").html(html);
-    			$("#modal-action").attr("data-tipo", "enviarErro");
-    			$(".box-modal > .box-content > p").css('overflow', 'hidden');
-    			$(".box-modal > .box-content > p").html(footer);
-        	}
-        },
-        error: function(result){ console.info(result); }
-    });
-}
-
 function verificarPrimeiroAcesso()
 {
 	$.ajax({
@@ -164,22 +119,27 @@ function verificarPrimeiroAcesso()
         			html += "<br />";
 			        html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
 
-			    var footer = "<p class='right'>";
-			        footer += "<button class='btn btn-cancel' id='modal-action' data-tipo='fechar'>Fechar</button>";
-			        footer += "</p>";
-
-			    $(".box-overlay").css("opacity", '1').css('visibility', 'visible');
-    			$(".box-modal > .box-content").css('visibility', 'visible');
-    			$(".box-modal h3").css("background-color", "#f5d313").text("Você recebeu E$ 10!");
-    			$(".box-modal > .box-content > div > p").html(html);
-    			$(".box-modal > .box-content > p").css('overflow', 'hidden');
-    			$(".box-modal > .box-content > p").html(footer);
+                var myModal = new Modal();
+                    myModal.setCor("#f5d313");
+                    myModal.setTitulo("Você recebeu E$ 10!");
+                    myModal.setTexto(html);
+                    myModal.showModal('F');
 
         		updateMoedas(PRIMEIRO_ACESSO);
         	}
         },
         error: function(result){ console.info(result); }
     });
+}
+
+function closeModal(selected)
+{   
+    $(selected).remove();
+
+    if (modaisAbertos - 1 == 0)
+        $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
+
+    modaisAbertos--; openedModal = false;
 }
 
 function obtemRanking()
@@ -305,6 +265,20 @@ $(document).ready(function()
             $(".tooltip").css('display', 'none');
     });
 
+    $("#linkSair").bind("click", function() {
+
+        sair = true;
+        $.ajax({
+            type: "get",
+            url: rootUrl + "Usuario/logout",
+            success: function()
+            {
+                $.removeCookie('usuario');
+                goPage("logout.php");
+            }
+        });
+    });
+
     var lastScrollTop = 0;
     $(window).scroll(function(event){
        var st = $(this).scrollTop();
@@ -317,5 +291,19 @@ $(document).ready(function()
        } 
        lastScrollTop = st;
     });
+
+    $("body").on('click', ".modal-action", function(){
+        var tipo = $(this).attr("data-tipo");
+        var selected = $(this).parent("p").parent(".box-content").parent(".box-modal");
+
+        if(tipo == "prox")
+        {
+            $("input[name='option']").attr('checked', false);
+            findQuestion();
+        }
+
+        closeModal(selected);
+    });
+
 });
 
