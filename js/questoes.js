@@ -1,13 +1,11 @@
-function closeModal()
+function closeModal(selected)
 {   
-    var footer = "<button class='btn btn-info' id='modal-action' data-tipo='fechar'></button>";
+    $(selected).remove();
 
-    $(".box-modal > .box-content > p").html(footer);
+    if (modaisAbertos - 1 == 0)
+        $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
 
-    $(".box-modal > .box-content").css('visibility', 'hidden');
-    $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
-
-    if (openedModal) openedModal = false;
+    modaisAbertos--; openedModal = false;
 }
 
 function getMoedas()
@@ -82,7 +80,8 @@ function isCorrect(resposta)
     }
     else
     {
-        var acertou = false, valueScore;
+        var acertou = false; 
+        var valueScore;
 
         if(gabarito == resposta)
         {
@@ -96,14 +95,21 @@ function isCorrect(resposta)
                 type: "post",
                 url: rootUrl + "/Usuario/pontuation_geral",
                 dataType: "json",
-                success: function(e) {updatePontuacao(100)}, 
+                success: function(e)
+                {
+                    updatePontuacao(100);
+                    if (verificaPontuacao()) atualizaPerfil();
+                }, 
                 error: function(e) { console.info(e); }
             });
+            
+            data = {"pontuation" : RESPOSTA_CORRETA}; valueScore = RESPOSTA_CORRETA;
 
-            if (verificaPontuacao()) atualizaPerfil();
+            acertou = true;
+            acertosSeguidos++;
 
-            data = {"pontuation" : RESPOSTA_CORRETA};
-            valueScore = RESPOSTA_CORRETA
+            badge_acertos_seguidos();
+            badge_acertos();
         }
         else
         {
@@ -117,17 +123,16 @@ function isCorrect(resposta)
 
             data = {"pontuation" : RESPOSTA_ERRADA};
             valueScore = RESPOSTA_ERRADA;
+
+            acertosSeguidos = 0;
         }
 
-        var score = getMoedas();
-        data = JSON.stringify(data);
-
-        if (score + valueScore >= 0)
+        if (getMoedas() + valueScore >= 0)
         {
             $.ajax({
                 type: "post",
                 url: rootUrl + "/Usuario/pontuation",
-                data: data,
+                data: JSON.stringify(data),
                 dataType: "json",
                 success: function(e) {updateMoedas(valueScore)}, 
                 error: function(e) { console.info(e); }
@@ -222,10 +227,15 @@ function pularPergunta()
     });
 
     $('html, body').animate({scrollTop: 0}, 1000); 
+
     findQuestion();
 }
 
-$(".box-modal").delegate('#modal-action', 'click', function() {  closeModal(); });
+// $("#modal-action").on('click', function() 
+// {  
+//     //closeModal();
+//     console.info("teste"); 
+// });
 
 $(".box-modal").delegate('#sendNotification', 'click', function() {
     var comment = $(".box-modal textarea").val();
@@ -272,15 +282,17 @@ $("form > .btn-danger").bind("click", function(){
     isCorrect(resposta);
 });
 
-$(".box-modal").delegate('#modal-action', 'click', function() { 
-    var tipo = $(this).attr("data-tipo");
+// $(".box-modal").delegate('#modal-action', 'click', function() { 
+//     var tipo = $(this).attr("data-tipo");
 
-    if(tipo == "prox")
-    {
-        $("input[name='option']").attr('checked', false);
-        findQuestion();
-    }
-});
+//     if(tipo == "prox")
+//     {
+//         $("input[name='option']").attr('checked', false);
+//         findQuestion();
+//     }
+//     console.info("aqui");
+// });
+
 
 $(document).ready(function() {
 
@@ -288,6 +300,19 @@ $(document).ready(function() {
     var sair = false;
 
     var score = getMoedas();
+
+    $("body").on('click', ".modal-action", function(){
+        var tipo = $(this).attr("data-tipo");
+        var selected = $(this).parent("p").parent(".box-content").parent(".box-modal");
+
+        if(tipo == "prox")
+        {
+            $("input[name='option']").attr('checked', false);
+            findQuestion();
+        }
+
+        closeModal(selected);
+    });
 
     $("#eliminar-resposta").bind("click", function() {
         if (score > 5)
@@ -300,7 +325,6 @@ $(document).ready(function() {
         }
         else
             bloqueaShowDoMilhao();
-        
     });
     
     window.onbeforeunload = function(e)

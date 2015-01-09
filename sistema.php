@@ -94,21 +94,6 @@ if(!isset($_SESSION["FBID"]))
 			</div>
 		</div>
 	</header>
-	
-	<div class="box-modal">
-		<div class="box-content">
-			<!-- <a href="#" id="close">
-				<i class="fui-cross close"></i>
-			</a> -->
-			<h3></h3>
-			<div>
-				<p></p>
-			</div>
-			<p>
-				<button class="btn btn-info" id="modal-action" data-tipo="fechar"></button>
-			</p>
-		</div>
-	</div> <!-- Modal de comentário e resposta da questão-->
 
 	<section class="mainbox geral-container" style="overflow: hidden;">
 		<div class="container-mainbox left">
