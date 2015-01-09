@@ -35,7 +35,7 @@
 		<div class="geral-container">
 			<img src="img/logo.png" style="width: 180px; margin-top: 5px;" alt="">
 
-			<button class="btn right mt20 btn-login" id="entrar">Entrar</button>
+			<!-- <button class="btn right mt20 btn-login" id="entrar">Entrar</button> -->
 
 			<div class= "tooltip" style="display: none">
 				<div style="position: fixed; color: #fff; top: 60px; right: 6.5%;"><span class="fui-triangle-up"></span></div>
@@ -96,16 +96,16 @@
 	</div>
 
 	<section class="headbox">
-		<!-- <h1>Sistema Indisponível no momento</h1>
+		<h1>Sistema Indisponível no momento</h1>
 		<h3 class="mt20 mb40">
 			Estamos passando por uma rápida manutenção, mas em breve estaremos de volta! :)
-		</h3> -->
-		<h1>Estude de Forma Divertida para a OAB</h1>
+		</h3>
+		<!-- <h1>Estude de Forma Divertida para a OAB</h1>
 		<h3 class="mt20 mb40">
 			Nunca foi tão divertido aprender! Aproveite os momentos de lazer e teste seus conhecimentos em Direito, através deste Jogo Online.
 		</h3>
 		<br />
-		<button class="btn btn-danger mt10 w30" id="start">Começar agora</button>
+		<button class="btn btn-danger mt10 w30" id="start">Começar agora</button> -->
 	</section>
 	<section class="geral-container icons">
 		<ul>

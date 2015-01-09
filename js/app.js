@@ -10,10 +10,28 @@ const RESPOSTA_ERRADA = -10;
 const RESPONDEU_ENQUETE = 15;
 const PRIMEIRO_ACESSO = 10;
 
+badgesEnum = {
+    TRES_ACERTOS_SEGUIDOS : 1,
+    SETE_ACERTOS_SEGUIDOS : 2,
+    DEZ_ACERTOS_SEGUIDOS  : 3,
+    QUINZE_ACERTOS_SEGUIDOS : 4,
+    DEZ_RESPOSTAS_CORRETAS : 5,
+    VINTE_RESPOSTAS_CORRETAS : 6,
+    CINQUENTA_RESPOSTAS_CORRETAS : 7,
+    CEM_RESPOSTAS_CORRETAS : 8,
+    DUZENTAS_RESPOSTAS_CORRETAS : 9,
+    JOGOU_2X : 10,
+    JOGOU_5X : 11,
+    JOGOU_10X : 12,
+    JOGOU_15X : 13
+};
+
 var gabarito;
 var comentario;
 var idQuestao;
 var openedModal = false;
+var acertosSeguidos = 0;
+var modaisAbertos = 0;
 
 function isUndefined(e)
 {
@@ -55,25 +73,32 @@ var Modal = function()
 
     this.showModal = function(vTipo)
     {
+        openedModal = true; modaisAbertos++;
+
+        var myHtml = "<div class='box-modal' data-attr='" + modaisAbertos + "'><div class='box-content'><h3></h3><div><p></p></div><p><button class='btn btn-info modal-action' data-tipo='fechar'></button></p></div></div>";
+        $(".topo").after(myHtml);
+
         $(".box-overlay").css("opacity", '1').css('visibility', 'visible');
         $(".box-modal > .box-content").css('visibility', 'visible');
 
-        if (this.cor != null)
-            $(".box-modal h3").css("background-color", this.cor).text(this.titulo);
-        else 
-            $(".box-modal h3").text(this.titulo);
+        var ret = $( ".box-modal[data-attr='"+ modaisAbertos +"']" );
 
-        $(".box-modal > .box-content > div > p").html(this.texto);
+        if (this.cor != null)
+            $(ret).children('.box-content').children('h3').css("background-color", this.cor).text(this.titulo);
+        else 
+            $(ret).children('.box-content').children('h3').text(this.titulo);
+
+        $(ret).children('.box-content').children('div').children('p').html(this.texto);
 
         if (vTipo == 'F' || vTipo == 'f')
         {
-            $("#modal-action").attr("data-tipo", "fechar");
-            $(".box-modal button").text("Fechar");
+            $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "fechar");
+            $(ret).children('.box-content').children('p').children('.modal-action').text("Fechar");
         }
         else if(vTipo == 'P' || vTipo == 'p')
         {
-            $("#modal-action").attr("data-tipo", "prox");
-            $(".box-modal button").text("Proxima pergunta");
+            $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
+            $(ret).children('.box-content').children('p').children('.modal-action').text("Proxima pergunta");
         }
     }
 }
@@ -173,13 +198,9 @@ function obtemRanking()
                 {
                     html += "<li>";
                     if (result.result[i].foto_profile == "")
-                    {
                         html += "<img src='img/sem-foto.png' class='left mr5' alt=''>";
-                    }
                     else
-                    {
                         html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
-                    }
                     
                     html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
                     html += "<p>E$ " + result.result[i].pontuacao + "</p>";
@@ -201,7 +222,7 @@ function verificaPontuacao()
 {
     var score = getPontuacao();
     var novoNivel = 1;
-    var html;
+    var html, nivelAntigo;
 
     if(score >= 2000 && score < 3000)
     {
@@ -245,30 +266,30 @@ function verificaPontuacao()
             type: "get",
             url: rootUrl + "/Usuario/nivel",
             dataType: "json",
-            success: function(e)
-            {
-                if (e.result < novoNivel)
-                {
-                    $.ajax({ // atualiza nivel do usuário
-                        type: "post",
-                        url: rootUrl + "/Usuario/update_nivel",
-                        data: JSON.stringify({"novo" : novoNivel}),
-                        dataType: "json",
-                        error: function(e) {console.info(e);}
-                    });
-
-                    var myModal = new Modal();
-                        myModal.setTitulo("Parabéns, você mudou o seu nível!");
-                        myModal.setTexto(html);
-                        myModal.showModal('F');
-                    
-                    return true;
-                }
-            },
+            async: false,
+            success: function(e) { nivelAntigo = parseInt(e.result); },
             error: function(result){ console.info(result); }
          });
     }
 
+    if (nivelAntigo < novoNivel)
+    {
+        $.ajax({ // atualiza nivel do usuário
+            type: "post",
+            url: rootUrl + "/Usuario/update_nivel",
+            data: JSON.stringify({"novo" : novoNivel}),
+            dataType: "json",
+            error: function(e) {console.info(e);}
+        });
+
+        var myModal = new Modal();
+            myModal.setTitulo("Parabéns, você mudou o seu nível!");
+            myModal.setTexto(html);
+            myModal.showModal('F');
+        
+        return true;
+    }
+    
     return false;
 }
 
@@ -282,6 +303,19 @@ $(document).ready(function()
             $(".tooltip").css('display', 'block');
         else
             $(".tooltip").css('display', 'none');
+    });
+
+    var lastScrollTop = 0;
+    $(window).scroll(function(event){
+       var st = $(this).scrollTop();
+       if (st > lastScrollTop + 40)
+       {
+           var status = $(".tooltip").css('display');
+
+            if (status == "block")
+                $(".tooltip").css('display', 'none');
+       } 
+       lastScrollTop = st;
     });
 });
 

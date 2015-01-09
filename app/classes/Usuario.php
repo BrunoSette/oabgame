@@ -106,8 +106,8 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1) ";
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) VALUES 
+            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1) ";
 
             $stmtUsuario = DB::query($sql);
 
@@ -145,7 +145,7 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email) 
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) 
                     VALUES 
                     (
                         '$usuario[2]', 
@@ -160,7 +160,8 @@ class Usuario {
                         0,
                         '$newToday',
                         1,
-                        0
+                        0,
+                        1
                     ) ";
 
             $params = array( "nome" => $usuario[2],
@@ -372,6 +373,17 @@ class Usuario {
         $sql = "UPDATE tb_usuario SET nivel = $nivel->novo WHERE email = '".$_SESSION["EMAIL"]."'";
         $stmtUsuario = DB::query($sql);
         return true;
+    }
+
+    public function get_acertos()
+    {
+        $sql = "SELECT COUNT(id) AS acertos FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]} AND acertou = 1 ";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+        
+        return $res->acertos;
     }
 }
 
