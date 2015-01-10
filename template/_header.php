@@ -3,7 +3,7 @@ session_start();
  
 if(!isset($_SESSION["FBID"]))
 {
-	header("Location: ../game_face/");
+	header("Location: ../game/");
 }
 
 ?>
@@ -62,7 +62,6 @@ if(!isset($_SESSION["FBID"]))
 			<div class= "tooltip" style="display: none; top: 70px; background-color:#ECF0F1">
 				<div style="position: fixed; color: #ECF0F1; top: 55px; right: 6.5%;"><i class="fui-triangle-up"></i></div>
 				<div class="mb5 mt5 image-profile">
-					<!-- <img src="img/profile_nivel/homem/nivel-1.png" alt="" /> -->
 				</div>
 				<div class="txt-profile">
 					<div>
@@ -79,7 +78,7 @@ if(!isset($_SESSION["FBID"]))
 				<button class="btn btn-info w100 mt5 mb5" id="linkSair"><i class="fui-exit"></i> Sair do Jogo</button>
 			</div>  
 
-            <div class="iconbar iconbar-horizontal" style="display: none">
+            <div class="iconbar iconbar-horizontal">
 			  <ul>
 			  	<li><a href="#" class="fui-home"></a></li>
 			    <li><a href="#" class="fui-user"></a></li>

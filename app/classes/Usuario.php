@@ -385,6 +385,18 @@ class Usuario {
         
         return $res->acertos;
     }
+
+    public function get_badges()
+    {
+        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+        
+        return $res;
+    }
+
 }
 
 ?>

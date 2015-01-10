@@ -52,6 +52,26 @@ class Auto {
         }
     }
 
+    public function post_faceId()
+    {
+        $sql = "SELECT foto_profile, email FROM tb_usuario";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        echo "<pre />";
+
+        while($res = $stmt->fetch())
+        {   
+            $id = explode("/", $res->foto_profile);
+            $id = intval($id[3]);
+            
+            $sql = "UPDATE tb_usuario SET face_id = $id WHERE email = '$res->email'";
+            $stmtUsuario = DB::query($sql);
+        }
+
+        return true;
+    }
+
     public function get_user()
     {
         return $_SESSION;

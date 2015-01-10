@@ -41,7 +41,7 @@ ol li {margin-bottom: 15px;}
    .icons ul li:nth-child(2) embed {margin-left: -50px; margin-top: 15px;  }
 }
 
-.container-mainbox { min-height: 650px; background-color: #fff; margin: 0 auto; overflow: hidden; width: 76%;}
+.container-mainbox { min-height: 650px; background-color: #fff; margin: 0 auto; overflow: hidden;}
 .container-mainbox header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
 .container-mainbox .question-value {color: #fff; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
 .container-mainbox .subject {color: #fff; margin-right: 10px; text-transform: uppercase; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
@@ -69,6 +69,11 @@ ol li {margin-bottom: 15px;}
 .ranking-box ul {padding: 5px 0px;}
 .ranking-box ul > li {padding: 5px 0px; overflow: hidden;}
 .ranking-box ul > li > h4 {color: #7F8C8D}
+
+.badges-box {min-height: 300px; width: 23%; float: right; background-color: #fff;}
+.badges-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
+.badges-box article { padding: 5px; margin-right: 5px;}
+.badges-box img {opacity: 0.35;}
 
 .hit-average {min-height: 200px; width: 23%; float: right; background-color: #fff;}
 
@@ -200,6 +205,7 @@ background-color: #2f4b93;
 .w100 {width: 100%;}
 .w90 {width: 90%;}
 .w80 {width: 80%;}
+.w76 {width: 76%;}
 .w60 {width: 60%;}
 .w30 {width: 30%;}
 .w25 {width: 25%;}

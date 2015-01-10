@@ -1,8 +1,7 @@
 <?php include("template/_header.php"); ?>
 	<section class="mainbox geral-container" style="overflow: hidden;">
-		<div class="container-mainbox left">
+		<div class="container-mainbox w76 left">
 			<header>
-				<!-- <h3 class="left"> --/-- </h3> -->
 				<i att="fui-chat" class="fui-chat right mt10" id="notifica-erro"></i>
 				<div class="right question-value mr25">
 					E$ 20
@@ -94,8 +93,5 @@
 			<article>
 			</article>
 		</div>
-		<!-- <div class="hit-average mt10">
-			<div id="container-speed" style="height: 200px;"></div>
-		</div> -->
 	</section>
 <?php include("template/_footer.php"); ?>
