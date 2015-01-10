@@ -18,6 +18,31 @@ class Usuario {
 
         $user = $stmt->fetch();
 
+        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetchall();
+
+        $user->badges = $res;
+        $user->larger_foto_profile = null; 
+        $user->data_cadastro = implode("/", array_reverse(explode("-", $user->data_cadastro)));   
+
+        // pega imagem maior do usuario
+        if ($user->face_id)
+        {
+            $link = "http://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $link
+            ));
+            $resp = curl_exec($curl);
+            $resp = json_decode($resp, true);
+
+            $user->larger_foto_profile = $resp['data']['url'];   
+        }
+
         return $user;
     }
 
@@ -334,13 +359,23 @@ class Usuario {
         $friends = $_SESSION['FRIENDS'];
 
         $ids = array();
-        foreach ($friends['data'] as $key => $friend) {
+        
+        $sql = "SELECT face_id FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $myId = $stmt->fetch()->face_id;
+
+        foreach ($friends['data'] as $key => $friend)
+        {
             array_push($ids,$friend['id']);
         }
+
+        $ids[] = $myId;
+
         $ids = implode(",", $ids);
 
-        $sql = "SELECT nome, pontuacao_geral as pontuacao, foto_profile as foto FROM tb_usuario WHERE face_id IN ($ids) ORDER BY pontuacao_geral ASC";
-
+        $sql = "SELECT nome, pontuacao_geral as pontuacao, foto_profile as foto FROM tb_usuario WHERE face_id IN ($ids) ORDER BY pontuacao_geral DESC";
 
         $stmt = DB::prepare($sql);
         $stmt->execute();
@@ -405,17 +440,34 @@ class Usuario {
         return $res->acertos;
     }
 
-    public function get_badges()
+    public function post_update($user)
     {
-        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]}";
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
 
-        $res = $stmt->fetch();
-        
-        return $res;
+        if($user->notificacoes)
+            $user->notificacoes = 1;
+        else
+            $user->notificacoes = 0;
+
+        if ($user->nova_senha != "")
+        {
+            $sql = "UPDATE tb_usuario SET 
+                nome = '$user->nome',
+                localizacao = '$user->localizacao',
+                aniversario = '$user->aniversario',
+                email = '$user->email',
+                senha = '". md5($user->nova_senha) ."',
+                lembretes = $user->notificacoes
+                WHERE id = {$_SESSION["FBID"]} ";
+        }
+        else
+        {
+            $sql = "UPDATE tb_usuario SET  nome = '$user->nome', localizacao = '$user->localizacao', aniversario = '$user->aniversario', email = '$user->email', lembretes = $user->notificacoes WHERE id = {$_SESSION["FBID"]} ";
+        }
+
+        $stmtUsuario = DB::query($sql);
+
+        return true;
     }
-
 }
 
 ?>

@@ -1,11 +1,18 @@
 <?php include("template/_header.php"); ?>
 	<section class="mainbox geral-container" style="overflow: hidden;">
-		<div class="container-mainbox left w100">
+		<div class="container-mainbox left w76">
 			<header>
 				<h3>Perfil</h3>
 			</header>
 			<article>
-				Teste
+				
+			</article>
+		</div>
+		<div class="friends-box">
+			<header>
+				<h3><i class="fa fa-trophy"></i> Ranking de Amigos</h3>
+			</header>
+			<article>
 			</article>
 		</div>
 	</section>

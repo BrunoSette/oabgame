@@ -41,7 +41,7 @@ ol li {margin-bottom: 15px;}
    .icons ul li:nth-child(2) embed {margin-left: -50px; margin-top: 15px;  }
 }
 
-.container-mainbox { min-height: 650px; background-color: #fff; margin: 0 auto; overflow: hidden;}
+.container-mainbox { min-height: 450px; background-color: #fff; margin: 0 auto; overflow: hidden;}
 .container-mainbox header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
 .container-mainbox .question-value {color: #fff; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
 .container-mainbox .subject {color: #fff; margin-right: 10px; text-transform: uppercase; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
@@ -63,6 +63,7 @@ ol li {margin-bottom: 15px;}
 .container-mainbox article p.option {width: 38px; font-size: 1.5em; margin: 0px 15px 0px 5px; border-radius: 200px; border-radius:250px; color:#fff; text-align:center; background:#E74C3C}
 .container-mainbox article ul {margin-top: 10px;}
 .container-mainbox article ul li {padding: 8px 1px; margin-bottom: 5px; overflow: hidden;}
+.container-mainbox article h4 {font-size: 1.3em; color: #34495e;}
 
 .ranking-box {min-height: 300px; width: 23%; float: right; background-color: #fff;}
 .ranking-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
@@ -70,10 +71,12 @@ ol li {margin-bottom: 15px;}
 .ranking-box ul > li {padding: 5px 0px; overflow: hidden;}
 .ranking-box ul > li > h4 {color: #7F8C8D}
 
-.badges-box {min-height: 300px; width: 23%; float: right; background-color: #fff;}
-.badges-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
-.badges-box article { padding: 5px; margin-right: 5px;}
-.badges-box img {opacity: 0.35;}
+.friends-box {height: 350px; width: 23%; float: right; background-color: #fff;}
+.friends-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
+.friends-box article { height: 270px; padding: 5px; margin-right: 5px; overflow: scroll;}
+.friends-box ul {padding: 5px 0px;}
+.friends-box ul > li {padding: 5px 0px; overflow: hidden;}
+.friends-box ul > li > h4 {color: #7F8C8D}
 
 .hit-average {min-height: 200px; width: 23%; float: right; background-color: #fff;}
 
@@ -127,7 +130,7 @@ ol li {margin-bottom: 15px;}
 form {padding: 5px 10px 5px;}
 form .control-group {overflow: hidden; margin-bottom: 10px;}
 form.form-aligned label {margin-right: 20px; width: 10%; padding: 5px;}
-form input[type="text"], input[type="password"], input[type="email"], textarea {border: 2px solid #bdc3c7; color: #34495e;
+form input[type="text"], input[type="password"], input[type="email"],  input[type="date"], textarea {border: 2px solid #bdc3c7; color: #34495e;
 font-size: 0.8em;
 padding: 0px 12px;
 height: 30px;
@@ -138,6 +141,9 @@ outline: none;
 }
 
 form textarea {padding-top: 5px; padding-bottom: 5px; height: 75px; width: 100%}
+
+form.config h3 {color: #7F8C8D; margin-bottom: 10px;} 
+form .erro {border: 2px solid #e74c3c !important; color: #e74c3c !important;}
 
 /* botoes */
 
@@ -201,12 +207,14 @@ background-color: #2f4b93;
 .geral-container {padding-left:5%; padding-right: 5%; padding-bottom: 5%;}
 
 .small {font-size: 0.7em;}
+.large {font-size: 1.5em;}
 
 .w100 {width: 100%;}
 .w90 {width: 90%;}
 .w80 {width: 80%;}
 .w76 {width: 76%;}
 .w60 {width: 60%;}
+.w50 {width: 50%;}
 .w30 {width: 30%;}
 .w25 {width: 25%;}
 
