@@ -38,7 +38,6 @@ if(!isset($_SESSION["FBID"]))
 	f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
 	</script>
 	<!-- End Visual Website Optimizer Asynchronous Code -->
-
 </head>
 <body>
 	<header class="topo">
@@ -80,10 +79,10 @@ if(!isset($_SESSION["FBID"]))
 
             <div class="iconbar iconbar-horizontal">
 			  <ul>
-			  	<li><a href="#" class="fui-home"></a></li>
-			    <li><a href="#" class="fui-user"></a></li>
+			  	<li><a href="index.php" class="fui-home"></a></li>
+			    <li><a href="perfil.php" class="fui-user"></a></li>
 			    <li><a href="#" class="fa fa-area-chart"></a></li>
-			    <li><a href="#" class="fui-gear"></a></li>
+			    <li><a href="config.php" class="fui-gear"></a></li>
 			  </ul>
 			</div>
 		</div>

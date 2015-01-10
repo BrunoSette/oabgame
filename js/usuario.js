@@ -237,29 +237,63 @@ function atualizaPerfil()
      });
 }
 
+// function rankingAmigos(){
+//     $.ajax({
+//         type: "get",
+//         url: rootUrl + "/Usuario/ranking_friends",
+//         dataType: "json",
+//         success: function(e)
+//         {
+//             var lista = $("#ranking_amigos");
+//             console.log(e);
+//             for(i in e.result){
+//                 var element = e.result[i];
+//                 console.log(element);
+//                 var li = $("<li>");
+//                 $("<h4>").text(parseInt(i) + 1).appendTo(li);
+//                 var img = $("<img>").attr("src",element.foto);
+//                 $("<h4>").append(img).appendTo(li);
+//                 $("<h4>").text(element.nome).appendTo(li);
+//                 $("<h4>").text(element.pontuacao).appendTo(li);
+//                 console.log(li);
+
+//                 lista.append(li);
+//             }
+           
+//         },
+//         error: function(e)
+//         {
+//             console.log(e);
+//         }
+//     });
+// }
+
 function rankingAmigos(){
     $.ajax({
         type: "get",
         url: rootUrl + "/Usuario/ranking_friends",
         dataType: "json",
-        success: function(e)
+        success: function(result)
         {
-            var lista = $("#ranking_amigos");
-            console.log(e);
-            for(i in e.result){
-                var element = e.result[i];
-                console.log(element);
-                var li = $("<li>");
-                $("<h4>").text(parseInt(i) + 1).appendTo(li);
-                var img = $("<img>").attr("src",element.foto);
-                $("<h4>").append(img).appendTo(li);
-                $("<h4>").text(element.nome).appendTo(li);
-                $("<h4>").text(element.pontuacao).appendTo(li);
-                console.log(li);
+            var html = "<ul>";
 
-                lista.append(li);
+            for(i in result.result)
+            {
+                if (result.result[i] != null)
+                {
+                    html += "<li>";
+
+                    html += "<img src='" + result.result[i].foto + "' class='left mr5' alt=''>";
+                    
+                    html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
+                    html += "<p>" + result.result[i].pontuacao + "</p>";
+                    html += "</li>";
+                }
             }
-           
+
+            html += "</ul>";
+
+            $(".friends-box > article").html(html);
         },
         error: function(e)
         {

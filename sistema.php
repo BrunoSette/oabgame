@@ -21,9 +21,7 @@
 							<div>
 								<label for="A">
 									<p class='option left'>A</p>
-									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="A">
-										
-									</p>
+									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="A"></p>
 								</label>
 							</div>
 						</li>
@@ -32,9 +30,7 @@
 							<div>
 								<label for="B">
 									<p class='option left'>B</p>
-									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="B">
-										
-									</p>	
+									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="B"></p>	
 								</label>
 							</div>
 						</li>
@@ -43,9 +39,7 @@
 							<div>
 								<label for="C">
 									<p class='option left'>C</p>
-									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="C">
-										
-									</p>
+									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="C"></p>
 								</label>
 							</div>
 						</li>
@@ -54,9 +48,7 @@
 							<div>
 								<label for="D">
 									<p class='option left'>D</p>
-									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="D">
-										
-									</p>
+									<p class="teste" style="box-sizing: border-box; padding-top: 5px; display: flex;" data-option="D"></p>
 								</label>
 							</div>
 						</li>
