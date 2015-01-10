@@ -1,11 +1,19 @@
 <?php include("template/_header.php"); ?>
+<?php ?>
 	<section class="mainbox geral-container" style="overflow: hidden;">
 		<div class="container-mainbox left w100">
 			<header>
-				<h3>Perfil</h3>
+				<h3>Ranking Amigos</h3>
 			</header>
 			<article>
-				Teste
+				<ol id="ranking_amigos">
+					<li>
+						<h4>Colocação</h4>
+						<h4>Foto</h4>
+						<h4>Nome</h4>
+						<h4>Pontuação</h4>
+					</li>
+				</ol>
 			</article>
 		</div>
 	</section>
@@ -24,7 +32,6 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/perfil.js"></script>
 	<script src="js/usuario.js"></script>
 </body>
 </html>

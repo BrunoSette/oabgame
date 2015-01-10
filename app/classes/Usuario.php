@@ -10,6 +10,7 @@ class Usuario {
 
     public function get_profile()
     {
+        die('foi');
         $sql = "SELECT * FROM tb_usuario WHERE (email=:user_email)";
         $stmt = DB::prepare($sql);
 
@@ -330,6 +331,25 @@ class Usuario {
         return $ret;
     }
 
+    public function get_ranking_friends(){
+        $friends = $_SESSION['FRIENDS'];
+
+        $ids = array();
+        foreach ($friends['data'] as $key => $friend) {
+            array_push($ids,$friend['id']);
+        }
+        $ids = implode(",", $ids);
+
+        $sql = "SELECT nome, pontuacao_geral as pontuacao, foto_profile as foto FROM tb_usuario WHERE face_id IN ($ids) ORDER BY pontuacao_geral ASC";
+
+
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetchall();
+        return $res;
+    }
+
     public function post_store_friendlist($data)
     {
         $today = explode("/", date("Y/m/d"));
@@ -385,6 +405,7 @@ class Usuario {
         
         return $res->acertos;
     }
+
 }
 
 ?>

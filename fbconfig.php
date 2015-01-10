@@ -52,7 +52,7 @@ if ($user)
     }
     else
     { 
-      //$friends = $facebook->api('/me/friends');
+      $friends = $facebook->api('/me/friends');
       //$usuario->post_store_friendlist($friends['data']);
 
       $_SESSION['USERNAME'] = $fbuname;
@@ -61,6 +61,7 @@ if ($user)
       $_SESSION['BIRTHDAY'] =  $birthday;
       $_SESSION['LOCATION'] =  $location;
       $_SESSION['PICTURE'] =  $picture;
+      $_SESSION['FRIENDS'] =  $friends;
 
       $_SESSION['MOEDAS'] = $usuario->get_pontuation($femail);
       $_SESSION['PONTUACAO'] = $usuario->get_pontuation_geral($femail);
