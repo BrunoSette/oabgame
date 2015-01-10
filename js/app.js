@@ -1,7 +1,10 @@
 // variaveis globais
 
-var rootUrl = "http://local.estudandoonline.com.br:8888/game/app";
-var clienteUrl = "http://local.estudandoonline.com.br:8888/game";
+// var rootUrl = "http://local.estudandoonline.com.br:8888/game/app";
+// var clienteUrl = "http://local.estudandoonline.com.br:8888/game";
+
+var rootUrl = "http://www.estudandoonline.com.br/game/app";
+var clienteUrl = "http://www.estudandoonline.com.br/game";
 
 const RESPOSTA_CORRETA = 20;
 const PULAR_PERGUNTA = -5;

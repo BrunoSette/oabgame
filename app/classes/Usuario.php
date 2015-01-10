@@ -10,7 +10,6 @@ class Usuario {
 
     public function get_profile()
     {
-        die('foi');
         $sql = "SELECT * FROM tb_usuario WHERE (email=:user_email)";
         $stmt = DB::prepare($sql);
 
