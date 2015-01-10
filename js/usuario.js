@@ -237,9 +237,41 @@ function atualizaPerfil()
      });
 }
 
+function rankingAmigos(){
+    $.ajax({
+        type: "get",
+        url: rootUrl + "/Usuario/ranking_friends",
+        dataType: "json",
+        success: function(e)
+        {
+            var lista = $("#ranking_amigos");
+            console.log(e);
+            for(i in e.result){
+                var element = e.result[i];
+                console.log(element);
+                var li = $("<li>");
+                $("<h4>").text(parseInt(i) + 1).appendTo(li);
+                var img = $("<img>").attr("src",element.foto);
+                $("<h4>").append(img).appendTo(li);
+                $("<h4>").text(element.nome).appendTo(li);
+                $("<h4>").text(element.pontuacao).appendTo(li);
+                console.log(li);
+
+                lista.append(li);
+            }
+           
+        },
+        error: function(e)
+        {
+            console.log(e);
+        }
+    });
+}
+
 $(document).ready(function()
 {
 	badges_vezes_jogadas();
-	verificaPontuacao();
+	// verificaPontuacao();
 	atualizaPerfil();
+    rankingAmigos();
 });

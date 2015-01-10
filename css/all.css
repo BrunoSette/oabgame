@@ -291,3 +291,6 @@ background-color: #2f4b93;
 
 #notifica-erro:hover {cursor: pointer;}
 
+#ranking_amigos h4 {display: inline-block; margin-right: 5px;}
+#ranking_amigos li { list-style-type: none; }
+
