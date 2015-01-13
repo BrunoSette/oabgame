@@ -1,20 +1,52 @@
 <?php include("template/_header.php"); ?>
 	<section class="mainbox geral-container" style="overflow: hidden;">
 		<div style="overflow: hidden; margin-bottom: 10px;">
-			<div class="container-mainbox left" style="width: 49%; margin-right: 2%">
+			<div class="container-mainbox w100 mb20">
 				<header>
-					<h3>Desempenho mensal</h3>
+					<h3>Desempenho por matéria (%)</h3>
 				</header>
 				<article>
+					<div style="width:100%">
+						<p class="small">Percentual de Acerto das Questões por Matéria</p>
+						<div>
+							<canvas id="canvas" height="450" width="600"></canvas>
+						</div>
+					</div>
 				</article>
 			</div>
-			<div class="container-mainbox left" style="width: 49%;">
+			<div class="container-mainbox left" style="width: 49%; margin-right: 2%; margin-bottom: 20px;">
 				<header>
-					<h3>Desempenho por matéria</h3>
+					<h3>Taxa de Acertos no mes</h3>
 				</header>
 				<article>
+					<div>
+						<canvas id="canvas_taxa_mes" height="450" width="600"></canvas>
+					</div>
 				</article>
 			</div>
+			
+			<div class="container-mainbox left" style="width: 49%; margin-bottom: 20px">
+				<header>
+					<h3>Questões respondidas</h3>
+				</header>
+				<article>
+					<div>
+						<canvas id="canvas_questoes" height="450" width="600"></canvas>
+					</div>
+				</article>
+			</div>
+	
+			<div class="container-mainbox left" style="width: 49%; margin-right: 2%;">
+				<header>
+					<h3>Percentual de Acerto Total</h3>
+				</header>
+				<article>
+					<div>
+						<canvas id="canvas_questoes" height="450" width="600"></canvas>
+					</div>
+				</article>
+			</div>
+
 		</div>
 	</section>
 	<div class="box-overlay"></div>
@@ -33,5 +65,11 @@
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/usuario.js"></script>
+	<script src="js/graficos.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/Chart.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
 </body>
 </html>

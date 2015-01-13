@@ -79,9 +79,9 @@ if(!isset($_SESSION["FBID"]))
 
             <div class="iconbar iconbar-horizontal">
 			  <ul>
-			  	<li><a href="index.php" class="fui-home"></a></li>
+			  	<li><a href="index.php" class="fa fa-gamepad"></a></li>
 			    <li><a href="perfil.php" class="fui-user"></a></li>
-			    <li><a href="#" class="fa fa-area-chart"></a></li>
+			    <li><a href="graficos.php" class="fa fa-area-chart"></a></li>
 			    <li><a href="config.php" class="fui-gear"></a></li>
 			  </ul>
 			</div>

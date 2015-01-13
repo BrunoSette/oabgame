@@ -302,7 +302,7 @@ class Usuario {
     */
     public function get_ranking()
     {
-        $sql = "SELECT id, nome, foto_profile, pontuacao FROM tb_usuario ORDER BY pontuacao DESC";
+        $sql = "SELECT id, nome, foto_profile, pontuacao_geral AS pontuacao FROM tb_usuario ORDER BY pontuacao DESC";
         $stmt = DB::prepare($sql);
         $stmt->execute();
 
@@ -438,6 +438,115 @@ class Usuario {
         $res = $stmt->fetch();
         
         return $res->acertos;
+    }
+
+    public function get_materia_grafico()
+    {
+        $sql = "SELECT 
+        tb_questao_usuario.usuario, tb_questao_usuario.questao, tb_questao_usuario.acertou, tb_questoes_multiplaescolha.id, 
+        tb_questoes_multiplaescolha.disciplina, tb_disciplinas.id 
+        FROM tb_questao_usuario, tb_questoes_multiplaescolha, tb_disciplinas  WHERE 
+        usuario = {$_SESSION["FBID"]}
+        AND tb_questao_usuario.questao = tb_questoes_multiplaescolha.id 
+        AND tb_disciplinas.titulo  = tb_questoes_multiplaescolha.disciplina";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $sql = "SELECT * FROM tb_disciplinas";
+        $stmtDisciplinas = DB::prepare($sql);
+        $stmtDisciplinas->execute();
+        $ret = array();
+        while($res = $stmtDisciplinas->fetch())
+        {
+            $res->acertos = 0;
+            $res->respostas = 0;
+            $ret[] = $res;
+        }
+
+        while($res = $stmt->fetch())
+        {
+            if (intval($res->acertou))
+                $ret[intval($res->id)]->acertos++;
+
+            $ret[intval($res->id)]->respostas++;
+        }
+        
+        return $ret;
+    }
+
+    public function get_questoes_grafico()
+    {
+        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $mesAtual = date('m');
+        $diaAtual = date('d');
+
+        $ret = array();
+
+        for ($i = 1; $i <= $diaAtual; $i++) $ret[] = 0;
+
+        while($res = $stmt->fetch())
+        {
+            $data = explode("-", $res->data);
+            if (intval($data[1]) == intval($mesAtual))
+                $ret[intval($data[2])]++;
+        }
+
+        for ($i = 1; $i <= $diaAtual; $i++)
+            if (!$ret[$i]) $ret[$i] = 0;
+
+        return $ret;
+    }
+
+    public function get_taxa_acertos_mes()
+    {
+        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $mesAtual = date('m');
+        $diaAtual = date('d');
+
+        $resAcertos = array();
+        $resTotal = array();
+        $resHit = array();
+
+        for ($i = 1; $i <= $diaAtual; $i++)
+        {
+            $resAcertos[] = 0; $resTotal[] = 0; $resHit[] = 0; 
+        }
+
+        while($res = $stmt->fetch())
+        {
+            $data = explode("-", $res->data);
+            if (intval($data[1]) == intval($mesAtual))
+            {
+                $resTotal[intval($data[2])]++;
+
+                if ($res->acertou)
+                    $resAcertos[intval($data[2])]++;
+            }
+        }
+
+        for ($i = 1; $i <= $diaAtual; $i++)
+        {
+            if (!$ret[$i]) $ret[$i] = 0;
+            if (!$resTotal[$i]) $resTotal[$i] = 0;
+            if (!$resAcertos[$i]) $resAcertos[$i] = 0;
+
+            if ($resTotal[$i] != 0)
+                $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
+            else
+                $resHit[$i] = 0;
+
+        }
+
+        return $resHit;
     }
 
     public function post_update($user)

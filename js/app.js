@@ -166,7 +166,7 @@ function obtemRanking()
                         html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
                     
                     html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
-                    html += "<p>E$ " + result.result[i].pontuacao + "</p>";
+                    html += "<p> " + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
                     html += "</li>";
                 }
             }

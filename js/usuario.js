@@ -286,7 +286,7 @@ function rankingAmigos(){
                     html += "<img src='" + result.result[i].foto + "' class='left mr5' alt=''>";
                     
                     html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
-                    html += "<p>" + result.result[i].pontuacao + "</p>";
+                    html += "<p>" + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
                     html += "</li>";
                 }
             }
