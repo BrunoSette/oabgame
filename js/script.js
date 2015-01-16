@@ -9,7 +9,7 @@ $(function () {
         title: null,
 
         pane: {
-            center: ['50%', '85%'],
+            center: ['50%', '70%'],
             size: '100%',
             startAngle: -90,
             endAngle: 90,
@@ -37,7 +37,7 @@ $(function () {
             tickPixelInterval: 400,
             tickWidth: 0,
             title: {
-                y: -70
+                y: 20
             },
             labels: {
                 y: 16
@@ -83,11 +83,4 @@ $(function () {
         }]
 
     }));
-
-    var chart = $('#container-speed').highcharts();
-    
-    if (chart) {
-        point = chart.series[0].points[0];        
-        point.update(10);
-    }
 });

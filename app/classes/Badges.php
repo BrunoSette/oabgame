@@ -28,6 +28,21 @@ class Badges {
 
         return false;
     }
+
+    public function post_badge($param)
+    {
+        $usuario = $_SESSION['FBID'];
+
+        $sql = "SELECT * FROM `tb_badges_usuario` WHERE `badge` = $param->badge AND `usuario` = $usuario ";
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+
+        if (!$res) return true;
+
+        return false;
+    }
 }
 
 ?>

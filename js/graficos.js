@@ -132,9 +132,30 @@ function grafico_taxa_acerto_mes()
     });
 }
 
+function taxa_acertos()
+{
+	$.ajax({
+        type: "get",
+        url: rootUrl + "/Usuario/taxa_acertos",
+        dataType: "json",
+        success: function(e) 
+        {
+        	var chart = $('#container-speed').highcharts();
+    		var point;
+
+		    if (chart) {
+		        point = chart.series[0].points[0];        
+		        point.update(parseInt(e.result));
+		    }
+        },
+        error: function(result){ console.info(result); }
+    });
+}
+
 $(document).ready(function()
 {	
 	grafico_desempenho_materias();
 	grafico_questoes();
 	grafico_taxa_acerto_mes();
+	taxa_acertos();
 });

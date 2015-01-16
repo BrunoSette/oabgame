@@ -286,25 +286,25 @@ $(document).ready(function() {
             bloqueaShowDoMilhao();
     });
     
-    window.onbeforeunload = function(e)
-    {
-        if (!sair)
-        {
-            if (score > 5)
-            {
-                data = JSON.stringify({"pontuation" : PULAR_PERGUNTA});
+    // window.onbeforeunload = function(e)
+    // {
+    //     if (!sair)
+    //     {
+    //         if (score > 5)
+    //         {
+    //             data = JSON.stringify({"pontuation" : PULAR_PERGUNTA});
 
-                $.ajax({
-                    type: "post",
-                    url: rootUrl + "/Usuario/pontuation",
-                    data: data,
-                    dataType: "json",
-                    success: function(e) {updateMoedas(PULAR_PERGUNTA)},
-                    error: function(e) { console.info(e); }
-                });
-            }
-        }
-    };
+    //             $.ajax({
+    //                 type: "post",
+    //                 url: rootUrl + "/Usuario/pontuation",
+    //                 data: data,
+    //                 dataType: "json",
+    //                 success: function(e) {updateMoedas(PULAR_PERGUNTA)},
+    //                 error: function(e) { console.info(e); }
+    //             });
+    //         }
+    //     }
+    // };
 
     $("#pular-pergunta").bind("click", function() {
         if (score > 5) 

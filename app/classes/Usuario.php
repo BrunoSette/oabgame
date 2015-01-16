@@ -549,6 +549,29 @@ class Usuario {
         return $resHit;
     }
 
+    public function get_taxa_acertos()
+    {
+        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $resAcertos = 0;
+        $resTotal = 0;
+
+        while($res = $stmt->fetch())
+        {
+            $resTotal++;
+
+            if ($res->acertou)
+                $resAcertos++;
+        }
+
+        $resHit = ceil(100*$resAcertos/$resTotal);
+
+        return $resHit;
+    }
+
     public function post_update($user)
     {
 

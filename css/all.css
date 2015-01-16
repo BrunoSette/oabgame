@@ -1,21 +1,34 @@
 /* Main Config */
-
+@import url('../css/bootstrap.min.css');
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body {font-family: 'Lato', Helvetica, Arial, sans-serif; color:#7F8C8D; background-color: #fff; font-size: 100%; line-height: 1.5;} 
-
+body.land {background-color: #34495e;}
 h1 {font-size: 3.5em; line-height: 1.5em; }
 h2 {font-size: 2.5em; line-height: 2.5em; }
 h3 {font-size: 1.5em; line-height: 2em; }
 h4 {font-weight: bold;}
-
-header {background-color: #34495e; height: 85px;}
-header.topo {border-bottom: 5px solid #20364C;}
+ul {margin:0; padding:0;}
+header.topo {border-bottom: 5px solid #20364C;background-color: #34495e; height: 85px;}
 header i[att^="fui-"] {font-size: 1.5em; color: #fff;}
 header h2 {color: #fff; line-height: 70px;}
-header img.logo{width: 15%; margin-top: 5px; float: left;}
+header img.logo{width: 60%; /*margin-top: 5px; float: left;*/}
 
-.headbox h1, h3 {color: #fff; } 
-.headbox {background-color: #1abc9c; text-align: center; padding: 150px;}
+
+/*Menu sistema*/
+.navbar-header {float: left; width: 30%}
+.order-menu {/*width: 40%;*/ float: right;}
+.order-menu i {font-size: 1em;}
+.order-menu .order-1 {float: left;}
+.order-menu .order-2 {float: right;}
+.order-menu .menu-mobile {visibility: hidden; position: absolute;}
+
+
+.headbox h1, h3 {color: #fff;font-weight: inherit; } 
+.headbox {background-color: #1abc9c; text-align: center;padding: 140px 0 140px 0;}
+.tooltip-sys {position: absolute;background-color: rgb(236, 240, 241); z-index: 9999999;
+right: 5%;
+width: 265px;
+border-radius: 15px; padding: 5px;}
 
 .mainbox {background-color: #eaeaea; box-sizing: border-box; padding: 60px 0px;}
 
@@ -41,15 +54,33 @@ ol li {margin-bottom: 15px;}
    .icons ul li:nth-child(2) embed {margin-left: -50px; margin-top: 15px;  }
 }
 
-.container-mainbox { min-height: 450px; background-color: #fff; margin: 0 auto; overflow: hidden;}
-.container-mainbox header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
-.container-mainbox .question-value {color: #fff; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
-.container-mainbox .subject {color: #fff; margin-right: 10px; text-transform: uppercase; height: 100%; line-height: 35px; background-color: #16A085; padding: 10px;}
+
+
+/*land form*/
+
+section.land-login {padding-top: 120px; padding-bottom: 80px;}
+.box-login {background: #f2f2f2; border-radius: 10px; padding: 20px;}
+.box-login form {}
+.box-login form input {border:0; padding: 20px; font-weight: bolder; font-size: 1.2em;}
+.box-login .forget {text-align: center; margin-top: 20px;}
+.box-login .forget a {color:#bababa; font-family: 'Lato'; text-decoration: none;}
+.box-login .icon-name {position: relative;}
+.box-login .icon-name i {position: absolute; right: 10px; top:13px;}
+
+
+
+.container-mainbox { min-height: 450px; background-color: #fff; margin: 0 auto; overflow: hidden;margin: 0.9%;}
+.container-mainbox .header {background-color: #1ABC9C; position: relative; padding:10px;}
+.container-mainbox .question-value {color: #fff; height: 100%; line-height: 35px; background-color: #16A085;
+padding: 0 10px 0 10px;margin: 10px 10px 0 10px;}
+.container-mainbox .subject {color: #fff;text-transform: uppercase; height: 100%; line-height: 35px; background-color: #16A085; margin-top: 10px;
+margin-bottom: 10px; margin-left: 15px; margin-right: 15px;}
 .container-mainbox article {padding: 10px 2%;}
 
-.container-mainbox article div.options-help {text-align: center; overflow: hidden; margin-top: 30px; margin-left: 18%;}
-.container-mainbox article div.options-help > div {min-width: 150px; float: left; border: 1px solid; padding: 15px; background-color: #3498DB; margin-right: 15px; color: #fff; border-radius: 10px; }
-.container-mainbox article div.options-help p {background-color: #2980B9; padding: 5px; border-radius: 5px; margin-top: 5px;}
+.container-mainbox article div.options-help {margin-bottom: 30px;overflow: hidden; margin-top: 30px;}
+.container-mainbox article div.options-help > div { float: left;background-color: #3498DB ;color: #fff;border-radius: 10px; padding: 10px; margin-left: 5px; margin-right: 5px; font-size: 15px; }
+.container-mainbox article div.options-help > div i {font-size: 1em; padding-right: 2px;}
+.container-mainbox article div.options-help p.valor {text-align: center;background-color: #2980B9; padding: 5px; border-radius: 5px; margin-top: 5px;}
 .container-mainbox article .options-help div:hover {cursor: pointer; opacity: 0.9;}
 .container-mainbox article div.options-help .wrong {background-color: #E74C3C;}
 .container-mainbox article div.options-help .wrong p {background-color: #C0392B; }
@@ -59,21 +90,22 @@ ol li {margin-bottom: 15px;}
 .container-mainbox article li > div:hover  {border-bottom: 7px solid #eaeaea; cursor: pointer}
 .container-mainbox article input[type=radio] {display: none;}
 .container-mainbox article input[type=radio]:checked + div {background-color: #eaeaea; overflow: hidden; font-weight: bold}
-.container-mainbox article p.question {margin-top: 20px; font-size: 1.1em; }
-.container-mainbox article p.option {width: 38px; font-size: 1.5em; margin: 0px 15px 0px 5px; border-radius: 200px; border-radius:250px; color:#fff; text-align:center; background:#E74C3C}
+.container-mainbox article p.question {margin-top: 20px !important; font-size: 1.1em !important; }
+.container-mainbox article p.option {width: 38px; font-size: 1.5em !important; margin: 0px 15px 0px 5px; border-radius: 200px; border-radius:250px; color:#fff; text-align:center; background:#E74C3C}
+.container-mainbox article p.teste {box-sizing: border-box; padding-top: 5px; display: flex;font-size:16px; line-height:1.2}
 .container-mainbox article ul {margin-top: 10px;}
 .container-mainbox article ul li {padding: 8px 1px; margin-bottom: 5px; overflow: hidden;}
 .container-mainbox article h4 {font-size: 1.3em; color: #34495e;}
 
-.ranking-box {min-height: 300px; width: 23%; float: right; background-color: #fff;}
+.ranking-box {min-height: 300px; background-color: #fff;margin: 0.9%;}
 .ranking-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
 .ranking-box ul {padding: 5px 0px;}
 .ranking-box ul > li {padding: 5px 0px; overflow: hidden;}
 .ranking-box ul > li > h4 {color: #7F8C8D}
 
-.friends-box {height: 350px; width: 23%; float: right; background-color: #fff;}
+.friends-box {height: 350px; background-color: #fff;margin: 0.9%;}
 .friends-box header {height: 70px; background-color: #1ABC9C; padding: 10px 2%;}
-.friends-box article { height: 270px; padding: 5px; margin-right: 5px; overflow: scroll;}
+.friends-box article { height: 270px; padding: 5px; margin-right: 5px; overflow: auto;}
 .friends-box ul {padding: 5px 0px;}
 .friends-box ul > li {padding: 5px 0px; overflow: hidden;}
 .friends-box ul > li > h4 {color: #7F8C8D}
@@ -114,12 +146,7 @@ ol li {margin-bottom: 15px;}
   transform: translateX(-50%) translateY(-50%);
 }
 
-.box-content {
-  background: #fff;
-  position: relative;
-  border-radius: 5px;
-  margin: 0 auto;
-}
+.box-content {background: #fff;position: relative;border-radius: 5px;margin: 0 auto;}
 
 .box-content > h3 {background-color: #3498db; border-top-left-radius: 5px; border-top-right-radius: 5px; text-align: center;}
 .box-content > div {padding: 10px;}
@@ -140,14 +167,21 @@ border-radius: 6px;
 outline: none;
 }
 
-form textarea {padding-top: 5px; padding-bottom: 5px; height: 75px; width: 100%}
+input:-webkit-autofill { background-color: #fff !important; }
 
+/*Formulário página de configurações*/
+
+form textarea {padding-top: 5px; padding-bottom: 5px; height: 75px; width: 100%}
 form.config h3 {color: #7F8C8D; margin-bottom: 10px;} 
 form .erro {border: 2px solid #e74c3c !important; color: #e74c3c !important;}
 
+.form_config {padding: 1.5em; overflow: hidden;}
+.form_config h4 {color: #7F8C8D; margin-bottom: 10px;font-size: 1.5em; font-weight: inherit;}
+.form_config label {text-align: left !important;}
+.form_config input {}
 /* botoes */
 
-.btn {font-size: 1em; font-weight: 400; border: none; background: #bdc3c7; color: #ffffff; padding: 9px 18px 9px; line-height: 22px;text-decoration: none;
+.btn {/*font-size: 1em;*/ font-weight: 400; border: none; background: #bdc3c7; color: #ffffff; /*padding: 9px 18px 9px;*/ line-height: 22px;text-decoration: none;
   border-radius: 20px;
   -webkit-backface-visibility: hidden;
   -webkit-user-select: none;
@@ -196,17 +230,17 @@ background-color: #2f4b93;
 .btn.btn-login {background: #34495E; border: 2px solid #FFFFFF; color: #FFFFFF;}
 .btn.btn-login:hover {background: #34495E; border: 2px solid #FFFFFF; color: #FFFFFF; cursor: pointer;}
 
-.tooltip {position: absolute; background-color: #fff; right: 5%; width: 265px; border-radius: 15px; top: 75px; box-sizing: border-box; padding: 5px;}
+/*.tooltip {position: absolute; background-color: #fff; right: 5%; width: 265px; border-radius: 15px; top: 75px; box-sizing: border-box; padding: 5px;}*/
 .tooltip button:hover {cursor: pointer}
-.tooltip .image-profile img {margin: 0 auto; display: block;}
-.tooltip .txt-profile {text-align: right}
-.tooltip .txt-profile > div {margin: 5px auto; display: table;}
-
+.tooltip-sys .image-profile img {margin: 0 auto; display: block;}
+.tooltip-sys .txt-profile {text-align: right}
+.tooltip-sys .txt-profile > div {margin: 5px auto; display: table;}
+.tooltip-sys .icon-set {position: absolute; color: #ECF0F1; top: -15px; right: 30px}
 /* tools */
 
-.geral-container {padding-left:5%; padding-right: 5%; padding-bottom: 5%;}
+.geral-container {/*padding-left:5%; padding-right: 5%; padding-bottom: 5%;*/}
 
-.small {font-size: 0.7em;}
+.small {font-size: 0.7em !important;}
 .large {font-size: 1.5em;}
 
 .w100 {width: 100%;}
@@ -238,7 +272,7 @@ background-color: #2f4b93;
 .close {float: right; font-size: 20px; font-weight: bold; line-height: 45px; color: #2980B9; margin-right: 10px;}
 
 .mb5 {margin-bottom: 5px;}
-.mb10 {margin-bottom: 10px;}
+.mb10 {margin-bottom: 10px !important;}
 .mb20 {margin-bottom: 20px;}
 .mb40 {margin-bottom: 40px;}
 
@@ -288,7 +322,7 @@ background-color: #2f4b93;
 .iconbar > ul > li.active > a { color: #1abc9c; }
 .iconbar > ul > li:first-child > a { padding-top: 32px; }
 .iconbar > ul > li > a { color: #ffffff; display: block; font-size: 24px; line-height: 1; padding: 8px 30px 32px; position: relative; text-decoration: none; }
-.iconbar > ul > li > a:hover, .iconbar > ul > li > a:focus { color: #1abc9c; }
+.iconbar > ul > li > a:hover, .iconbar > ul > li > a:focus { color: #1ABC9C !important; }
 .iconbar-horizontal { float: right; }
 .iconbar-horizontal > ul > li { float: left; }
 .iconbar-horizontal > ul > li:first-child > a { padding: 23px 32px 23px; }

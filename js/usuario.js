@@ -12,27 +12,65 @@ function badges_vezes_jogadas()
         	if(e.result.qtd_acessos == 2)
         	{
         		img = "<img src='img/badges/jogou2x.png' alt='' style='display: block; margin: 0 auto;' />";
-        		data = {"badge" : badgesEnum.JOGOU_2X}
-        		concedeBadge = true;
+        		data = {"badge" : badgesEnum.JOGOU_2X};
+
+                $.ajax({
+                    type: "post", 
+                    url: rootUrl + "/Badges/badge", 
+                    data: JSON.stringify({"badge" : badgesEnum.JOGOU_2X}), 
+                    dataType: "json",
+                    async: false,
+                    success: function(e) {   concedeBadge = e.result; },
+                    error: function(result){ console.info(result); } 
+                });
         	}
         	else if(e.result.qtd_acessos == 5)
         	{
         		img = "<img src='img/badges/jogou5x.png' alt='' style='display: block; margin: 0 auto;' />";
         		data = {"badge" : badgesEnum.JOGOU_5X}
-        		concedeBadge = true;
+        		
+                $.ajax({
+                    type: "post", 
+                    url: rootUrl + "/Badges/badge", 
+                    data: JSON.stringify({"badge" : badgesEnum.JOGOU_5X}), 
+                    dataType: "json",
+                    async: false,
+                    success: function(e) {   concedeBadge = e.result;},
+                    error: function(result){ console.info(result); } 
+                });
         	}
         	else if(e.result.qtd_acessos == 10)
         	{
         		img = "<img src='img/badges/jogou10x.png' alt='' style='display: block; margin: 0 auto;' />";
         		data = {"badge" : badgesEnum.JOGOU_10X}
-        		concedeBadge = true;
+        		
+                $.ajax({
+                    type: "post", 
+                    url: rootUrl + "/Badges/badge", 
+                    data: JSON.stringify({"badge" : badgesEnum.JOGOU_10X}), 
+                    dataType: "json",
+                    async: false,
+                    success: function(e) {   concedeBadge = e.result;},
+                    error: function(result){ console.info(result); } 
+                });
         	}
         	else if(e.result.qtd_acessos == 15)
         	{
         		img = "<img src='img/badges/jogou15x.png' alt='' style='display: block; margin: 0 auto;' />";
         		data = {"badge" : badgesEnum.JOGOU_15X}
-        		concedeBadge = true;
+        		
+                $.ajax({
+                    type: "post", 
+                    url: rootUrl + "/Badges/badge", 
+                    data: JSON.stringify({"badge" : badgesEnum.JOGOU_15X}), 
+                    dataType: "json",
+                    async: false,
+                    success: function(e) {   concedeBadge = e.result;},
+                    error: function(result){ console.info(result); } 
+                });
         	}
+
+            console.info()
 
         	if (concedeBadge)
         	{
@@ -190,7 +228,7 @@ function atualizaPerfil()
         {	
         	var imgHtml;
 
-            $(".tooltip  .txt-profile .nivel").text("Nível " + e.result.nivel);
+            $(".tooltip-sys .txt-profile .nivel").text("Nível " + e.result.nivel);
            
             if (e.result.genero == "female")
             {
@@ -231,7 +269,7 @@ function atualizaPerfil()
 			        imgHtml = "<img src='img/profile_nivel/homem/nivel-8.png' alt=''/>";
             }
 
-            $(".tooltip  .image-profile").html(imgHtml);
+            $(".tooltip-sys  .image-profile").html(imgHtml);
         },
         error: function(result){ console.info(result); }
      });

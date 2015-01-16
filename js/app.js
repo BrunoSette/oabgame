@@ -1,10 +1,7 @@
 // variaveis globais
 
-// var rootUrl = "http://local.estudandoonline.com.br:8888/game/app";
-// var clienteUrl = "http://local.estudandoonline.com.br:8888/game";
-
-var rootUrl = "http://www.estudandoonline.com.br/game/app";
-var clienteUrl = "http://www.estudandoonline.com.br/game";
+var rootUrl = "http://www.aprovagame.com.br/app";
+var clienteUrl = "http://www.aprovagame.com.br";
 
 const RESPOSTA_CORRETA = 20;
 const PULAR_PERGUNTA = -5;
@@ -260,12 +257,12 @@ $(document).ready(function()
 {
     $("#user-box").bind('click', function()
     {
-        var status = $(".tooltip").css('display');
+        var status = $(".tooltip-sys").css('display');
 
         if (status == "none")
-            $(".tooltip").css('display', 'block');
+            $(".tooltip-sys").css('display', 'block');
         else
-            $(".tooltip").css('display', 'none');
+            $(".tooltip-sys").css('display', 'none');
     });
 
     $("#linkSair").bind("click", function() {
@@ -273,7 +270,7 @@ $(document).ready(function()
         sair = true;
         $.ajax({
             type: "get",
-            url: rootUrl + "Usuario/logout",
+            url: rootUrl + "/Usuario/logout",
             success: function()
             {
                 $.removeCookie('usuario');
