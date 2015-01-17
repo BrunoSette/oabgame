@@ -6,9 +6,21 @@
 	<link rel="stylesheet" href="css/reset.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/all.css" />
+<<<<<<< HEAD
 	
 	<!-- Google Analytics Code -->
 	<?php include_once("src/analyticstracking.php") ?>
+||||||| merged common ancestors
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+=======
+	
+	<!-- Google Analytics Code -->
+	<?php include_once("analyticstracking.php") ?>
+>>>>>>> 392055698b1b988ca750cd7c8685a1324dd993a6
 
 </head>
 <body> 
