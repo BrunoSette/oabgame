@@ -3,7 +3,7 @@
 	<footer class="geral-container">
 	<div class="container">
 	<div class="row">
-		&copy; 2013-2014 - Todos os direitos reservados.
+		&copy; 2015 - Todos os direitos reservados.
 		</div>
 	</div>
 	</footer>

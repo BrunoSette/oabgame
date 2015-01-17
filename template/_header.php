@@ -32,27 +32,13 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
 	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	<!-- Google Analytics Code -->
+	<?php include_once("scr/analyticstracking.php") ?>
 
-	  ga('create', 'UA-39597628-1', 'auto');
-	  ga('send', 'pageview');
-	</script>
-
-	<!-- Start Visual Website Optimizer Asynchronous Code -->
-	<script type='text/javascript'>
-	var _vwo_code=(function(){
-	var account_id=28713,
-	settings_tolerance=2000,
-	library_tolerance=2500,
-	use_existing_jquery=false,
-	// DO NOT EDIT BELOW THIS LINE
-	f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
-	</script>
-	<!-- End Visual Website Optimizer Asynchronous Code -->
+	<!-- Visual Webiste Optimizer Code -->
+	<?php include_once("scr/visualwebsite.php") ?>
+	
 </head>
 <body>
 	<header class="topo">
@@ -82,13 +68,16 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
         		<img src="img/sem-foto.png" alt="" style="vertical-align: middle" />
 			<?php } ?>
 			<div style="display: inline-block;">
-				<?php echo $nome; ?> <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
+				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
 		</div><!-- /foto do aluno -->
 		
 			<div class= "tooltip-sys" style="display: none; top: 70px; background-color:#ECF0F1">
 				<div class="icon-set"><i class="fui-triangle-up"></i></div>
 				<div class="mb5 mt5 image-profile">
+				</div>
+				<div class="mb10 txt-center">
+					<?php echo $_SESSION["FULLNAME"]; ?>
 				</div>
 				<div class="txt-profile">
 					<div>
