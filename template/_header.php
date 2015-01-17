@@ -32,15 +32,9 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
 	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-39597628-1', 'auto');
-	  ga('send', 'pageview');
-	</script>
+	
+	<!-- Google Analytics Code -->
+	<?php include_once("analyticstracking.php") ?>
 
 	<!-- Start Visual Website Optimizer Asynchronous Code -->
 	<script type='text/javascript'>
@@ -82,13 +76,16 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
         		<img src="img/sem-foto.png" alt="" style="vertical-align: middle" />
 			<?php } ?>
 			<div style="display: inline-block;">
-				<?php echo $nome; ?> <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
+				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
 		</div><!-- /foto do aluno -->
 		
 			<div class= "tooltip-sys" style="display: none; top: 70px; background-color:#ECF0F1">
 				<div class="icon-set"><i class="fui-triangle-up"></i></div>
 				<div class="mb5 mt5 image-profile">
+				</div>
+				<div class="mb10 txt-center">
+					<?php echo $_SESSION["FULLNAME"]; ?>
 				</div>
 				<div class="txt-profile">
 					<div>
