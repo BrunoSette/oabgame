@@ -11,7 +11,7 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
 
 	<title>Provas da OAB Game</title>
 	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="css/glycon_boots.css" />
+	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<script>

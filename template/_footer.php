@@ -7,6 +7,20 @@
 		</div>
 	</div>
 	</footer>
+	<script>
+		var tag = document.createElement('script');
+		tag.src = 'https://www.youtube.com/iframe_api';
+
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		function onYouTubeIframeAPIReady()
+		{
+			console.info("aqui");
+		}
+
+	</script>
 	<script type="text/javascript">
 	   var _mfq = _mfq || [];
 	   (function() {
@@ -23,6 +37,7 @@
 	<script src="js/min/questoes.js"></script>
 	<script src="js/min/usuario.js"></script>
 	<script src="js/min/script.js"></script>
+	<script src="js/video.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/highcharts-more.js"></script>
 	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>

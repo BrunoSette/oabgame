@@ -5,11 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 	<title>Provas da OAB Game</title>
 	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="css/glycon_boots.css" />
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
+	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
-	<script src="js/modernizr.custom.js" charset="utf-8"></script>
+	<!--<script src="js/modernizr.custom.js" charset="utf-8"></script>-->
 	<script>
 	  // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -39,7 +39,7 @@
 			<div class="row">
 			<div class="col-md-4">
 				<figure>
-					<img src="img/logo.png" alt="Logomarca AprovaGame" />
+					<img src="http://cdn.aprovagame.com.br/img/logo.png" alt="Logomarca AprovaGame" />
 				</figure>
 			</div>
 			<div class="col-md-6">
@@ -55,6 +55,7 @@
 					    <input type="password" class="form-control" id="senha" placeholder="Senha"/>
 					    <i class="fa fa-lock"></i>
 					  </div>
+					  <div id="message"></div>
 					  <button type="submit" class="btn btn-inverse btn-lg btn-block" id="join">Entrar</button>
 					  	<div class="forget">
 					  		<a href="#">Esqueceu sua senha?</a>
@@ -68,7 +69,6 @@
 	</script>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
-	<script src="js/flat-ui-pro.min.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>

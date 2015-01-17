@@ -30,6 +30,7 @@ var gabarito;
 var comentario;
 var idQuestao;
 var openedModal = false;
+var video;
 var acertosSeguidos = 0;
 var modaisAbertos = 0;
 

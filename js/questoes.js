@@ -75,10 +75,13 @@ function isCorrect(resposta)
 
         if(gabarito == resposta)
         {
+            var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
+            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+
             var myModal = new Modal();
                 myModal.setCor("#1ABC9C")
                 myModal.setTitulo("Parabéns ! Você acertou");
-                myModal.setTexto("Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario);
+                myModal.setTexto(html);
                 myModal.showModal('P');
 
             $.ajax({ // atualiza pontuação geral do usuario
@@ -105,10 +108,13 @@ function isCorrect(resposta)
         {
             var respostaCompleta = $('.teste[data-option="'+ gabarito +'"]').html();
 
+            var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
+            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+
             var myModal = new Modal();
                 myModal.setCor("#E74C3C")
                 myModal.setTitulo("Resposta errada");
-                myModal.setTexto("Que pena, você errou a questão. <br /><br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario);
+                myModal.setTexto(html);
                 myModal.showModal('P');            
 
             data = {"pontuation" : RESPOSTA_ERRADA};
@@ -169,6 +175,7 @@ function findQuestion()
             gabarito = result.result.gabarito;
             comentario = result.result.comentario;
             idQuestao = result.result.id;
+            video = result.result.video_embed;
         },
         error: function(result){ console.info(result); }
     });
@@ -260,7 +267,7 @@ $(".box-modal").delegate('#sendNotification', 'click', function() {
 
 //$("#notifica-erro").bind("click", function(){ notificaErro(); });
 
-$("form > .btn-danger").bind("click", function(){
+$("#enviarResposta").on("click", function(){
     ga('send', 'event', 'Respostas', 'Responder');
     var resposta = $("input[name='option']:checked").val();
     isCorrect(resposta);
@@ -274,6 +281,7 @@ $(document).ready(function() {
     var score = getMoedas();
 
     $("#eliminar-resposta").bind("click", function() {
+
         if (score > 5)
         {
             if (!eliminouResposta)

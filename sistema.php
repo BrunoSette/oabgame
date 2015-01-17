@@ -99,7 +99,7 @@
 					</div><!-- /options-help -->
 					<div class="row">
 						<div class="col-md-4 col-md-offset-8">		
-						<button class="right btn btn-danger"><i class="fui-check"></i> Responder</button>
+							<button class="right btn btn-danger" id="enviarResposta"><i class="fui-check"></i> Responder</button>
 						</div>
 					</div>
 				</form>

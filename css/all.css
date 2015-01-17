@@ -280,7 +280,10 @@ background-color: #2f4b93;
 
 .txt-center {text-align: center;}
 
-.login-error{color: #DD381D; font-weight: bold;}
+.video-wrapper {position: relative; padding-bottom: 56.25%; /* 16:9 */ padding-top: 25px; height: 0;}
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.login-error{color: #DD381D; font-weight: bold; text-align: center; margin-bottom: 10px;}
 .cadastro-error {position: absolute; background-color: rgba(0,0,0,0.75); padding: 5px; border-radius: 5px; color: #fff;}
 
 /* icones */
