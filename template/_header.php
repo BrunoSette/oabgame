@@ -32,8 +32,9 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
 	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
+
 	
-	<!-- Google Analytics Code -->
+<!-- Analytics Code -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,7 +46,6 @@ if(!isset($_SESSION["FBID"])) header("Location: ../");
   ga('send', 'pageview');
 
 </script>
-
 
 
 	<!-- Visual Webiste Optimizer Code -->
