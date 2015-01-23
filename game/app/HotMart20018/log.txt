@@ -1,0 +1,41 @@
+teste - teste 
+hottok - QI1aVwNsY2efhx6F50xg2EwTc2KBXD61933 aff - M32896A aff_name - Amazing Workshop ME transaction - teste_integracao_api transaction_ext -  payment_engine - Moip src - test payment_type - moip_balance prod - 1439 prod_name - Produto Teste de Integração (API) - Hotmart  purchase_date - 2012-01-17T18:45:17-02:00 email - testeintegracaoapi@hotmart.com.br name - Teste de Integração API first_name - Teste last_name - API doc - 11111111111 phone_local_code - 31 phone_number - 33333333 address - Rua Major Lopes address_district - São Pedro address_number - 1000 address_comp -  address_city - Belo Horizonte address_state - MG address_zip_code - 30330050 address_country - Brasil callback_type - 1 cms_marketplace - 1.50 cms_vendor - 1.75 off - uqzh71 price - 5.00 cms_aff - 1.75 status - started 
+hottok - 9mIdz77gEAmmxyUqSswaW40rbsaJZo3 aff - M32896A aff_name - Amazing Workshop ME transaction - teste_integracao_api transaction_ext -  payment_engine - Moip src - test payment_type - moip_balance prod - 1439 prod_name - Produto Teste de Integração (API) - Hotmart  purchase_date - 2012-01-17T18:45:17-02:00 callback_type - 1 cms_aff - 1.75 status - started 
+hottok - QI1aVwNsY2efhx6F50xg2EwTc2KBXD61933 aff - M32896A aff_name - Amazing Workshop ME transaction - teste_integracao_api transaction_ext -  payment_engine - Moip src - test payment_type - moip_balance prod - 1439 prod_name - Produto Teste de Integração (API) - Hotmart  purchase_date - 2012-01-17T18:45:17-02:00 email - testeintegracaoapi@hotmart.com.br name - Teste de Integração API first_name - Teste last_name - API doc - 11111111111 phone_local_code - 31 phone_number - 33333333 address - Rua Major Lopes address_district - São Pedro address_number - 1000 address_comp -  address_city - Belo Horizonte address_state - MG address_zip_code - 30330050 address_country - Brasil callback_type - 1 cms_marketplace - 1.50 cms_vendor - 1.75 off - uqzh71 price - 5.00 cms_aff - 1.75 status - started 
+hottok - 9mIdz77gEAmmxyUqSswaW40rbsaJZo3 aff - M32896A aff_name - Amazing Workshop ME transaction - teste_integracao_api transaction_ext -  payment_engine - Moip src - test payment_type - moip_balance prod - 1439 prod_name - Produto Teste de Integração (API) - Hotmart  purchase_date - 2012-01-17T18:45:17-02:00 callback_type - 1 cms_aff - 1.75 status - started 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+nome - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+nome - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+nome - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Marcel Santana email - mss8@cin.ufpe.br status - approved 
+name - Bruno Sette email - brunosette@gmail.com status - approved 
+name - Bruno Sette email - brunosette@gmail.com status - approved 
+name - Bruno Sette email - brunosette@gmail.com status - approved 
+name - Bruno Sette email - brunosette@gmail.com status - approved 
