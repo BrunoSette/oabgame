@@ -59,7 +59,7 @@
 	fwrite($arquivo, $text);
 	fclose($arquivo);
 
-	if($StatusTransacao == "approved")
+	if($StatusTransacao == "approved" && $ItemCode == 50558)
 	{
 		$sql = "SELECT email FROM tb_usuario WHERE (email=:user_email)";
         $stmt = DB::prepare($sql);

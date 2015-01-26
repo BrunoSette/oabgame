@@ -35,6 +35,7 @@
 												<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 												<style>
 													body {font-family: "Open Sans", sans-serif;}
+													a {color: #fff;}
 												</style>
 										</head>
 										<body>

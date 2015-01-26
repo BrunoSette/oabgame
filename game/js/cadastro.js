@@ -70,7 +70,6 @@ $("#join").bind("click", function(){
       erro = true;
     }
 
-
     if (!erro)
     {
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});

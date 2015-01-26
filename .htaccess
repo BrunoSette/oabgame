@@ -10,3 +10,6 @@ RewriteRule ^(.+)\.php$ http://example.com/folder/$1 [R=301,L]
 
 # Resolve .php file for extensionless php urls
 RewriteRule ^([^/.]+)$ $1.php [L]
+
+# Pagina de erro 404
+ErrorDocument 404 http://www.aprovagame.com.br/404page

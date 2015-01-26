@@ -116,7 +116,11 @@ class Usuario {
             $_SESSION['EMAIL'] = $db_usuario->email;
             $_SESSION['MOEDAS'] = $db_usuario->pontuacao;
             $_SESSION['PONTUACAO'] = $db_usuario->pontuacao_geral;
-            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+
+            if ($db_usuario->status_pagamento)
+            {
+                $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+            }
 
             // incrementa a quantidade de acessos do usuário e atualiza a data de ultimo acesso.
             $this->atualiza_acesso();
@@ -127,6 +131,118 @@ class Usuario {
         {
             return false;
         }
+    }
+
+    public function post_recupera($data)
+    {
+        $sql = "SELECT * FROM tb_recupera_senha WHERE (code=:api_key)";
+        $stmt = DB::prepare($sql);
+        $stmt->bindParam("api_key", $data->api);
+        $stmt->execute();
+
+        $db_usuario = $stmt->fetch();
+
+        if ($db_usuario)
+        {
+            $sql = "UPDATE tb_usuario SET senha = ".md5($data->senha)." WHERE id = '".$db_usuario->usuario."'";
+            $stmtUsuario = DB::query($sql);   
+
+            $resposta = array(
+                    "code" => 202,
+                    "message" => "Senha alterada com sucesso."
+                );
+        }
+        else
+        {
+            $resposta = array(
+                    "code" => 404,
+                    "message" => "Código de acesso inválido."
+                );
+        }
+
+        return $resposta;
+    }
+
+    public function post_esqueci($data)
+    {
+        $sql = "SELECT id, nome FROM tb_usuario WHERE (email=:user_email)";
+        $stmt = DB::prepare($sql);
+        $stmt->bindParam("user_email", $data->email);
+        $stmt->execute();
+
+        $db_usuario = $stmt->fetch();
+
+        if ($db_usuario)
+        {
+            $code = (string)$db_usuario->id . substr((string)md5(time()), 0, 8);
+
+            $sql = "INSERT INTO tb_recupera_senha (usuario, code) 
+                VALUES 
+                (
+                    '" . $db_usuario->id . "', 
+                    '" . $code ."'
+                )"; 
+
+            $stmtUsuario = DB::query($sql);
+
+            $Mensagem = '
+                            <br/>
+                            Você esqueceu sua senha para acessar nossa plataforma? Acesse o link abaixo para alterá-la (copie e cole em seu navegador):<br>
+                            <br>
+                            <br>
+                            <div>
+                            <p style="color: #fff">http://aprovagame.com.br/game/recupera?api_key='.$code.'</p>
+                            </div>
+                            <br />
+                            <br />
+                            <div>
+                            Caso não tenha feito esta solicitação, desconsidere este e-mail.
+                            </div>
+                            <div>
+
+                            <br>                                                                         
+                            <br/>
+                
+                        ';
+
+            $transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
+            $transport->setUsername('BrunoSette');
+            $transport->setPassword('_J7RRVN_BJqYWq1rxuaa7g');
+            $swift     = Swift_Mailer::newInstance($transport);
+
+            // Cabeçalho
+            $subject   = "AprovaGame";
+            $from      = array('questoes@provasdaoab.com.br'  => 'AprovaGame' );
+            $to        = array( $data->email => $db_usuario->nome); 
+
+            $html = CorpoEmail("AprovaGame", $db_usuario->nome, $Mensagem);
+
+            $message = Swift_Message::newInstance();
+            $headers = $message->getHeaders();
+            $headers->addTextHeader('Subject', 'Recuperação de senha');
+            $headers->addTextHeader('X-MC-Track', 'opens, clicks_htmlonly');
+            $headers->addTextHeader('X-MC-GoogleAnalytics', 'provasdaoab.com.br');
+
+            $message->setFrom($from);
+            $message->setBody($html, 'text/html');
+            $message->setTo($to);
+            $recipients = $swift->send($message, $failures);
+
+            $resposta = array(
+                    "code" => 202,
+                    "message" => "As informações para recuperação de sua senha foram enviadas para seu e-mail."
+                );
+
+        }
+        else
+        {
+            $resposta = array(
+                    "code" => 404,
+                    "message" => "E-mail informado não encontra-se cadastrado em nossa base de dados."
+                );
+        }
+
+        return $resposta;
     }
 
     // cadastra novo usuario via formulario
@@ -667,14 +783,14 @@ class Usuario {
 
                     // Cabeçalho
                     $subject   = "AprovaGame";
-                    $from      = array('questoes@provasdaoab.com.br'  => 'Bruno Sette' );
+                    $from      = array('questoes@provasdaoab.com.br'  => 'AprovaGame' );
                     $to        = array( $user->convidado => $nome); 
 
                     $html = CorpoEmail("AprovaGame", $nome, $Mensagem);
 
                     $message = Swift_Message::newInstance();
                     $headers = $message->getHeaders();
-                    $headers->addTextHeader('Subject', 'Provas da OAB');
+                    $headers->addTextHeader('Subject', 'Um convite para você!');
                     $headers->addTextHeader('X-MC-Track', 'opens, clicks_htmlonly');
                     $headers->addTextHeader('X-MC-GoogleAnalytics', 'provasdaoab.com.br');
 
