@@ -12,6 +12,8 @@ function validarNome(nome)
 
 function onSuccessLogin(data)
 {
+
+  console.info(data);
   if (data.result)
   {
     $.cookie.json = true;
@@ -21,8 +23,7 @@ function onSuccessLogin(data)
   }
   else
   {
-    $("#message").addClass("login-error");
-    $("#message").text("Usuário e/ou senha incorretos");
+    $("#message").addClass("login-error").text("Usuário e/ou senha incorretos").css('display', 'block');;
   }
 }
 
@@ -40,13 +41,9 @@ $("form").on("submit", function(){
   email = $("form #email").val();
   senha = $("form #senha").val();
 
-  console.info(email, senha);
-
   if(email != "" && senha != "")
   {
     data = JSON.stringify({"email": email, "senha": senha});
-
-    console.info(data);
 
     $.ajax({
         type: "post",

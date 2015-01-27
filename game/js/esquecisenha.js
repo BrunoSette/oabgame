@@ -52,6 +52,10 @@ $("#recuperar_fim").bind("click", function()
 	        success: onSuccessRecupera
 	    });
 	}
+	else
+	{
+		$("#message").text("As senhas não conferem").css('display', 'block').addClass('alert alert-warning');
+	}
 
 });
 

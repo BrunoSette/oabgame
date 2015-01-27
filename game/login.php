@@ -80,7 +80,7 @@
 					    <input type="password" class="form-control" id="senha" placeholder="Senha"/>
 					    <i class="fa fa-lock"></i>
 					  </div>
-					  <div id="message"></div>
+					  <div id="message" class="txt-center mb10" ></div>
 					  <button type="submit" class="btn btn-inverse btn-lg btn-block" id="join">Entrar</button>
 					  	<div class="forget">
 					  		<a href="esqueciminhasenha">Esqueceu sua senha?</a> <br />
@@ -98,6 +98,6 @@
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
-	<script src="js/min/login.js"></script>
+	<script src="js/login.js"></script>
 </body>
 </html>

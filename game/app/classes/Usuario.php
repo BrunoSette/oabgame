@@ -144,7 +144,7 @@ class Usuario {
 
         if ($db_usuario)
         {
-            $sql = "UPDATE tb_usuario SET senha = ".md5($data->senha)." WHERE id = '".$db_usuario->usuario."'";
+            $sql = "UPDATE tb_usuario SET senha = '".md5($data->senha)."' WHERE id = $db_usuario->usuario ";
             $stmtUsuario = DB::query($sql);   
 
             $resposta = array(
@@ -191,7 +191,7 @@ class Usuario {
                             <br>
                             <br>
                             <div>
-                            <p style="color: #fff">http://aprovagame.com.br/game/recupera?api_key='.$code.'</p>
+                            <p style="color: #fff">http://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
                             </div>
                             <br />
                             <br />
