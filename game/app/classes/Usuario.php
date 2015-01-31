@@ -116,6 +116,7 @@ class Usuario {
             $_SESSION['EMAIL'] = $db_usuario->email;
             $_SESSION['MOEDAS'] = $db_usuario->pontuacao;
             $_SESSION['PONTUACAO'] = $db_usuario->pontuacao_geral;
+            $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
 
             if ($db_usuario->status_pagamento)
             {
