@@ -76,9 +76,9 @@ function isCorrect(resposta)
         if(gabarito == resposta)
         {
             var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
-            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+            if (video) html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
 
-            var myModal = new Modal();
+            var myModal = new Modal();  
                 myModal.setCor("#1ABC9C")
                 myModal.setTitulo("Parabéns ! Você acertou");
                 myModal.setTexto(html);
@@ -165,17 +165,20 @@ function findQuestion()
                     $('.teste[data-option="'+ chr +'"]').css('text-decoration', 'initial');
             }
 
-        	$(".question").text('(' + result.result.organizadora + ' - ' + result.result.concurso + '/' + result.result.ano + ') ' + result.result.enunciado);
-        	$("header span").text(result.result.id);
-        	$("label[for='A'] > p:last-child").text(result.result.alternativa_a);
-        	$("label[for='B'] > p:last-child").text(result.result.alternativa_b);
-        	$("label[for='C'] > p:last-child").text(result.result.alternativa_c);
-        	$("label[for='D'] > p:last-child").text(result.result.alternativa_d);
-        	$(".subject").text(result.result.titulo);
-            gabarito = result.result.gabarito;
-            comentario = result.result.comentario;
-            idQuestao = result.result.id;
-            video = result.result.video_embed;
+        	$(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
+        	$("header span").text(result.result.data.id);
+        	$("label[for='A'] > p:last-child").text(result.result.data.alternativa_a);
+        	$("label[for='B'] > p:last-child").text(result.result.data.alternativa_b);
+        	$("label[for='C'] > p:last-child").text(result.result.data.alternativa_c);
+        	$("label[for='D'] > p:last-child").text(result.result.data.alternativa_d);
+        	$(".subject").text(result.result.data.titulo);
+            gabarito = result.result.data.gabarito;
+            comentario = result.result.data.comentario;
+            idQuestao = result.result.data.id;
+            video = result.result.data.video_embed;
+
+            intervalos_video = result.result.intervalo;
+            intervalos_video.splice(0,1);
         },
         error: function(result){ console.info(result); }
     });

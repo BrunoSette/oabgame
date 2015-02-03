@@ -1,4 +1,4 @@
-	<div class="box-overlay"></div>
+	<div class="box-overlay" id="teste"></div>
 
 	<footer class="geral-container game">
 	<div class="container">
@@ -7,20 +7,6 @@
 		</div>
 	</div>
 	</footer>
-	<script>
-		var tag = document.createElement('script');
-		tag.src = 'https://www.youtube.com/iframe_api';
-
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		function onYouTubeIframeAPIReady()
-		{
-			console.info("aqui");
-		}
-
-	</script>
 	<script type="text/javascript">
 	   var _mfq = _mfq || [];
 	   (function() {
@@ -33,11 +19,10 @@
 	<script src="js/boots.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
-	<script src="js/min/questoes.js"></script>
-	<script src="js/min/usuario.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/questoes.js"></script>
+	<script src="js/usuario.js"></script>
 	<script src="js/min/script.js"></script>
-	<script src="js/video.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/highcharts-more.js"></script>
 	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
