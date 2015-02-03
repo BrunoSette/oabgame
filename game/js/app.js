@@ -3,6 +3,9 @@
 var rootUrl = "http://www.aprovagame.com.br/game/app";
 var clienteUrl = "http://www.aprovagame.com.br/game";
 
+// var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
+// var clienteUrl = "http://local.estudandoonline.com.br/game/game";
+
 const RESPOSTA_CORRETA = 20;
 const PULAR_PERGUNTA = -5;
 const ELIMINAR_RESPOSTA = -5;
@@ -25,7 +28,7 @@ badgesEnum = {
     JOGOU_10X : 12,
     JOGOU_15X : 13
 };
-
+var intervalos_video;
 var gabarito;
 var comentario;
 var idQuestao;
@@ -98,8 +101,38 @@ var Modal = function()
         }
         else if(vTipo == 'P' || vTipo == 'p')
         {
+
+            player = new YT.Player('ytplayer', {
+             events: {
+                     'onStateChange': intervalo
+             }
+            });
             $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
             $(ret).children('.box-content').children('p').children('.modal-action').text("Proxima pergunta");
+        }
+    }
+}
+
+function intervalo(event){
+    if(event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED){
+        if(intervalos_video.length > 0){
+            player.seekTo(intervalos_video[0].start_video);
+            tempo = setInterval(function(){
+                if(intervalos_video.length > 0 && player.getCurrentTime() >= intervalos_video[0].end_video){
+                    intervalos_video.splice(0,1);
+                    player.pauseVideo();
+                }
+            }, 1000);
+        }
+
+        if(event.data == YT.PlayerState.PAUSED){
+            player.playVideo();
+        }
+        if(intervalos_video.length == 0){
+            player.stopVideo();
+            if(window.tempo != undefined){
+                clearInterval(tempo);
+            }
         }
     }
 }

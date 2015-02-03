@@ -58,6 +58,8 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 	ga('send', 'pageview');
 
 	</script>
+	<script src="http://www.youtube.com/player_api" type="text/javascript"></script>
+
 	<!-- End Google Analytics -->
 
 
