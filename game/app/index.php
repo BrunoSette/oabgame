@@ -25,6 +25,9 @@ $app->get('/:controller/:action(/:parameter)', function ($controller, $action, $
 
             include_once "classes/{$controller}.php";
             $classe = new $controller();
+
+            $parameter = $app->request()->get();
+
             $retorno = call_user_func_array(array($classe, "get_" . $action), array($parameter));
             echo '{"result":' . json_encode($retorno) . '}';
             DB::close();

@@ -78,6 +78,9 @@ function isCorrect(resposta)
             var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
             if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
 
+            var snd = new Audio("sounds/correct.mp3"); // buffers automatically when created
+            snd.play();
+
             var myModal = new Modal();
                 myModal.setCor("#1ABC9C")
                 myModal.setTitulo("Parabéns ! Você acertou");
@@ -149,12 +152,15 @@ function isCorrect(resposta)
     $('html, body').animate({scrollTop: 0}, 1000); 
 }
 
-function findQuestion()
+function findQuestion(differentQuestion)
 {
+    if (isUndefined(differentQuestion)) {differentQuestion = -1};
+
 	$.ajax({
         type: "get",
         url: rootUrl + "/Questoes/questao",
         dataType: "json",
+        data : "id="+differentQuestion,
         success: function(result) 
         {
             for (var i = 0; i < 4; i++)
@@ -225,7 +231,7 @@ function pularPergunta()
 
     $('html, body').animate({scrollTop: 0}, 1000); 
 
-    findQuestion();
+    findQuestion(idQuestao);
 }
 
 $(".box-modal").delegate('#sendNotification', 'click', function() {
@@ -315,6 +321,9 @@ $(document).ready(function() {
     // };
 
     $("#pular-pergunta").bind("click", function() {
+        var snd = new Audio("sounds/pular.mp3"); // buffers automatically when created
+        snd.play();
+
         if (score > 5) 
             pularPergunta(); 
         else

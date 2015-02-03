@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-if(!isset($_SESSION["FBID"]) || !isset($_SESSION['PREMIUM'])) header("Location: ./");
+if(!isset($_SESSION["FBID"])) header("Location: ./");
 ?>
 
 <!doctype html>
@@ -23,13 +23,14 @@ if(!isset($_SESSION["FBID"]) || !isset($_SESSION['PREMIUM'])) header("Location: 
 	<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
 	<meta name="msapplication-TileColor" content="#00aba9">
 	<meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+	<meta http-equiv="content-language" content="pt-br" />
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 
 	<title>AprovaGame</title>
 	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
+	<link rel="stylesheet" href="css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 
@@ -125,6 +126,7 @@ if(!isset($_SESSION["FBID"]) || !isset($_SESSION['PREMIUM'])) header("Location: 
 			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile">game</div></a></li>
 		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile">perfil</div></a></li>
 		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile">estatística</div></a></li>
+		    	<li><a href="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile">comprar</div></a></li>
 			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile">configuração</div></a></li>
 	          </ul>
         </div><!--/.nav-collapse -->

@@ -84,19 +84,19 @@ function doUpdate()
 			"convidado" : $("#email_convidado").val()
 		};
 
-		console.info(data);
-
 		$.ajax({ 
             type: "post",
             url: rootUrl + "/Usuario/update",
             data: JSON.stringify(data),
             dataType: "json",
-            success: function(e) {console.info(e);},
+            success: function(e) {
+            	console.info(e);
+            },
             error: function(e) {console.info(e);}
         });
 	}
-	else
-		$('html, body').animate({scrollTop: 0}, 1000); 
+	
+	$('html, body').animate({scrollTop: 0}, 1000); 
 }
 
 $(document).ready(function()

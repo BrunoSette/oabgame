@@ -167,6 +167,11 @@ margin-bottom: 10px; margin-left: 15px; margin-right: 15px;}
 .box-content > div {padding: 10px;}
 .box-content > p {background-color: #eaeaea; padding: 5px; text-align: center; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
 
+.shop {color: #555; background-color: #eaeaea; text-align: center; padding: 10px; }
+.shop h3 {color: #555;}
+.shop .preco {font-size: 1.5em;}
+.shop img {display: block; margin-left: auto; margin-right: auto; padding: 20px 0px;}
+
 /* forms */
 
 form {padding: 5px 10px 5px;}
@@ -262,9 +267,11 @@ background-color: #2f4b93;
 
 .mr5 {margin-right: 5px;}
 .mr10 {margin-right: 10px;}
+.mr15 {margin-right: 15px;}
 .mr25 {margin-right: 25px;}
 
 .ml5 {margin-left: 5px;}
+.ml15 {margin-left: 15px;}
 .ml20 {margin-left: 20px;}
 
 .mt5 {margin-top: 5px;}
@@ -283,7 +290,9 @@ background-color: #2f4b93;
 
 .fixed {position: fixed;}
 
+.line-through {text-decoration: line-through;}
 .txt-center {text-align: center;}
+.color-green {color: #1ABC9C;}
 
 .login-error{color: #DD381D; font-weight: bold;}
 .cadastro-error {position: absolute; background-color: rgba(0,0,0,0.75); padding: 5px; border-radius: 5px; color: #fff;}

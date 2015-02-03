@@ -6,7 +6,7 @@
 					<div class="col-md-12">
 						<div class="container-mainbox">
 							<header>
-								<div class="header">
+								<div class="header ml15 mr15">
 									<h3>Desempenho por matéria</h3>
 								</div>
 							</header>
@@ -24,7 +24,7 @@
 					<div class="col-md-6">
 						<div class="container-mainbox">
 							<header>
-							<div class="header">
+							<div class="header ml15 mr15">
 								<h3>Taxa de acerto no mês</h3>
 							</div>
 							</header>
@@ -38,7 +38,7 @@
 					<div class="col-md-6">
 						<div class="container-mainbox">
 							<header>
-							<div class="header">
+							<div class="header ml15 mr15">
 								<h3>Questões respondidas</h3>
 							</div>
 							</header>
@@ -55,7 +55,7 @@
 					<div class="col-md-6">
 						<div class="container-mainbox">
 							<header>
-							<div class="header">
+							<div class="header ml15 mr15">
 								<h3>Percentual de Acerto Total</h3>
 							</div>
 							</header>

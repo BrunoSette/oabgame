@@ -3,7 +3,7 @@
 	<div class="container">
 	 <div class="row">
 		<div class="container-mainbox ">
-			<div class="header">
+			<div class="header ml15 mr15">
 			<header>
 				<h3>Configurações</h3>
 			</header>

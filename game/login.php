@@ -62,12 +62,6 @@
 			<div class="col-md-5 col-sm-offset">
 			<div class="box-login">
 				<form action="javascript:void(0)" novalidate>
-
-					<?php 
-						if($erro_acesso)
-							echo "<div class='alert alert-warning'>Apenas usuários premium têm acesso a esta área. Para mais informações clique <a href='http://www.aprovagame.com.br'>aqui</a></div>";
-					?>
-
 					<div class="bt-login">
 						<a href="fbconfig" class="btn btn-block btn-social btn-lg btn-facebook" title="Logue com o facebook" style="font-size:13px;"><i class="fa fa-facebook"></i>Login com Facebook</a>
 					</div>

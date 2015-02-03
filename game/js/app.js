@@ -116,6 +116,9 @@ function verificarPrimeiroAcesso()
         	{
         		openedModal = true;
         		
+                var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
+                snd.play();
+
        			var html = "<img src='img/big-coin.png' alt='' style='display: block; margin-left: auto; margin-right: auto;' />";
         			html += "<br />";
 			        html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
@@ -242,6 +245,9 @@ function verificaPontuacao()
             dataType: "json",
             error: function(e) {console.info(e);}
         });
+
+        var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
+        snd.play();
 
         var myModal = new Modal();
             myModal.setTitulo("Parabéns, você mudou o seu nível!");

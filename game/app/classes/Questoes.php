@@ -2,13 +2,17 @@
 	
 	class Questoes
 	{
-		public function get_questao()
+		public function get_questao($id = null)
 		{
 			$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE `id` NOT IN 
 				(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) 
 				ORDER BY acertos/(acertos + erros) DESC, acertos DESC LIMIT 1";
 
-	        //$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE id = 169";
+			if ($id["id"] != -1)
+			{
+				$id = $id["id"];
+				$sql = "SELECT * FROM  `tb_questoes_multiplaescolha`  WHERE id != $id ORDER BY RAND() LIMIT 1";
+			}
 
 	        $stmt = DB::prepare($sql);
 	        $stmt->execute();

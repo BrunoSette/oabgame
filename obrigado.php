@@ -1,31 +1,31 @@
 <!doctype html>
 <html lang="pt">
 <head>
-	<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="../favicons/favicon-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="../favicons/favicon-160x160.png" sizes="160x160">
-	<link rel="icon" type="image/png" href="../favicons/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="../favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" sizes="57x57" href="../game/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../game/favicons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../game/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../game/favicons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../game/favicons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../game/favicons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../game/favicons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/game/favicons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../game/favicons/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="../game/favicons/favicon-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="../game/favicons/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="../game/favicons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="../game/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="../game/favicons/favicon-32x32.png" sizes="32x32">
 	<meta name="msapplication-TileColor" content="#00aba9">
 	<meta name="msapplication-TileImage" content="../favicons/mstile-144x144.png">
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 	<title>AprovaGame</title>
-	<link rel="stylesheet" href="../game/css/all.css" />
+	<link rel="stylesheet" href="game/css/all.css" />
 	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/glycon_boots.css" />
 	<link rel="stylesheet" href="http://cdn.aprovagame.com.br/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="../game/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="../game/css/web-font.css" />
+	<link rel="stylesheet" href="game/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="game/css/web-font.css" />
 
 	<!-- Start Visual Website Optimizer Asynchronous Code -->
 	<script type='text/javascript'>
@@ -45,7 +45,7 @@
 		<nav class="navbar navbar-inverse">
 	      	<div class="container">
 		        <div class="navbar-header">
-		        	<a class="navbar-brand" href="http://www.aprovagame.com.br/"><img src="../game/img/logo.png" class="logo" alt="logomarca"></a>
+		        	<a class="navbar-brand" href="http://www.aprovagame.com.br/"><img src="game/img/logo.png" class="logo" alt="logomarca"></a>
 		        </div>    
 	       	</div>
 	      	</div>
@@ -54,27 +54,11 @@
 	<section style="padding: 50px 0px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="box-login">
-						<p>Obrigado por se interessar em colaborar com nossa plataforma. Preencha os campos abaixo e em breve entraremos em contato com você.</p><br />
-						<form action="javascript:void(0)">
-							<div id="message"></div>
-							<div class="form-group">
-							  	<label for="nome">Nome</label>
-							    <input type="text" class="form-control" id="nome" required/>
-							</div>
-							<div class="form-group">
-							  	<label for="email">E-mail</label>
-							    <input type="email" class="form-control" id="email" />
-							</div>
-							<div class="form-group">
-							  	<label for="telefone">Telfone para contato</label>
-							    <input type="text" class="form-control" id="telefone" required/>
-							</div>
-							  
-							<button type="submit" class="btn btn-inverse btn-lg btn-block" id="join">Estou interessado!</button>
-						</form>
-					</div>
+				<div class="box-login">
+					<h1 class="ml20">Obrigado pela sua compra!</h1>
+					<br />
+					<p class="ml20">Você será redirecionado para o jogo em 5 segundos.</p>
+					<br /><br />
 				</div>
 			</div>
 		</div>
@@ -88,5 +72,15 @@
 		</div>
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/boots.js"></script>
+	<script src="js/respond.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/min/app.js"></script>
+	<script src="js/esquecisenha.js"></script>
+	<script>
+		setTimeout(function () {
+      		 window.location.href = "/game"; //will redirect to your blog page (an ex: blog.html)
+    	}, 5000);
+	</script>
 </body>
 </html>

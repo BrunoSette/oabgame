@@ -17,7 +17,7 @@
 
 		function onYouTubeIframeAPIReady()
 		{
-			console.info("aqui");
+			
 		}
 
 	</script>
@@ -33,11 +33,10 @@
 	<script src="js/boots.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
-	<script src="js/min/questoes.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/questoes.js"></script>
 	<script src="js/min/usuario.js"></script>
 	<script src="js/min/script.js"></script>
-	<script src="js/video.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/highcharts-more.js"></script>
 	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
