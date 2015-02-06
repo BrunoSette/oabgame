@@ -1,5 +1,4 @@
 <?php include("template/_header.php"); ?>
-
 	<section class="mainbox geral-container">
 		<div class="container">
 			
@@ -34,44 +33,7 @@
 				
 				<form action="javascript:void(0);">
 				
-					<ul>
-						<li>
-							<input type="radio" name="option" value="A" id="A" />
-							<div>
-								<label for="A" class="w100">
-									<p class='option left'>A</p>
-									<p class="teste" data-option="A"></p>
-								</label>
-							</div>
-						</li>
-						<li>
-							<input type="radio" name="option" value="B" id="B" />
-							<div>
-								<label for="B" class="w100">
-									<p class='option left'>B</p>
-									<p class="teste" data-option="B"></p>	
-								</label>
-							</div>
-						</li>
-						<li>
-							<input type="radio" name="option" value="C" id="C"/>
-							<div>
-								<label for="C" class="w100">
-									<p class='option left'>C</p>
-									<p class="teste"  data-option="C"></p>
-								</label>
-							</div>
-						</li>
-						<li>
-							<input type="radio" name="option" value="D" id="D"/>
-							<div>
-								<label for="D" class="w100">
-									<p class='option left'>D</p>
-									<p class="teste" data-option="D"></p>
-								</label>
-							</div>
-						</li>
-					</ul>
+					<ul id="alternativas"> </ul>
 				
 					<div class="row">
 						<div class="options-help col-md-offset-3">
@@ -101,13 +63,12 @@
 		<!-- raking -->
 		<div class="ranking-box col-md-4" style="">
 			<header>
-				<h3><i class="fa fa-trophy"></i> Ranking Geral</h3>
+				<h3><i class="fa fa-trophy"></i> Ranking</h3>
 			</header>
 			<article>
 			</article>
-
-			
 			<br />
+			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br />
 			<!-- Lateral Aprova Game -->
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:336px;height:280px"
@@ -125,6 +86,7 @@
 		</div><!-- end/container -->
 	
 	</section>
-
+<script>
+</script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <?php include("template/_footer.php"); ?>

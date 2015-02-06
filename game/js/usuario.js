@@ -275,56 +275,28 @@ function atualizaPerfil()
      });
 }
 
-// function rankingAmigos(){
-//     $.ajax({
-//         type: "get",
-//         url: rootUrl + "/Usuario/ranking_friends",
-//         dataType: "json",
-//         success: function(e)
-//         {
-//             var lista = $("#ranking_amigos");
-//             console.log(e);
-//             for(i in e.result){
-//                 var element = e.result[i];
-//                 console.log(element);
-//                 var li = $("<li>");
-//                 $("<h4>").text(parseInt(i) + 1).appendTo(li);
-//                 var img = $("<img>").attr("src",element.foto);
-//                 $("<h4>").append(img).appendTo(li);
-//                 $("<h4>").text(element.nome).appendTo(li);
-//                 $("<h4>").text(element.pontuacao).appendTo(li);
-//                 console.log(li);
-
-//                 lista.append(li);
-//             }
-           
-//         },
-//         error: function(e)
-//         {
-//             console.log(e);
-//         }
-//     });
-// }
-
-function rankingAmigos(){
+function obtemRanking()
+{
     $.ajax({
         type: "get",
-        url: rootUrl + "/Usuario/ranking_friends",
+        url: rootUrl + "/Usuario/ranking",
         dataType: "json",
         success: function(result)
-        {
+        { 
             var html = "<ul>";
 
-            for(i in result.result)
+            for(var i = 0; i < 5; i++)
             {
                 if (result.result[i] != null)
                 {
                     html += "<li>";
-
-                    html += "<img src='" + result.result[i].foto + "' class='left mr5' alt=''>";
+                    if (result.result[i].foto_profile == "")
+                        html += "<img src='img/sem-foto.png' class='left mr5' alt=''>";
+                    else
+                        html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
                     
-                    html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
-                    html += "<p>" + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
+                    html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
+                    html += "<p> " + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
                     html += "</li>";
                 }
             }
@@ -333,10 +305,7 @@ function rankingAmigos(){
 
             $(".friends-box > article").html(html);
         },
-        error: function(e)
-        {
-            console.log(e);
-        }
+        error: function(result){ console.info(result); }
     });
 }
 
@@ -345,5 +314,5 @@ $(document).ready(function()
 	badges_vezes_jogadas();
 	// verificaPontuacao();
 	atualizaPerfil();
-    rankingAmigos();
+    obtemRanking();
 });

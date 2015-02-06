@@ -32,10 +32,16 @@ var intervalos_video;
 var gabarito;
 var comentario;
 var idQuestao;
+var multipla_escolha;
 var openedModal = false;
 var video;
 var acertosSeguidos = 0;
 var modaisAbertos = 0;
+
+$("#comprar").bind('click', function(){
+    console.info("aqui");
+    ga('send', 'event', 'botao', 'Carrinho');
+});
 
 function isUndefined(e)
 {
@@ -108,7 +114,14 @@ var Modal = function()
              }
             });
             $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
-            $(ret).children('.box-content').children('p').children('.modal-action').text("Proxima pergunta");
+            $(ret).children('.box-content').children('p').children('.modal-action').text("Próxima pergunta");
+        }
+        else if(vTipo == 'C' || vTipo == 'c')
+        {
+            $(".box-overlay").css("background", 'rgba(0,0,0,0.96)');
+
+            var html = "<a href='http://www.aprovagame.com.br/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
+            $(ret).children('.box-content').children('p').html(html);
         }
     }
 }
@@ -146,9 +159,7 @@ function verificarPrimeiroAcesso()
         success: function(result)
         { 
         	if (result.result)
-        	{
-        		openedModal = true;
-        		
+        	{        		
                 var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
                 snd.play();
 
@@ -176,31 +187,36 @@ function closeModal(selected)
     if (modaisAbertos - 1 == 0)
         $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
 
-    modaisAbertos--; openedModal = false;
+    modaisAbertos--;
 }
 
-function obtemRanking()
+function rankingAmigos()
 {
     $.ajax({
         type: "get",
-        url: rootUrl + "/Usuario/ranking",
+        url: rootUrl + "/Usuario/ranking_friends",
         dataType: "json",
         success: function(result)
-        { 
+        {
+            var tipo = result.result.tipo;
+
+            result.result = result.result.data;
+
             var html = "<ul>";
 
-            for(var i = 0; i < 5; i++)
+            for(i in result.result)
             {
                 if (result.result[i] != null)
                 {
                     html += "<li>";
-                    if (result.result[i].foto_profile == "")
-                        html += "<img src='img/sem-foto.png' class='left mr5' alt=''>";
-                    else
-                        html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
+                    html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
+
+                    if (tipo == 1)
+                        html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
+                    else 
+                        html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
                     
-                    html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
-                    html += "<p> " + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
+                    html += "<p>" + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
                     html += "</li>";
                 }
             }
@@ -209,10 +225,13 @@ function obtemRanking()
 
             $(".ranking-box > article").html(html);
         },
-        error: function(result){ console.info(result); }
+        error: function(e)
+        {
+            console.log(e);
+        }
     });
-    
-    setTimeout(obtemRanking, 10000);
+
+    setTimeout(rankingAmigos, 10000);
 }
 
 function verificaPontuacao()
@@ -314,7 +333,7 @@ $(document).ready(function()
             success: function()
             {
                 $.removeCookie('usuario');
-                goPage("logout.php");
+                goPage("logout");
             }
         });
     });

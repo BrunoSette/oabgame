@@ -158,4 +158,23 @@ $(document).ready(function()
 	grafico_questoes();
 	grafico_taxa_acerto_mes();
 	taxa_acertos();
+
+	$.ajax({
+        type: "get",
+        url: rootUrl + "/Usuario/profile",
+        dataType: "json",
+        success: function(result) 
+        {
+
+         	if(result.result.status_pagamento == 0)
+         	{
+         		var myModal = new Modal();
+        			myModal.setCor("#E74C3C");
+        			myModal.setTitulo("Área restrita ");
+        			myModal.setTexto("Está área é exclusiva para usuários premium.<br /><br />");
+        			myModal.showModal('C');
+         	}
+        },
+        error: function(result){console.info(result);}
+    });
 });

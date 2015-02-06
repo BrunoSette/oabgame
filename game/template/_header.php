@@ -6,6 +6,10 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 <!doctype html>
 <html lang="pt">
 <head>
+	<meta property="og:url" content="http://www.aprovagame.com.br" />
+  	<meta property="og:site_name" content="Aprova Game"/>
+  	<meta property="og:title" content="Aprender nunca foi tão divertido" />
+  	<meta property="og:image" content="http://www.aprovagame.com.br/game/img/logo.png" />
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
@@ -36,6 +40,7 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
 	<!-- Google Analytics --> 
 	<script>
+
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	m=s.getElementsByTagName(o)[0];
@@ -46,7 +51,6 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
 	<?php
 	 //New Google Analytics code to set User ID.
-	 //$userId is a unique, persistent, and non-personally identifiable string ID.
 
 	if (isset($_SESSION["FBID"])) {
 	  $gacode = "ga('create', 'UA-58671300-1', { 'userId': '%s' });";
@@ -59,6 +63,37 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
 	</script>
 	<script src="http://www.youtube.com/player_api" type="text/javascript"></script>
+	<script>
+		// Include the UserVoice JavaScript SDK (only needed once on a page)
+		UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z9b5Wod1CzErI3dGsjo1iA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+		// Set colors
+		UserVoice.push(['set', {
+		  accent_color: '#6aba2e',
+		  trigger_color: 'white',
+		  trigger_background_color: '#e23a39'
+		}]);
+
+		// Identify the user and pass traits
+		// To enable, replace sample data with actual user traits and uncomment the line
+		var userEmail = <?php echo json_encode($_SESSION['EMAIL']); ?>;
+		var userName = <?php echo json_encode($_SESSION['FULLNAME']); ?>;
+
+		UserVoice.push(['identify', {
+		  email:      userEmail,
+		  name:       userName
+
+		}]);
+
+		// Add default trigger to the bottom-right corner of the window:
+		UserVoice.push(['addTrigger', { mode: 'satisfaction', trigger_position: 'bottom-right' }]);
+
+		// Or, use your own custom trigger:
+		//UserVoice.push(['addTrigger', '#id', { mode: 'satisfaction' }]);
+
+		// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+		UserVoice.push(['autoprompt', {}]);
+	</script>
 
 	<!-- End Google Analytics -->
 
@@ -69,16 +104,24 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=604815266237503&version=v2.0";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
 	<header class="topo">
-		<?php  
-			$fullName = explode(" ", $_SESSION["FULLNAME"]);
-			$nome = $fullName[0];
-		?>
+	<?php  $fullName = explode(" ", $_SESSION["FULLNAME"]); $nome = $fullName[0];?>
 		
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+        <a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -90,7 +133,7 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
         	<!-- foto do aluno -->
 		<div class="navbar-right" id="user-box" style="color: #fff; margin-top: 10px; background-color: #3A546E; padding: 5px; cursor: pointer;">
-			<?php if (isset($_SESSION["PICTURE"])) { ?>
+			<?php if (isset($_SESSION["PICTURE"]) && $_SESSION["PICTURE"]) { ?>
                 <img src="<?php echo $_SESSION["PICTURE"]; ?> " alt="" style="vertical-align: middle">
         	<?php } else { ?>
         		<img src="img/sem-foto.png" alt="" style="vertical-align: middle" />
@@ -128,7 +171,7 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile">game</div></a></li>
 		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile">perfil</div></a></li>
 		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile">estatística</div></a></li>
-		    	<li><a href="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile">comprar</div></a></li>
+		    	<li><a href="comprar" id="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile">comprar</div></a></li>
 			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile">configuração</div></a></li>
 	          </ul>
         </div><!--/.nav-collapse -->

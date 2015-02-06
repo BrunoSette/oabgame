@@ -91,9 +91,9 @@
 	<script src="js/flat-ui-pro.min.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
+	<script src="js/app.js"></script>
 	<script src="js/min/usuario.js"></script>
-	<script src="js/min/graficos.js"></script>
+	<script src="js/graficos.js"></script>
 	<script src="js/Chart.min.js"></script>
 	<script src="js/min/script.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>

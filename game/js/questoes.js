@@ -76,7 +76,10 @@ function isCorrect(resposta)
         if(gabarito == resposta)
         {
             var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
-            if (video) html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+            if (video) 
+                html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+
+            html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
             var snd = new Audio("sounds/correct.mp3"); // buffers automatically when created
             snd.play();
@@ -86,6 +89,8 @@ function isCorrect(resposta)
                 myModal.setTitulo("Parabéns ! Você acertou");
                 myModal.setTexto(html);
                 myModal.showModal('P');
+
+            FB.XFBML.parse();
 
             $.ajax({ // atualiza pontuação geral do usuario
                 type: "post",
@@ -112,13 +117,17 @@ function isCorrect(resposta)
             var respostaCompleta = $('.teste[data-option="'+ gabarito +'"]').html();
 
             var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
-            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe> </div>";
+
+            html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
             var myModal = new Modal();
                 myModal.setCor("#E74C3C")
                 myModal.setTitulo("Resposta errada");
                 myModal.setTexto(html);
                 myModal.showModal('P');            
+
+            FB.XFBML.parse();
 
             data = {"pontuation" : RESPOSTA_ERRADA};
             valueScore = RESPOSTA_ERRADA;
@@ -163,28 +172,84 @@ function findQuestion(differentQuestion)
         data : "id="+differentQuestion,
         success: function(result) 
         {
-            for (var i = 0; i < 4; i++)
-            {
-                chr = String.fromCharCode(65 + i);
-
-                if ($('.teste[data-option="'+ chr +'"]').css('text-decoration') == 'line-through')
-                    $('.teste[data-option="'+ chr +'"]').css('text-decoration', 'initial');
-            }
-
         	$(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
         	$("header span").text(result.result.data.id);
-        	$("label[for='A'] > p:last-child").text(result.result.data.alternativa_a);
-        	$("label[for='B'] > p:last-child").text(result.result.data.alternativa_b);
-        	$("label[for='C'] > p:last-child").text(result.result.data.alternativa_c);
-        	$("label[for='D'] > p:last-child").text(result.result.data.alternativa_d);
-        	$(".subject").text(result.result.data.titulo);
+
+            if (result.result.data.multipla_escolha == 1)
+            {
+                var html = "<li>";
+                    html += "<input type='radio' name='option' value='A' id='A'/>";
+                    html += "<div>";
+                    html += "<label for='A' class='w100'>";
+                    html += "<p class='option left'>A</p>";
+                    html += "<p class='teste' data-option='A'>"+result.result.data.alternativa_a+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li>";
+                    html += "<input type='radio' name='option' value='B' id='B'/>";
+                    html += "<div>";
+                    html += "<label for='B' class='w100'>";
+                    html += "<p class='option left'>B</p>";
+                    html += "<p class='teste' data-option='B'>"+result.result.data.alternativa_b+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li>";
+                    html += "<input type='radio' name='option' value='C' id='C'/>";
+                    html += "<div>";
+                    html += "<label for='C' class='w100'>";
+                    html += "<p class='option left'>C</p>";
+                    html += "<p class='teste' data-option='C'>"+result.result.data.alternativa_c+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li>";
+                    html += "<input type='radio' name='option' value='D' id='D'/>";
+                    html += "<div>";
+                    html += "<label for='D' class='w100'>";
+                    html += "<p class='option left'>D</p>";
+                    html += "<p class='teste' data-option='D'>"+result.result.data.alternativa_d+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+            }
+            else
+            {
+                var html = "<li>";
+                    html += "<input type='radio' name='option' value='V' id='V'/>";
+                    html += "<div>";
+                    html += "<label for='V' class='w100'>";
+                    html += "<p class='option left'>V</p>";
+                    html += "<p class='teste' data-option='V'>Verdadeiro</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li>";
+                    html += "<input type='radio' name='option' value='F' id='F'/>";
+                    html += "<div>";
+                    html += "<label for='F' class='w100'>";
+                    html += "<p class='option left'>F</p>";
+                    html += "<p class='teste' data-option='F'>Falso</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+            }
+        	$("#alternativas").html(html);
+            $(".subject").text(result.result.data.titulo);
+
             gabarito = result.result.data.gabarito;
             comentario = result.result.data.comentario;
             idQuestao = result.result.data.id;
             video = result.result.data.video_embed;
-
+            multipla_escolha = result.result.data.multipla_escolha;
             intervalos_video = result.result.intervalo;
-            intervalos_video.splice(0,1);
+
+            if (intervalos_video != null) {intervalos_video.splice(0,1);};
         },
         error: function(result){ console.info(result); }
     });
@@ -291,7 +356,7 @@ $(document).ready(function() {
 
     $("#eliminar-resposta").bind("click", function() {
 
-        if (score > 5)
+        if (score > 5 && multipla_escolha == 1)
         {
             if (!eliminouResposta)
             {
@@ -300,29 +365,22 @@ $(document).ready(function() {
             }
         }
         else
-            bloqueaShowDoMilhao();
+        {
+            if (multipla_escolha == 0)
+            {
+                var myModal = new Modal();
+                    myModal.setCor("#E74C3C");
+                    myModal.setTitulo("Operação inválida");
+                    myModal.setTexto("Você não pode eliminar uma resposta de uma questão verdadeiro e falso.<br /><br />");
+                    myModal.showModal('F');
+            }
+            else
+            {
+                bloqueaShowDoMilhao();
+            }
+        }
     });
     
-    // window.onbeforeunload = function(e)
-    // {
-    //     if (!sair)
-    //     {
-    //         if (score > 5)
-    //         {
-    //             data = JSON.stringify({"pontuation" : PULAR_PERGUNTA});
-
-    //             $.ajax({
-    //                 type: "post",
-    //                 url: rootUrl + "/Usuario/pontuation",
-    //                 data: data,
-    //                 dataType: "json",
-    //                 success: function(e) {updateMoedas(PULAR_PERGUNTA)},
-    //                 error: function(e) { console.info(e); }
-    //             });
-    //         }
-    //     }
-    // };
-
     $("#pular-pergunta").bind("click", function() {
         var snd = new Audio("sounds/pular.mp3"); // buffers automatically when created
         snd.play();
@@ -334,7 +392,7 @@ $(document).ready(function() {
     });
     
     verificarPrimeiroAcesso();
-    obtemRanking();
+    rankingAmigos();
 
 	findQuestion();
 });

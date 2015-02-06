@@ -14,7 +14,7 @@
 		</div>
 		<div class="friends-box col-md-4">
 			<header>
-				<h3><i class="fa fa-trophy"></i> Ranking de Amigos</h3>
+				<h3><i class="fa fa-trophy"></i> Ranking Geral</h3>
 			</header>
 			<article>
 			</article>
@@ -47,6 +47,6 @@
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
 	<script src="js/min/perfil.js"></script>
-	<script src="js/min/usuario.js"></script>
+	<script src="js/usuario.js"></script>
 </body>
 </html>

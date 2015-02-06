@@ -16,7 +16,11 @@ function onSuccessCadastro(data)
   {
     $.cookie.json = true;
     $.cookie('usuario', data.result, {expires: 1});
-    $("#message").text("Cadastro efetuado com sucesso, em breve enviaremos um e-mail informando o status do seu pedido").css('display', 'block').addClass('alert alert-success');
+    $("#message").text("Cadastro efetuado com sucesso! Em 5 segundos você será direcionado para a página de login.").css('display', 'block').addClass('alert alert-success');
+    
+    setTimeout(function () {
+           window.location.href = "/game"; //will redirect to your blog page (an ex: blog.html)
+      }, 5000);
   }
   else
   {
@@ -26,11 +30,15 @@ function onSuccessCadastro(data)
 
 function onErrorCadastro(error)
 {
-    console.info(error);
+  console.info(error);
 }
 
 $("#message").bind("click", function(){
   $(this).css('display', 'none');
+});
+
+$("#facebook-login").bind("click", function(){
+  ga('send', 'event', 'Cadastro', 'Facebook');
 });
 
 $("#join").bind("click", function(){
@@ -73,6 +81,8 @@ $("#join").bind("click", function(){
     if (!erro)
     {
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
+
+      ga('send', 'event', 'Cadastro', 'Sem Facebook');
 
       $.ajax({
           type: "post",

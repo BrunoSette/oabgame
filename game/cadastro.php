@@ -27,17 +27,34 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 
-	<!-- Start Visual Website Optimizer Asynchronous Code -->
-	<script type='text/javascript'>
-	var _vwo_code=(function(){
-	var account_id=28713,
-	settings_tolerance=2000,
-	library_tolerance=2500,
-	use_existing_jquery=false,
-	// DO NOT EDIT BELOW THIS LINE
-	f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+
+
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-58671300-1', 'auto');
+	ga('send', 'pageview');
+
+	// New Google Analytics code to set User ID.
+
+	<?php
+	 //New Google Analytics code to set User ID.
+	 //$userId is a unique, persistent, and non-personally identifiable string ID.
+
+	if (isset($_SESSION["FBID"]))
+	{
+	  	$gacode = "ga('create', 'UA-58671300-1', { 'userId': '%s' });";
+		echo sprintf($gacode,$_SESSION["FBID"]);
+	}
+	?>
+
+	ga('require', 'displayfeatures');
+	ga('send', 'pageview');
+
 	</script>
-	<!-- End Visual Website Optimizer Asynchronous Code -->
 
 </head>
 <body class="land">
@@ -56,6 +73,14 @@
 			<div class="row">
 				<div class="box-login">
 					<h2 class="ml20">Cadastro</h2>	
+					<div class="col-md-5">
+						<p>
+							Para melhor jogabilidade recomendamos que utilize o cadastro com o Facebook abaixo:
+						</p> <br />
+						<div class="bt-login">
+							<a href="fbconfig" class="btn btn-block btn-social btn-lg btn-facebook" title="Logue com o facebook" id="facebook-login" style="font-size:13px;"><i class="fa fa-facebook"></i>Cadastre-se com Facebook</a>
+						</div>
+					</div>
 					<div class="col-md-7">			
 						<form action="javascript:void(0)">
 							<div id="message"></div>
@@ -79,14 +104,6 @@
 							<button type="submit" class="btn btn-inverse btn-lg btn-block w30" id="join">Cadastra-se</button>
 						</form>
 					</div>
-					<div class="col-md-5">
-						<p>
-							Para melhor jogabilidade recomendamos que utilize o cadastro com o Facebook abaixo:
-						</p> <br />
-						<div class="bt-login">
-							<a href="fbconfig" class="btn btn-block btn-social btn-lg btn-facebook" title="Logue com o facebook" style="font-size:13px;"><i class="fa fa-facebook"></i>Cadastre-se com Facebook</a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -95,7 +112,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="icon"><div class="left mr10"><i class="fui-location"></i></div> CS Tecnologia - Rua José Bonifácio, 205 sala 108 – Recife/PE</div>
-				<div class="icon"><div class="left mr10"><i class="fui-mail"></i></div> questoes@provasdaoab.com.br</div>
+				<div class="icon"><div class="left mr10"><i class="fui-mail"></i></div> questoes@aprovagame.com.br</div>
 			</div>
 		</div>
 	</footer>
@@ -105,5 +122,19 @@
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
 	<script src="js/cadastro.js"></script>
+
+	<!-- Início do Código do MouseFlow -->
+<script type="text/javascript">
+   var _mfq = _mfq || [];
+   (function() {
+       var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+       mf.src = "//cdn.mouseflow.com/projects/8a9b9760-213c-44b2-826d-59e599c051ec.js";
+       document.getElementsByTagName("head")[0].appendChild(mf);
+   })();
+   
+
+</script>
+	<!-- Fim do Código do Mouseflow -->
+
 </body>
 </html>

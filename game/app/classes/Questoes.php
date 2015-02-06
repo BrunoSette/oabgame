@@ -8,6 +8,8 @@
 				(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) 
 				ORDER BY acertos/(acertos + erros) DESC, acertos DESC LIMIT 1";
 
+
+			// correcao do pular
 			if ($id["id"] != -1)
 			{
 				$id = $id["id"];
@@ -15,8 +17,7 @@
 			}
 
 	        //$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE id = 169";
-	        // $sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE id = 633";
-
+	        //$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE id = 637";
 
 	        $stmt = DB::prepare($sql);
 	        $stmt->execute();
