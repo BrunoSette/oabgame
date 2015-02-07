@@ -15,13 +15,14 @@
 						<div class="col-md-5">
 							<div class="pontos right">
 								<div class="question-value left">
-									+100 
-									<div class="small" style="display: inline-block">pontos</div>
+								Acertar: 100
+								<div class="small" style="display: inline-block">pontos</div>
+								&nbsp; $5
 								</div>
-								<div class="question-value left">
-									E$ 20
-								</div>
-								<i att="fui-chat" class="fui-chat" id="notifica-erro" style="margin:10px;"></i>
+								<!-- <div class="question-value left">
+									 
+								</div> -->
+								<!-- <i att="fui-chat" class="fui-chat" id="notifica-erro" style="margin:10px;"></i> -->
 							</div>
 						</div>
 
@@ -39,15 +40,15 @@
 						<div class="options-help col-md-offset-3">
 							
 							<div id="eliminar-resposta" class="btn btn-lg btn-primary col-xs-5 col-sm-4">
-								<i class="fa fa-bomb"></i>Excluir
+								<i class="fa fa-bomb"></i>Excluir 1 Alternativa
 								<p class="valor">
-									-E$ 5
+									-$10
 								</p>
 							</div>
 							<div id="pular-pergunta" class="btn btn-lg btn-primary col-xs-5 col-sm-4">
-								<i class="fa fa-history"></i>Pular
+								<i class="fa fa-history"></i>Pular Questão
 								<p class="valor">
-									-E$ 5
+									-$10
 								</p>
 							</div>
 						</div>

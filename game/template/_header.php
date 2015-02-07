@@ -168,11 +168,11 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
         <div class="order-menu">
           <div id="navbar" class="collapse navbar-collapse iconbar iconbar-horizontal order-1">
 	         <ul class="nav navbar-nav">
-			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile">game</div></a></li>
-		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile">perfil</div></a></li>
-		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile">estatística</div></a></li>
-		    	<li><a href="comprar" id="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile">comprar</div></a></li>
-			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile">configuração</div></a></li>
+			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile ">game</div></a></li>
+		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile ">perfil</div></a></li>
+		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile mll5">gráficos</div></a></li>
+		    	<li><a href="comprar" id="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile mll5">comprar</div></a></li>
+			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile mll2">ajustes</div></a></li>
 	          </ul>
         </div><!--/.nav-collapse -->
 

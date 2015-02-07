@@ -40,14 +40,6 @@ if ($user)
         $_SESSION['BIRTHDAY'] =  $birthday;
         $_SESSION['LOCATION'] =  $location;
         $_SESSION['PICTURE'] =  $picture;
-
-        $facebook->api("/me/feed", "post", array(
-          'message' => "Que tal um jogo grátis de perguntas e respostas para animar sua preparação para a OAB? 
-                        Eu já estou jogando, experimente você também!",
-          'name' => "Provas da OAB Game",
-          'link' => "http://www.estudandoonline.com.br/game",
-          'picture' => "http://www.estudandoonline.com.br/game/img/logo-blue.png"
-        ));
       }
     }
     else

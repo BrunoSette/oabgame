@@ -8,7 +8,7 @@
 						<div class="container-mainbox">
 							<header>
 								<div class="header ml15 mr15">
-									<h3>Loja</h3>
+									<h3>Descubra as Vantagens de Ser um Usuário Premium</h3>
 								</div>
 							</header>
 							<article>
@@ -25,7 +25,7 @@
 										<div>
 											<h3>500 moedas</h3>
 											<article>
-												Acumule cinco mil moedas na sua conta, para pode comprar acesso e funcionalidades dentro do jogo. Quanto mais moedas você tiver, mais você poderá avançar no jogo, adquirindo funções como "pular uma questão" para responder depois e muito mais!
+												Acumule 500 moedas na sua conta, para pode comprar acesso e funcionalidades dentro do jogo. Quanto mais moedas você tiver, mais você poderá avançar no jogo, adquirindo funções como "pular uma questão" para responder depois e muito mais!
 											</article>
 										</div>
 									</div>
@@ -35,16 +35,16 @@
 									<div class="col-md-6">
 										<div class="left mr15 w30"><img src="http://cdn.aprovagame.com.br/img/vantagem-grafico.png" alt="Conferir seu desempenho"></div>
 										<div>
-											<h3>Conferir desempenho</h3>
+											<h3>Confira seu desempenho</h3>
 											<article>Tenha ainda a sua disposição vários gráficos atualizados para acompanhar seu desempenho. Você vai poder identificar em quais matérias está melhor ou pior e ainda qual seu percentual de acerto das questões.</article>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="left mr15 w30"><img src="http://aws.provasdaoab.com.br/imagens/vantagem-sem-anuncios.png" alt="Vencer os desafios"></div>
 										<div>
-											<h3>Retire os anúncios</h3>
+											<h3>Sem propaganda</h3>
 											<article>
-												Ao adquirir a Versão Premium, você tem acesso a um layout mais limpo, sem as propagandas e anúncios que acabam atrapalhando sua concentração.
+												Ao adquirir a Versão Premium, você tem acesso a um layout mais limpo, sem as propagandas e anúncios.
 											</article>
 										</div>
 									</div>

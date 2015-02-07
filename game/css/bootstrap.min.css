@@ -4560,7 +4560,7 @@ a.list-group-item > .badge,
 .nav-tabs > li > a {
   padding: 10px 15px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 1em;
   font-weight: 700;
   color: #7f8c9a;
   border: 2px solid #e1e4e7;
@@ -5609,7 +5609,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {background-color: #bdc3c7
   margin-top: 25.5px;
   margin-bottom: 25.5px;
   }
-.iconbar {float: left; margin: 0 20px 20px 0;-webkit-backface-visibility: hidden; }
+.iconbar {float: left; margin: 0 5px 20px 0;-webkit-backface-visibility: hidden; padding: 0px;}
 .iconbar:before,
 .iconbar:after {
   display: table;

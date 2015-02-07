@@ -780,7 +780,7 @@ border:1px solid #ddd;border-bottom-color:transparent}
 .navbar{border-radius:4px}}
 @media (min-width:768px){
 .navbar-header{float:left}}
-.navbar-collapse{padding-right:15px;padding-left:15px;overflow-x:visible;
+.navbar-collapse{overflow-x:visible;
 -webkit-overflow-scrolling:touch;}
 .navbar-collapse.in{/*overflow-y:auto*/}
 @media (min-width:768px){

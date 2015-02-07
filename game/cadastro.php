@@ -77,9 +77,11 @@
 						<p>
 							Para melhor jogabilidade recomendamos que utilize o cadastro com o Facebook abaixo:
 						</p> <br />
-						<div class="bt-login">
+						<div class="mb5">
 							<a href="fbconfig" class="btn btn-block btn-social btn-lg btn-facebook" title="Logue com o facebook" id="facebook-login" style="font-size:13px;"><i class="fa fa-facebook"></i>Cadastre-se com Facebook</a>
 						</div>
+						<p class="txt-center">Nada será publicado em sua Timeline!</p>
+						<br />
 					</div>
 					<div class="col-md-7">			
 						<form action="javascript:void(0)">
@@ -101,7 +103,7 @@
 							    <input type="password" class="form-control w50" id="senha_confirm" />
 							</div>
 
-							<button type="submit" class="btn btn-inverse btn-lg btn-block w30" id="join">Cadastra-se</button>
+							<button type="submit" class="btn btn-inverse btn-lg btn-block w50" id="join">Cadastre-se</button>
 						</form>
 					</div>
 				</div>

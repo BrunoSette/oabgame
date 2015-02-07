@@ -14,16 +14,17 @@ header.topo {border-bottom: 5px solid #20364C;background-color: #34495e; height:
 header i[att^="fui-"] {font-size: 1.5em; color: #fff;}
 header .nav i:hover {color: #1ABC9C !important;}
 header h2 {color: #fff; line-height: 70px;}
-header img.logo{/*width: 60%; */width: 176px;/*margin-top: 5px; float: left;*/}
+header img.logo{width: 176px;}
 img {max-width: 100%; height: auto;}
 u {text-decoration: none;}
+
 /*Menu sistema*/
 .navbar-header {float: left; width: 30%}
 .order-menu {/*width: 40%;*/ float: right;}
 .order-menu i {font-size: 1em;}
 .order-menu .order-1 {float: left;}
 .order-menu .order-2 {float: right;}
-.order-menu .menu-mobile {visibility: hidden; position: absolute;}
+.order-menu .menu-mobile {position: absolute; font-size: 0.5em; text-align: center; margin-top: 5px;}
 
 
 .headbox h1, h3 {color: #fff;font-weight: inherit; } 
@@ -155,7 +156,7 @@ margin-bottom: 10px; margin-left: 15px; margin-right: 15px;}
 .box-content {background: #fff;position: relative; border-radius: 5px;margin: 0 auto; }
 
 .box-content > h3 {background-color: #3498db; border-top-left-radius: 5px; border-top-right-radius: 5px; text-align: center;}
-.box-content > div {padding: 10px; max-height: 350px; overflow: auto}
+.box-content > div {padding: 10px; max-height: 350px; overflow-y: auto; overflow-x: hidden;}
 .box-content > p {background-color: #eaeaea; padding: 5px; text-align: center; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;}
 
 .shop-firt-ad {overflow: hidden; background-color: #eeeeee}
@@ -167,7 +168,7 @@ margin-bottom: 10px; margin-left: 15px; margin-right: 15px;}
 .shop-plus h1 {color: #fff;}
 
 .shop-friend-invite {overflow: hidden; padding: 15px}
-.shop-friend-invite h1 {font-size: 3.0em; line-height: 0em;}
+.shop-friend-invite h1 {font-size: 3.0em; line-height: 1em;}
 .shop-friend-invite h2 {font-size: 1.0em; line-height: 1.5; color: #000;}
 .shop-friend-invite p {margin-bottom: 10px;}
 
@@ -262,6 +263,10 @@ form .erro {border: 2px solid #e74c3c !important; color: #e74c3c !important;}
 .ml20 {margin-left: 20px;}
 .ml30 {margin-left: 30px;}
 
+.mll10 {margin-left: -10px !important;}
+.mll5 {margin-left: -5px !important;}
+.mll2 {margin-left: -2px !important;}
+
 .mt5 {margin-top: 5px;}
 .mt10 {margin-top: 10px;}
 .mt12 {margin-top: 12px;}
@@ -325,13 +330,20 @@ form .erro {border: 2px solid #e74c3c !important; color: #e74c3c !important;}
 .iconbar > ul > li { margin: 0; padding: 0; }
 .iconbar > ul > li.active > a { color: #1abc9c; }
 .iconbar > ul > li:first-child > a { padding-top: 32px; }
-.iconbar > ul > li > a { color: #ffffff; display: block; font-size: 24px; line-height: 1; padding: 8px 30px 32px; position: relative; text-decoration: none; }
+.iconbar > ul > li > a { color: #ffffff; display: block;  line-height: 1; padding: 8px 30px 32px; position: relative; text-decoration: none; }
 .iconbar > ul > li > a:hover, .iconbar > ul > li > a:focus { color: #1abc9c; }
-.iconbar-horizontal { float: right; }
-.iconbar-horizontal > ul > li { float: left; }
+.iconbar-horizontal { float: right;}
+.iconbar-horizontal > ul > li { float: left; overflow: hidden; }
 .iconbar-horizontal > ul > li:first-child > a { padding: 23px 32px 23px; }
-.iconbar-horizontal > ul > li > a { padding: 23px 32px 23px 8px; }
+.iconbar-horizontal > ul > li > a { padding: 23px 32px 23px 25px;}
+.iconbar-horizontal > ul > li > a:hover {background-color: rgba(0,0, 0,0.1)}
 .iconbar-horizontal .iconbar-unread { right: 23px; top: 13px; }
+
+.fb-comments span { width: 100% !important; }
+.fb-comments iframe { width: 100% !important;}
+
+.video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 */ padding-top: 25px; height: 0; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 /* IDs */
 #message {display:none; cursor: pointer;}

@@ -61,6 +61,7 @@
 			</div>
 			<div class="col-md-5 col-sm-offset">
 			<div class="box-login">
+				<!-- <div class="alert alert-warning">Estamos realizando uma manutenção crítica, em 2h o sistema estará disponível para acesso</div> -->
 				<form action="javascript:void(0)" novalidate>
 					<div class="bt-login">
 						<a href="fbconfig" class="btn btn-block btn-social btn-lg btn-facebook" title="Logue com o facebook" style="font-size:13px;"><i class="fa fa-facebook"></i>Login com Facebook</a>

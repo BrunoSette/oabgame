@@ -6,10 +6,10 @@ var clienteUrl = "http://www.aprovagame.com.br/game";
 // var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
 // var clienteUrl = "http://local.estudandoonline.com.br/game/game";
 
-const RESPOSTA_CORRETA = 20;
-const PULAR_PERGUNTA = -5;
-const ELIMINAR_RESPOSTA = -5;
-const RESPOSTA_ERRADA = -10;
+const RESPOSTA_CORRETA = 5;
+const PULAR_PERGUNTA = -10;
+const ELIMINAR_RESPOSTA = -10;
+const RESPOSTA_ERRADA = -15;
 const RESPONDEU_ENQUETE = 15;
 const PRIMEIRO_ACESSO = 10;
 
@@ -37,6 +37,7 @@ var openedModal = false;
 var video;
 var acertosSeguidos = 0;
 var modaisAbertos = 0;
+var qtd_multipla = 0, qtd_vouf = 0;
 
 $("#comprar").bind('click', function(){
     console.info("aqui");
