@@ -86,7 +86,7 @@ window._fbq.push(['track', '6031376445080', {'value':'0.00','currency':'BRL'}]);
 	<script src="js/esquecisenha.js"></script>
 	<script>
 		setTimeout(function () {
-      		 window.location.href = "/game"; //will redirect to your blog page (an ex: blog.html)
+      		 window.location.href = "/game";
     	}, 5000);
 	</script>
 </body>
