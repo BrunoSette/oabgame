@@ -70,6 +70,9 @@
 			</article>
 			<br />
 			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br />
+			
+			<div class="fb-like-box" data-href="https://www.facebook.com/aprovagame" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="false"></div><br />
+			
 			<!-- Lateral Aprova Game -->
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:336px;height:280px"
