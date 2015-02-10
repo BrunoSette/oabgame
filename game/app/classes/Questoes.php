@@ -4,14 +4,22 @@
 	{
 		public function get_questao($data = null)
 		{
+			$intervalo = null;
 			if ($data["tipo"] == "1") // questao de verdadeiro ou falso
 			{
-				$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE multipla_escolha = 0 AND `id` NOT IN 
+				if(isset($_SESSION['disciplinas'])){
+					$sql = "SELECT * FROM `tb_questoes_multiplaescolha` LEFT JOIN tb_disciplinas ON tb_questoes_multiplaescolha.materia = tb_disciplinas.titulo WHERE multipla_escolha = 0 AND tb_questoes_multiplaescolha.`id` NOT IN 
+					(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) AND tb_disciplinas.id IN (".$_SESSION['disciplinas'].") ORDER BY RAND() LIMIT 1";
+				} else {
+					$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE multipla_escolha = 0 AND tb_questoes_multiplaescolha.`id` NOT IN 
 					(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) ORDER BY RAND() LIMIT 1";
+				}
+				
 
 				if ($data["id"] != -1) // pular
 				{
 					$id = $data["id"];
+
 					$sql = "SELECT * FROM  `tb_questoes_multiplaescolha` WHERE multipla_escolha = 0 and id != $id ORDER BY RAND() LIMIT 1";
 				}
 
@@ -21,8 +29,11 @@
 
 		        if (!$result)
 		        {
-		        	$sql = "SELECT * FROM  `tb_questoes_multiplaescolha` WHERE multipla_escolha = 0 ORDER BY RAND() LIMIT 1";
-
+		        	if(isset($_SESSION['disciplinas'])){
+		        		$sql = "SELECT * FROM  `tb_questoes_multiplaescolha` LEFT JOIN tb_disciplinas ON tb_questoes_multiplaescolha.materia = tb_disciplinas.titulo  WHERE multipla_escolha = 0 AND tb_disciplinas.id IN (".$_SESSION['disciplinas'].") ORDER BY RAND() LIMIT 1";
+		        	} else {
+		        		$sql = "SELECT * FROM  `tb_questoes_multiplaescolha` WHERE multipla_escolha = 0 ORDER BY RAND() LIMIT 1";
+		        	}
 		        	$stmt = DB::prepare($sql);
 		        	$stmt->execute();
 		        	$result = $stmt->fetch();
@@ -30,10 +41,17 @@
 			}
 			
 			if($data["tipo"] == "2") // questao multiplaescolha
-			{
-				$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE multipla_escolha = 1 AND `id` NOT IN 
+			{	
+				if(isset($_SESSION['disciplinas'])){
+					$sql = "SELECT * FROM `tb_questoes_multiplaescolha` LEFT JOIN tb_disciplinas ON tb_questoes_multiplaescolha.materia = tb_disciplinas.titulo  WHERE multipla_escolha = 1 AND tb_questoes_multiplaescolha.`id` NOT IN 
+					(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) 
+					AND tb_disciplinas.id IN (".$_SESSION['disciplinas'].")
+					ORDER BY acertos/(acertos + erros) DESC, acertos DESC LIMIT 1";
+				} else {
+					$sql = "SELECT * FROM `tb_questoes_multiplaescolha` WHERE multipla_escolha = 1 AND `id` NOT IN 
 					(SELECT questao FROM tb_questao_usuario WHERE acertou = 1 AND usuario = {$_SESSION["FBID"]}) 
 					ORDER BY acertos/(acertos + erros) DESC, acertos DESC LIMIT 1";
+				}
 
 				if ($data["id"] != -1) // pular
 				{

@@ -102,6 +102,7 @@ class Usuario {
     public function post_login($usuario)
     {
         $sql = "SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)";
+        // $sql = "SELECT * FROM tb_usuario WHERE (email = '".$usuario->email."' and senha='".md5($usuario->senha)."')";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
@@ -445,7 +446,10 @@ class Usuario {
         while($user = $stmt->fetch())
         {
             $nomeCompleto = explode(" ", $user->nome);
-            $user->nome = $nomeCompleto[0] . " " . $nomeCompleto[1];
+            if(count($nomeCompleto) > 1){
+                $user->nome = $nomeCompleto[0] . " " . $nomeCompleto[1];
+            }
+            
             $user->posicao = $i + 1;
 
             $users[$i] = $user;
@@ -488,7 +492,7 @@ class Usuario {
 
     public function get_ranking_friends()
     {
-        $friends = $_SESSION['FRIENDS'];
+        $friends = @$_SESSION['FRIENDS'];
 
         if (!$friends)
         {
@@ -581,11 +585,11 @@ class Usuario {
     {
         $sql = "SELECT 
         tb_questao_usuario.usuario, tb_questao_usuario.questao, tb_questao_usuario.acertou, tb_questoes_multiplaescolha.id, 
-        tb_questoes_multiplaescolha.disciplina, tb_disciplinas.id 
+        tb_questoes_multiplaescolha.materia, tb_disciplinas.id 
         FROM tb_questao_usuario, tb_questoes_multiplaescolha, tb_disciplinas  WHERE 
         usuario = {$_SESSION["FBID"]}
         AND tb_questao_usuario.questao = tb_questoes_multiplaescolha.id 
-        AND tb_disciplinas.titulo  = tb_questoes_multiplaescolha.disciplina";
+        AND tb_disciplinas.titulo  = tb_questoes_multiplaescolha.materia";
         
         $stmt = DB::prepare($sql);
         $stmt->execute();
@@ -610,6 +614,30 @@ class Usuario {
         }
         
         return $ret;
+    }
+
+    public function get_materias()
+    {
+        $filtro = $_GET['filtro'];
+        $sql = "SELECT * FROM tb_disciplinas";
+        $stmtDisciplinas = DB::prepare($sql);
+        $stmtDisciplinas->execute();
+        $res = $stmtDisciplinas->fetchall();
+
+        if($filtro == true){
+            $escolhidas = @explode(',',$_SESSION['disciplinas']);
+            foreach ($res as $key => $value) {
+                 $value->escolhida = in_array($value->id,$escolhidas);
+             } 
+        }
+        return $res;
+    }
+
+    public function post_escolher_disciplinas()
+    {   
+        $_SESSION['disciplinas'] = null;
+        $_SESSION['disciplinas'] = implode(",", $_POST['disciplina']);
+        return true;
     }
 
     public function get_questoes_grafico()

@@ -110,10 +110,10 @@ var Modal = function()
         {
 
             player = new YT.Player('ytplayer', {
-             events: {
-                     'onStateChange': intervalo
-             }
-            });
+               events: {
+                   'onStateChange': intervalo
+               }
+           });
             $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
             $(ret).children('.box-content').children('p').children('.modal-action').text("Próxima pergunta");
         }
@@ -164,21 +164,21 @@ function verificarPrimeiroAcesso()
                 var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
                 snd.play();
 
-       			var html = "<img src='img/big-coin.png' alt='' style='display: block; margin-left: auto; margin-right: auto;' />";
-        			html += "<br />";
-			        html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
+                var html = "<img src='img/big-coin.png' alt='' style='display: block; margin-left: auto; margin-right: auto;' />";
+                html += "<br />";
+                html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
 
-                var myModal = new Modal();
-                    myModal.setCor("#f5d313");
-                    myModal.setTitulo("Você recebeu E$ 10!");
-                    myModal.setTexto(html);
-                    myModal.showModal('F');
+    var myModal = new Modal();
+    myModal.setCor("#f5d313");
+    myModal.setTitulo("Você recebeu E$ 10!");
+    myModal.setTexto(html);
+    myModal.showModal('F');
 
-        		updateMoedas(PRIMEIRO_ACESSO);
-        	}
-        },
-        error: function(result){ console.info(result); }
-    });
+    updateMoedas(PRIMEIRO_ACESSO);
+}
+},
+error: function(result){ console.info(result); }
+});
 }
 
 function closeModal(selected)
@@ -232,7 +232,7 @@ function rankingAmigos()
         }
     });
 
-    setTimeout(rankingAmigos, 10000);
+setTimeout(rankingAmigos, 10000);
 }
 
 function verificaPontuacao()
@@ -286,7 +286,7 @@ function verificaPontuacao()
             async: false,
             success: function(e) { nivelAntigo = parseInt(e.result); },
             error: function(result){ console.info(result); }
-         });
+        });
     }
 
     if (nivelAntigo < novoNivel)
@@ -303,15 +303,66 @@ function verificaPontuacao()
         snd.play();
 
         var myModal = new Modal();
-            myModal.setTitulo("Parabéns, você mudou o seu nível!");
-            myModal.setTexto(html);
-            myModal.showModal('F');
+        myModal.setTitulo("Parabéns, você mudou o seu nível!");
+        myModal.setTexto(html);
+        myModal.showModal('F');
         
         return true;
     }
     
     return false;
 }
+
+function escolherTipoQuestoes(filtro){
+
+    $.ajax({
+        type: "get",
+        url: rootUrl + "/Usuario/materias",
+        data : {
+            filtro: filtro
+        },
+        success: function(data)
+        {   
+            var myModal = new Modal(),
+            html = "<form id='form-escolher-questoes'><ul>";
+
+            myModal.setCor("#E74C3C");
+            myModal.setTitulo("Escolha as matérias");
+            $(data.result).each(function(i,e){
+                var checked = e.escolhida == false ? '' : 'checked';
+                html += "<li class='opcao_materia'><input type='checkbox' "+checked+" name='disciplina[]'value="+e.id+">"+e.titulo+"</li>";
+            });
+            html += "<input type='submit' value='salvar' class='salvar_materia btn btn-danger'>";
+            html += "</ul></form>";
+            myModal.setTexto(html);
+            myModal.showModal('F');
+       }
+   });
+   
+}
+
+$('body').on('click','.salvar_materia',function(e){
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: rootUrl + "/Usuario/escolher_disciplinas",
+        data:  $('#form-escolher-questoes').serialize(),
+        success: function(data)
+        { 
+        sessionStorage.setItem("materias","true");
+  
+        var selected = $(".box-modal").fadeOut('fast');
+        closeModal(selected);
+        findQuestion();
+ 
+       }
+   });
+});
+
+
+$(".form_config").on('click','#escolherMaterias',function(e){
+    escolherTipoQuestoes(true);
+});
 
 $(document).ready(function()
 {
@@ -341,16 +392,16 @@ $(document).ready(function()
 
     var lastScrollTop = 0;
     $(window).scroll(function(event){
-       var st = $(this).scrollTop();
-       if (st > lastScrollTop + 40)
-       {
-           var status = $(".tooltip").css('display');
+     var st = $(this).scrollTop();
+     if (st > lastScrollTop + 40)
+     {
+         var status = $(".tooltip").css('display');
 
-            if (status == "block")
-                $(".tooltip").css('display', 'none');
-       } 
-       lastScrollTop = st;
-    });
+         if (status == "block")
+            $(".tooltip").css('display', 'none');
+    } 
+    lastScrollTop = st;
+});
 
     $("body").on('click', ".modal-action", function(){
         var tipo = $(this).attr("data-tipo");
@@ -364,6 +415,10 @@ $(document).ready(function()
 
         closeModal(selected);
     });
+
+    if(sessionStorage.getItem("materias") == null){
+        escolherTipoQuestoes(true);
+    }
 
 });
 

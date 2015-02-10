@@ -353,3 +353,7 @@ form .erro {border: 2px solid #e74c3c !important; color: #e74c3c !important;}
 
 #ranking_amigos h4 {display: inline-block; margin-right: 5px;}
 #ranking_amigos li { list-style-type: none; }
+
+.opcao_materia { display: inline-block; width: 50%}
+.opcao_materia input[type=checkbox]{ margin-right: 5px;}
+.salvar_materia {display: block !important; margin-top: 20px; margin-left: auto; margin-right: 40px; width: 120px;}

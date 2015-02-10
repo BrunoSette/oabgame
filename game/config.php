@@ -52,6 +52,15 @@
 				<br class="clear" />
 				 
 				  <div class="form-group col-sm-5">
+				   <h4>Matérias</h4>
+				    <div class="">
+				      <div class="">
+				        <button class="btn btn-danger" id="escolherMaterias"><i class="fui-check"></i> Escolher matérias</button>
+				      </div>
+				    </div>
+				  </div>
+				  <br class="clear" />
+				  <div class="form-group col-sm-5">
 				   <h4>Notificações</h4>
 				    <div class="">
 				      <div class="">
@@ -94,8 +103,9 @@
 	<script src="js/flat-ui-pro.min.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
-	<script src="js/min/usuario.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/questoes.js"></script>
+	<script src="js/usuario.js"></script>
 	<script src="js/config.js"></script>
 </body>
 </html>
