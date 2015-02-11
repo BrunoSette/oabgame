@@ -51,11 +51,12 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 
 	<?php
 	 //New Google Analytics code to set User ID.
-
-	if (isset($_SESSION["FBID"])) {
-	  $gacode = "ga('create', 'UA-58671300-1', { 'userId': '%s' });";
-	echo sprintf($gacode,$_SESSION["FBID"]);
+	if (isset($_SESSION["FBID"]))
+	{
+	  	$gacode = "ga('create', 'UA-58671300-1', { 'userId': '%s' });";
+		echo sprintf($gacode,$_SESSION["FBID"]);
 	}
+
 	?>
 
 	ga('require', 'displayfeatures');
@@ -121,16 +122,17 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-        <a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+
+          	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	</button>
           
         </div>
-
+		
         	<!-- foto do aluno -->
 		<div class="navbar-right" id="user-box" style="color: #fff; margin-top: 10px; background-color: #3A546E; padding: 5px; cursor: pointer;">
 			<?php if (isset($_SESSION["PICTURE"]) && $_SESSION["PICTURE"]) { ?>
@@ -141,6 +143,9 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 			<div style="display: inline-block;">
 				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
+			<?php if($_SESSION["PREMIUM"]) { ?>
+	        	<img src='img/usuario_premium.png' alt='' class='left mr10' style='width: 50px' />
+        	<?php } ?>
 		</div><!-- /foto do aluno -->
 		
 			<div class= "tooltip-sys" style="top: 70px;">
@@ -164,14 +169,13 @@ if(!isset($_SESSION["FBID"])) header("Location: ./");
 				</div> 
 				<button class="btn btn-info w100 mt5 mb5" id="linkSair"><i class="fui-exit"></i> Sair do Jogo</button>
 			</div> <!--/display-none -->
-
         <div class="order-menu">
           <div id="navbar" class="collapse navbar-collapse iconbar iconbar-horizontal order-1">
 	         <ul class="nav navbar-nav">
 			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile ">game</div></a></li>
 		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile ">perfil</div></a></li>
 		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile mll5">gráficos</div></a></li>
-		    	<li><a href="comprar" id="comprar" title="comprar"><i class="fa fa-shopping-cart"></i><div class="menu-mobile mll5">comprar</div></a></li>
+		    	<?php if(!$_SESSION["PREMIUM"]) echo "<li><a href='comprar' id='comprar' title='comprar'><i class='fa fa-shopping-cart'></i><div class='menu-mobile mll5'>comprar</div></a></li>"; ?>
 			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile mll2">ajustes</div></a></li>
 	          </ul>
         </div><!--/.nav-collapse -->

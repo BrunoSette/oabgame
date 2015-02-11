@@ -5516,7 +5516,7 @@ font-weight: normal;
 font-size: .8em;
 text-transform: capitalize;
 padding-bottom: 20px !important;}
-.navbar-right {position: absolute;right: 26%;}
+.navbar-right {position: absolute;right: 26%; margin-right: -23px;}
 .navbar-header {width: 100% !important;}
 .navbar-inverse .navbar-form {border-color: #2f4154;border-width: 2px 0;}}
 .navbar-inverse .navbar-text {color: #fff;}
