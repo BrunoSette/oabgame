@@ -51,14 +51,6 @@
 				  </div>
 				<br class="clear" />
 				 
-				  <div class="form-group col-sm-5">
-				   <h4>Matérias</h4>
-				    <div class="">
-				      <div class="">
-				        <button class="btn btn-danger" id="escolherMaterias"><i class="fui-check"></i> Escolher matérias</button>
-				      </div>
-				    </div>
-				  </div>
 				  <br class="clear" />
 				  <div class="form-group col-sm-5">
 				   <h4>Notificações</h4>

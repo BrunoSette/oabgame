@@ -9,20 +9,18 @@
 				<div class="header">
 					<div class="row">
 						<div class="subject col-md-6">
-						<div style="background-color: #16A085;">						
-						</div>
+							<div style="background-color: #16A085;"></div>
 						</div>
 						<div class="col-md-5">
-							<div class="pontos right">
-								<div class="question-value left">
-								Acertar: 100
+							<div class="pontos right mt10">
+								<div class="question-value left" id="pontuacao">
+								acertar: 100
 								<div class="small" style="display: inline-block">pontos</div>
 								&nbsp; $5
 								</div>
-								<!-- <div class="question-value left">
-									 
-								</div> -->
-								<!-- <i att="fui-chat" class="fui-chat" id="notifica-erro" style="margin:10px;"></i> -->
+								<div class="question-value left ml5" id="lifes">
+									 <i class="fa fa-heart" style="color: #C0392B"></i> x<span id="userLifes"></span>
+								</div>
 							</div>
 						</div>
 
@@ -36,7 +34,7 @@
 				
 					<ul id="alternativas"> </ul>
 				
-					<div class="row">
+					<div class="row" id="show-milhao">
 						<div class="options-help col-md-offset-3">
 							
 							<div id="eliminar-resposta" class="btn btn-lg btn-primary col-xs-5 col-sm-4">
@@ -53,11 +51,6 @@
 							</div>
 						</div>
 					</div><!-- /options-help -->
-					<div class="row">
-						<div class="col-md-4 col-md-offset-8">		
-							<button class="right btn btn-danger" id="enviarResposta"><i class="fui-check"></i> Responder</button>
-						</div>
-					</div>
 				</form>
 			</article>
 		</div>

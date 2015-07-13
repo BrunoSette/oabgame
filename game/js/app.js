@@ -189,6 +189,8 @@ function closeModal(selected)
         $(".box-overlay").css("opacity", '0').css('visibility', 'hidden');
 
     modaisAbertos--;
+
+    if (modaisAbertos == 0) openedModal = false;
 }
 
 function rankingAmigos()
@@ -299,7 +301,7 @@ function verificaPontuacao()
             error: function(e) {console.info(e);}
         });
 
-        var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
+        var snd = new Audio("sounds/news.mp3"); 
         snd.play();
 
         var myModal = new Modal();
@@ -311,6 +313,20 @@ function verificaPontuacao()
     }
     
     return false;
+}
+
+function getUserLifes()
+{
+    var lifes, premium;
+
+    $.ajax({
+        type: "get",
+        async: false,
+        url: rootUrl + "/Usuario/lifes",
+        success: function(data) {lifes = data.result.qtd_vidas;}
+    });
+
+    return lifes;
 }
 
 function escolherTipoQuestoes(filtro){
@@ -337,8 +353,7 @@ function escolherTipoQuestoes(filtro){
             myModal.setTexto(html);
             myModal.showModal('F');
        }
-   });
-   
+   });  
 }
 
 $('body').on('click','.salvar_materia',function(e){
@@ -392,16 +407,16 @@ $(document).ready(function()
 
     var lastScrollTop = 0;
     $(window).scroll(function(event){
-     var st = $(this).scrollTop();
-     if (st > lastScrollTop + 40)
-     {
-         var status = $(".tooltip").css('display');
+         var st = $(this).scrollTop();
+         if (st > lastScrollTop + 40)
+         {
+             var status = $(".tooltip").css('display');
 
-         if (status == "block")
-            $(".tooltip").css('display', 'none');
-    } 
-    lastScrollTop = st;
-});
+             if (status == "block")
+                $(".tooltip").css('display', 'none');
+        } 
+        lastScrollTop = st;
+    });
 
     $("body").on('click', ".modal-action", function(){
         var tipo = $(this).attr("data-tipo");
@@ -416,9 +431,8 @@ $(document).ready(function()
         closeModal(selected);
     });
 
-    if(sessionStorage.getItem("materias") == null){
-        escolherTipoQuestoes(true);
-    }
-
+    // if(sessionStorage.getItem("materias") == null){
+    //     escolherTipoQuestoes(true);
+    // }
 });
 

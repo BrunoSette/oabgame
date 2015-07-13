@@ -78,6 +78,7 @@
 					  <div id="message" class="txt-center mb10" ></div>
 					  <button type="submit" class="btn btn-inverse btn-lg btn-block" id="join">Entrar</button>
 					  	<div class="forget">
+					  		<a href="cadastro">Cadastre-se</a><br />
 					  		<a href="esqueciminhasenha">Esqueceu sua senha?</a> <br />
 					  	</div>
 					</form>

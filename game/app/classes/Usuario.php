@@ -58,6 +58,18 @@ class Usuario {
         return $status->status_pagamento;
     }
 
+    public function get_premium()
+    {
+        $sql = "SELECT status_pagamento FROM tb_usuario WHERE email = :mail";
+        $stmt = DB::prepare($sql);
+        $stmt->bindParam("mail", $_SESSION["EMAIL"]);
+        $stmt->execute();
+
+        $status = $stmt->fetch();
+        
+        return $status->status_pagamento;
+    }
+
     // Verifica se ha email passado por parametro cadastrado no banco de dados
     public function get_face_profile($email, $aniversario, $localizacao, $foto, $genero)
     {
@@ -89,7 +101,6 @@ class Usuario {
                 $stmtUsuario = DB::query($sql);
             }
 
-            // incrementa a quantidade de acessos do usuário e atualiza a data de ultimo acesso.
             $this->atualiza_acesso();
 
             return true;
@@ -102,7 +113,6 @@ class Usuario {
     public function post_login($usuario)
     {
         $sql = "SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)";
-        // $sql = "SELECT * FROM tb_usuario WHERE (email = '".$usuario->email."' and senha='".md5($usuario->senha)."')";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
@@ -178,8 +188,7 @@ class Usuario {
         {
             $code = (string)$db_usuario->id . substr((string)md5(time()), 0, 8);
 
-            $sql = "INSERT INTO tb_recupera_senha (usuario, code) 
-                VALUES 
+            $sql = "INSERT INTO tb_recupera_senha (usuario, code)  VALUES 
                 (
                     '" . $db_usuario->id . "', 
                     '" . $code ."'
@@ -633,13 +642,6 @@ class Usuario {
         return $res;
     }
 
-    public function post_escolher_disciplinas()
-    {   
-        $_SESSION['disciplinas'] = null;
-        $_SESSION['disciplinas'] = implode(",", $_POST['disciplina']);
-        return true;
-    }
-
     public function get_questoes_grafico()
     {
         $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
@@ -737,13 +739,29 @@ class Usuario {
         return $resHit;
     }
 
+    public function post_perdeu_vida()
+    {
+        $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas - 1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
+        $stmtUsuario = DB::query($sql);
+    }
+
+    public function get_lifes()
+    {
+        $sql = "SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+
+        return $res;
+    }
+
     public function post_update($user)
     {
-
-        if($user->notificacoes)
-            $user->notificacoes = 1;
-        else
-            $user->notificacoes = 0;
+        if($user->notificacoes) $user->notificacoes = 1;
+        
+        else $user->notificacoes = 0;
 
         if ($user->convidado != "")
         {   

@@ -8,6 +8,58 @@ function getPontuacao()
     return parseInt($("#userScore").html());
 }
 
+function getVidas()
+{
+    return parseInt($("#userLifes").html());
+}
+
+function setVidas(value)
+{
+    var premium;
+
+    $.ajax({
+        type: "get",
+        async: false,
+        url: rootUrl + "/Usuario/premium",
+        success: function(e) { premium = e.result; }
+    });
+
+
+    if (premium == "1")
+    {
+        $("#lifes").css('display', 'none');
+        $("#userLifes").html(5000);
+    }
+    else
+    {
+        $("#lifes").css('display', 'block');
+        $("#userLifes").html(value);
+    }
+}
+
+function perdeuVida()
+{
+    $.ajax({
+        type: "post",
+        url: rootUrl + "/Usuario/perdeu_vida",
+        dataType: "json",
+        success: function(e) { console.info(e); }, 
+        error: function(e) { console.info(e); }
+    });
+}
+
+function hideUI()
+{
+    $("#show-milhao").css('display', 'none');
+    $("#pontuacao").css('display', 'none');
+}
+
+function showUI()
+{
+    $("#show-milhao").css('display', 'block');
+    $("#pontuacao").css('display', 'block');
+}
+
 function updateMoedas(value)
 {
     var score = $("#userCash").html();
@@ -31,178 +83,222 @@ function bloqueaShowDoMilhao()
         myModal.showModal('F');
 }
 
-function notificaErro()
-{
-    var html = "<form action='javascript:void(0)' id='formEnviaErro' class='form form-aligned'>";
-        html += "<div class='control-group'>";
-        html += "<label for=''>Qual o erro desta pergunta: </label><br />";
-        html += "<input type='radio' name='error' value='1'> A pergunta contém erro de ortografia.<br />"
-        html += "<input type='radio' name='error' value='2'> A pergunta não possui resposta correta.<br />"
-        html += "<input type='radio' name='error' value='3'> A pergunta possui caracteres especiais.<br />"
-        html += "<br />"
-        html += "<label for=''>Comentário Opcional</label><br />";
-        html += "<textarea class='mt10' name='comment'></textarea>"
-        html += "</div>";
-        html += "</form>"
-
-    var footer = "<p class='right'>";
-        footer += "<button class='btn btn-cancel' id='modal-action' data-tipo='fechar'>Cancelar</button>";
-        footer += "<button class='btn btn-info ml5' id='sendNotification'>Enviar</button>";
-        footer += "</p>";
-
-    $(".box-overlay").css("opacity", '1').css('visibility', 'visible');
-    $(".box-modal > .box-content").css('visibility', 'visible');
-    $(".box-modal h3").css("background-color", "#3498db").text("Reportar pergunta");
-    $(".box-modal > .box-content > div > p").html(html);
-    $("#modal-action").attr("data-tipo", "enviarErro");
-    $(".box-modal > .box-content > p").css('overflow', 'hidden');
-    $(".box-modal > .box-content > p").html(footer);
-}
-
 function isCorrect(resposta)
 {
-    if(isUndefined(resposta)) // usuario nao respondeu a questao
+    var acertou = false; 
+    var valueScore;
+
+    if(gabarito == resposta)
     {
+        var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
+        if (video) 
+            html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+
+        html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
+
+        var snd = new Audio("sounds/correct.mp3");
+        snd.play();
+
         var myModal = new Modal();
-            myModal.setTitulo("Resposta em branco");
-            myModal.setTexto("Você não selecionou nenhuma resposta. Para prosseguir selecione a respota correta.");
-            myModal.showModal('F');
+            myModal.setCor("#1ABC9C")
+            myModal.setTitulo("Parabéns ! Você acertou");
+            myModal.setTexto(html);
+            myModal.showModal('P');
+
+        FB.XFBML.parse();
+
+        $.ajax({
+            type: "post",
+            url: rootUrl + "/Usuario/pontuation_geral",
+            dataType: "json",
+            success: function(e)
+            {
+                updatePontuacao(100);
+                if (verificaPontuacao()) atualizaPerfil();
+            }, 
+            error: function(e) { console.info(e); }
+        });
+        
+        data = {"pontuation" : RESPOSTA_CORRETA}; valueScore = RESPOSTA_CORRETA;
+
+        acertou = true;
+        acertosSeguidos++;
+
+        badge_acertos_seguidos();
+        badge_acertos();
     }
     else
     {
-        var acertou = false; 
-        var valueScore;
+        var respostaCompleta = $('.teste[data-option="'+ gabarito +'"]').html();
 
-        if(gabarito == resposta)
-        {
-            var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
-            if (video) 
-                html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
+        var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
+        if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe> </div>";
 
-            html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
+        html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
-            var snd = new Audio("sounds/correct.mp3"); // buffers automatically when created
-            snd.play();
+        var myModal = new Modal();
+            myModal.setCor("#E74C3C")
+            myModal.setTitulo("Resposta errada");
+            myModal.setTexto(html);
+            myModal.showModal('P');            
 
-            var myModal = new Modal();
-                myModal.setCor("#1ABC9C")
-                myModal.setTitulo("Parabéns ! Você acertou");
-                myModal.setTexto(html);
-                myModal.showModal('P');
+        FB.XFBML.parse();
 
-            FB.XFBML.parse();
+        data = {"pontuation" : RESPOSTA_ERRADA};
+        valueScore = RESPOSTA_ERRADA;
 
-            $.ajax({ // atualiza pontuação geral do usuario
-                type: "post",
-                url: rootUrl + "/Usuario/pontuation_geral",
-                dataType: "json",
-                success: function(e)
-                {
-                    updatePontuacao(100);
-                    if (verificaPontuacao()) atualizaPerfil();
-                }, 
-                error: function(e) { console.info(e); }
-            });
-            
-            data = {"pontuation" : RESPOSTA_CORRETA}; valueScore = RESPOSTA_CORRETA;
+        setVidas(getVidas() - 1);
+        perdeuVida();
 
-            acertou = true;
-            acertosSeguidos++;
+        acertosSeguidos = 0;
+    }
 
-            badge_acertos_seguidos();
-            badge_acertos();
-        }
-        else
-        {
-            var respostaCompleta = $('.teste[data-option="'+ gabarito +'"]').html();
-
-            var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
-            if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe> </div>";
-
-            html += "<br /><div class='fb-comments ml30 mt10' data-href='http://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
-
-            var myModal = new Modal();
-                myModal.setCor("#E74C3C")
-                myModal.setTitulo("Resposta errada");
-                myModal.setTexto(html);
-                myModal.showModal('P');            
-
-            FB.XFBML.parse();
-
-            data = {"pontuation" : RESPOSTA_ERRADA};
-            valueScore = RESPOSTA_ERRADA;
-
-            acertosSeguidos = 0;
-        }
-
-        if (getMoedas() + valueScore >= 0)
-        {
-            $.ajax({
-                type: "post",
-                url: rootUrl + "/Usuario/pontuation",
-                data: JSON.stringify(data),
-                dataType: "json",
-                success: function(e) {updateMoedas(valueScore)}, 
-                error: function(e) { console.info(e); }
-            });
-        }
-
-        // armazena a questao feita pelo usuario
-        data = JSON.stringify({"questao" : idQuestao, "user_acertou" : acertou, "user_resposta" : resposta});
+    if (getMoedas() + valueScore >= 0)
+    {
         $.ajax({
             type: "post",
-            url: rootUrl + "/Usuario/do_question",
-            data: data,
+            url: rootUrl + "/Usuario/pontuation",
+            data: JSON.stringify(data),
             dataType: "json",
+            success: function(e) {updateMoedas(valueScore)}, 
             error: function(e) { console.info(e); }
         });
     }
+
+    // armazena a questao feita pelo usuario
+    data = JSON.stringify({"questao" : idQuestao, "user_acertou" : acertou, "user_resposta" : resposta});
+    $.ajax({
+        type: "post",
+        url: rootUrl + "/Usuario/do_question",
+        data: data,
+        dataType: "json",
+        error: function(e) { console.info(e); }
+    });
 
     $('html, body').animate({scrollTop: 0}, 1000); 
 }
 
 function findQuestion(differentQuestion)
 {
-    var naoEncontrou = false;
-
-    if (isUndefined(differentQuestion)) { differentQuestion = -1 };
-    
-    if (qtd_vouf < 4) // pega questão de v ou f
+    if(getVidas() > 0)
     {
-        $.ajax({
-            type: "get",
-            url: rootUrl + "/Questoes/questao",
-            dataType: "json",
-            async: false,
-            data : "id="+differentQuestion+"&tipo=1",
-            success: function(result) 
-            {
-                if(result.result.data.enunciado)
-                {
-                    $(".question").text(result.result.data.enunciado);
+        var naoEncontrou = false;
 
-                    var html = "<li>";
-                        html += "<input type='radio' name='option' value='V' id='V'/>";
+        showUI();
+
+        if (isUndefined(differentQuestion)) { differentQuestion = -1 };
+        if (qtd_vouf < 4) // pega questão de v ou f
+        {
+            $.ajax({
+                type: "get",
+                url: rootUrl + "/Questoes/questao",
+                dataType: "json",
+                async: false,
+                data : "id="+differentQuestion+"&tipo=1",
+                success: function(result) 
+                {
+                    if(result.result.data.enunciado)
+                    {
+                        $(".question").text(result.result.data.enunciado);
+
+                        var html = "<li id='respV'>";
+                            html += "<input type='radio' name='option' value='V' id='V'/>";
+                            html += "<div>";
+                            html += "<label for='V' class='w100'>";
+                            html += "<p class='option left'>V</p>";
+                            html += "<p class='teste' data-option='V'>Verdadeiro</p>";
+                            html += "</label>";
+                            html += "</div>";
+                            html += "</li>";
+
+                            html += "<li id='respF'>";
+                            html += "<input type='radio' name='option' value='F' id='F'/>";
+                            html += "<div>";
+                            html += "<label for='F' class='w100'>";
+                            html += "<p class='option left'>F</p>";
+                            html += "<p class='teste' data-option='F'>Falso</p>";
+                            html += "</label>";
+                            html += "</div>";
+                            html += "</li>";
+
+                        $("#alternativas").html(html);
+
+                        if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
+                        else $(".subject").css('background-color', '#1ABC9C');
+
+                        gabarito = result.result.data.gabarito;
+                        comentario = result.result.data.comentario;
+                        idQuestao = result.result.data.id;
+                        video = result.result.data.video_embed;
+                        multipla_escolha = result.result.data.multipla_escolha;
+                        intervalos_video = result.result.intervalo;
+
+                        qtd_vouf++;
+
+                        if (qtd_vouf == 4) {qtd_multipla = 0;};
+
+                        if (intervalos_video != null) {intervalos_video.splice(0,1);}
+                    }
+                    else
+                        naoEncontrou = true;
+                },
+                error: function(result){ console.info(result); }
+            });
+        }
+
+        if(qtd_vouf >= 4 || naoEncontrou)
+        {
+            $.ajax({
+                type: "get",
+                url: rootUrl + "/Questoes/questao",
+                dataType: "json",
+                data : "id="+differentQuestion+"&tipo=2",
+                success: function(result) 
+                {
+                    $(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
+
+                    var html = "<li id='respA'>";
+                        html += "<input type='radio' name='option' value='A' id='A'/>";
                         html += "<div>";
-                        html += "<label for='V' class='w100'>";
-                        html += "<p class='option left'>V</p>";
-                        html += "<p class='teste' data-option='V'>Verdadeiro</p>";
+                        html += "<label for='A' class='w100'>";
+                        html += "<p class='option left'>A</p>";
+                        html += "<p class='teste' data-option='A'>"+result.result.data.alternativa_a+"</p>";
                         html += "</label>";
                         html += "</div>";
                         html += "</li>";
 
-                        html += "<li>";
-                        html += "<input type='radio' name='option' value='F' id='F'/>";
+                        html += "<li id='respB'>";
+                        html += "<input type='radio' name='option' value='B' id='B'/>";
                         html += "<div>";
-                        html += "<label for='F' class='w100'>";
-                        html += "<p class='option left'>F</p>";
-                        html += "<p class='teste' data-option='F'>Falso</p>";
+                        html += "<label for='B' class='w100'>";
+                        html += "<p class='option left'>B</p>";
+                        html += "<p class='teste' data-option='B'>"+result.result.data.alternativa_b+"</p>";
+                        html += "</label>";
+                        html += "</div>";
+                        html += "</li>";
+
+                        html += "<li id='respC'>";
+                        html += "<input type='radio' name='option' value='C' id='C'/>";
+                        html += "<div>";
+                        html += "<label for='C' class='w100'>";
+                        html += "<p class='option left'>C</p>";
+                        html += "<p class='teste' data-option='C'>"+result.result.data.alternativa_c+"</p>";
+                        html += "</label>";
+                        html += "</div>";
+                        html += "</li>";
+
+                        html += "<li id='respD'>";
+                        html += "<input type='radio' name='option' value='D' id='D'/>";
+                        html += "<div>";
+                        html += "<label for='D' class='w100'>";
+                        html += "<p class='option left'>D</p>";
+                        html += "<p class='teste' data-option='D'>"+result.result.data.alternativa_d+"</p>";
                         html += "</label>";
                         html += "</div>";
                         html += "</li>";
 
                     $("#alternativas").html(html);
-
+                    
                     if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
                     else $(".subject").css('background-color', '#1ABC9C');
 
@@ -213,92 +309,22 @@ function findQuestion(differentQuestion)
                     multipla_escolha = result.result.data.multipla_escolha;
                     intervalos_video = result.result.intervalo;
 
-                    qtd_vouf++;
+                    qtd_multipla++;
 
-                    if (qtd_vouf == 4) {qtd_multipla = 0;};
+                    if (qtd_multipla == 3) qtd_vouf = 0;
 
-                    if (intervalos_video != null) {intervalos_video.splice(0,1);}
-                }
-                else
-                    naoEncontrou = true;
-            },
-            error: function(result){ console.info(result); }
-        });
+                    if (intervalos_video != null) {intervalos_video.splice(0,1);};
+                },
+                error: function(result){ console.info(result); }
+            });
+        }
     }
-    
-    console.info(naoEncontrou);
-
-    if(qtd_vouf >= 4 || naoEncontrou)
+    else
     {
-        $.ajax({
-            type: "get",
-            url: rootUrl + "/Questoes/questao",
-            dataType: "json",
-            data : "id="+differentQuestion+"&tipo=2",
-            success: function(result) 
-            {
-                $(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
-
-                var html = "<li>";
-                    html += "<input type='radio' name='option' value='A' id='A'/>";
-                    html += "<div>";
-                    html += "<label for='A' class='w100'>";
-                    html += "<p class='option left'>A</p>";
-                    html += "<p class='teste' data-option='A'>"+result.result.data.alternativa_a+"</p>";
-                    html += "</label>";
-                    html += "</div>";
-                    html += "</li>";
-
-                    html += "<li>";
-                    html += "<input type='radio' name='option' value='B' id='B'/>";
-                    html += "<div>";
-                    html += "<label for='B' class='w100'>";
-                    html += "<p class='option left'>B</p>";
-                    html += "<p class='teste' data-option='B'>"+result.result.data.alternativa_b+"</p>";
-                    html += "</label>";
-                    html += "</div>";
-                    html += "</li>";
-
-                    html += "<li>";
-                    html += "<input type='radio' name='option' value='C' id='C'/>";
-                    html += "<div>";
-                    html += "<label for='C' class='w100'>";
-                    html += "<p class='option left'>C</p>";
-                    html += "<p class='teste' data-option='C'>"+result.result.data.alternativa_c+"</p>";
-                    html += "</label>";
-                    html += "</div>";
-                    html += "</li>";
-
-                    html += "<li>";
-                    html += "<input type='radio' name='option' value='D' id='D'/>";
-                    html += "<div>";
-                    html += "<label for='D' class='w100'>";
-                    html += "<p class='option left'>D</p>";
-                    html += "<p class='teste' data-option='D'>"+result.result.data.alternativa_d+"</p>";
-                    html += "</label>";
-                    html += "</div>";
-                    html += "</li>";
-
-                $("#alternativas").html(html);
-                
-                if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
-                else $(".subject").css('background-color', '#1ABC9C');
-
-                gabarito = result.result.data.gabarito;
-                comentario = result.result.data.comentario;
-                idQuestao = result.result.data.id;
-                video = result.result.data.video_embed;
-                multipla_escolha = result.result.data.multipla_escolha;
-                intervalos_video = result.result.intervalo;
-
-                qtd_multipla++;
-
-                if (qtd_multipla == 3) qtd_vouf = 0;
-
-                if (intervalos_video != null) {intervalos_video.splice(0,1);};
-            },
-            error: function(result){ console.info(result); }
-        });
+        hideUI();
+        var html = "Você não possui vidas suficientes para jogar, em instantes você poderá jogar novamente!";
+        $("#alternativas").html(html);
+        $(".subject > div").text("Suas vidas acabaram :(");
     }
 }
 
@@ -331,14 +357,12 @@ function eliminarResposta()
 
 function pularPergunta()
 {
-    data = JSON.stringify({"pontuation" : PULAR_PERGUNTA});
-
     ga('send', 'event', 'Respostas', 'PularPergunta');
 
     $.ajax({
         type: "post",
         url: rootUrl + "/Usuario/pontuation",
-        data: data,
+        data: JSON.stringify({"pontuation" : PULAR_PERGUNTA}),
         dataType: "json",
         success: function(e) {updateMoedas(PULAR_PERGUNTA)},
         error: function(e) { console.info(e); }
@@ -349,50 +373,13 @@ function pularPergunta()
     findQuestion(idQuestao);
 }
 
-$(".box-modal").delegate('#sendNotification', 'click', function() {
-    var comment = $(".box-modal textarea").val();
-    var error = $(".box-modal input[name=ans]:checked").val();
-    var type = $(".box-modal input[name=ans]").val();
+$("body").delegate("#respA", "click", function(){ if (!openedModal) isCorrect("A"); });
+$("body").delegate("#respB", "click", function(){ if (!openedModal) isCorrect("B"); });
+$("body").delegate("#respC", "click", function(){ if (!openedModal) isCorrect("C"); });
+$("body").delegate("#respD", "click", function(){ if (!openedModal) isCorrect("D"); });
 
-    if (type == 1)
-    {
-        url = rootUrl + "/Anuncios/register";
-
-        // condece pontuação ao usuário.
-        data = JSON.stringify({"pontuation" : RESPONDEU_ENQUETE});
-        $.ajax({
-            type: "post",
-            url: rootUrl + "/Usuario/pontuation",
-            data: data,
-            dataType: "json",
-            success: function(e) {updateMoedas(RESPONDEU_ENQUETE)},
-            error: function(e) { console.info(e); }
-        });
-    }
-    else
-        url = rootUrl + "/Questoes/error_notification";
-
-    data = JSON.stringify({"comment": comment, "ans": error});
-    
-    $.ajax({
-        type: "post",
-        url: url,
-        dataType: "json",
-        data: data,
-        success: function(e){ console.info(e.result); },
-        error: function(e) { console.info(e.result); }
-    });
-
-    closeModal();
-});
-
-//$("#notifica-erro").bind("click", function(){ notificaErro(); });
-
-$("#enviarResposta").on("click", function(){
-    ga('send', 'event', 'Respostas', 'Responder');
-    var resposta = $("input[name='option']:checked").val();
-    isCorrect(resposta);
-});
+$("body").delegate("#respV", "click", function(){ if (!openedModal) isCorrect("V"); });
+$("body").delegate("#respF", "click", function(){ if (!openedModal) isCorrect("F"); });
 
 $(document).ready(function() {
 
@@ -422,9 +409,7 @@ $(document).ready(function() {
                     myModal.showModal('F');
             }
             else
-            {
                 bloqueaShowDoMilhao();
-            }
         }
     });
     
@@ -438,6 +423,8 @@ $(document).ready(function() {
             bloqueaShowDoMilhao();
     });
     
+    setVidas(getUserLifes());
+
     verificarPrimeiroAcesso();
     rankingAmigos();
 
