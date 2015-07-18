@@ -125,18 +125,6 @@
 	<script src="js/min/app.js"></script>
 	<script src="js/cadastro.js"></script>
 
-	<!-- Início do Código do MouseFlow -->
-<script type="text/javascript">
-   var _mfq = _mfq || [];
-   (function() {
-       var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-       mf.src = "//cdn.mouseflow.com/projects/8a9b9760-213c-44b2-826d-59e599c051ec.js";
-       document.getElementsByTagName("head")[0].appendChild(mf);
-   })();
-   
-
-</script>
-	<!-- Fim do Código do Mouseflow -->
 
 </body>
 </html>
