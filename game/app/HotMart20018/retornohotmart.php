@@ -52,12 +52,7 @@
 	
 	$xcod 				= $_POST['xcod'];
 
-	$text = "";
-	foreach ($_POST as $key => $value) $text .= $key . " - " . $value . " ";
-	$text .= "\n";
-
-	fwrite($arquivo, $text);
-	fclose($arquivo);
+	
 
 	if($StatusTransacao == "approved" && $ItemCode == 50558)
 	{
