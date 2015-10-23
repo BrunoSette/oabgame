@@ -1,26 +1,7 @@
     /** This section is only needed once per page if manually copying **/
 
 console.info("aqui");
-if (typeof MauticSDKLoaded == 'undefined') {
-    var MauticSDKLoaded = true;
-    var head            = document.getElementsByTagName('head')[0];
-    var script          = document.createElement('script');
-    script.type         = 'text/javascript';
-    script.src          = 'https://provasdaoab.mautic.com/mautic/media/js/mautic-form.js';
-    script.onload       = function() {
-        MauticSDK.onLoad();
-    };
-    head.appendChild(script);
-    var MauticDomain = 'https://provasdaoab.mautic.com';
-    var MauticLang   = {
-        'submittingMessage': "Please wait..."
-    }
-    var MauticFormValidations  = {};
-}
-​
-/** This is needed for each form **/
-MauticFormValidations['aprovagame'] = {
-};
+
 
 function validarEmail(email)
 {
