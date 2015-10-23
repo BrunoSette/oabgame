@@ -72,6 +72,8 @@ $("#join").bind("click", function(){
   senha_confirm = $("form #senha_confirm").val();
 
 
+  console.info("aqui");
+
   if(nome != "" && email != "" && senha != "" && senha_confirm != "")
   {
     var erro = false;
