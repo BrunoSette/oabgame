@@ -1,8 +1,3 @@
-    /** This section is only needed once per page if manually copying **/
-
-console.info("aqui");
-
-
 function validarEmail(email)
 {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -54,9 +49,6 @@ $("#join").bind("click", function(){
   senha = $("form #senha").val();
   senha_confirm = $("form #senha_confirm").val();
 
-
-  console.info("aqui");
-
   if(nome != "" && email != "" && senha != "" && senha_confirm != "")
   {
     var erro = false;
@@ -90,6 +82,8 @@ $("#join").bind("click", function(){
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
 
       ga('send', 'event', 'Cadastro', 'Sem Facebook');
+
+      console.info("aqui");
 
       $.ajax({
           type: "post",
