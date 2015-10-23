@@ -286,8 +286,6 @@ class Usuario {
                                                     'formName' => urlencode("aprovagame")
                                     ));
 
-            var_dump($fields);
-
             $ch = curl_init();
 
             //set the url, number of POST vars, POST data
