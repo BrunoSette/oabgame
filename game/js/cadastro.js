@@ -1,4 +1,6 @@
     /** This section is only needed once per page if manually copying **/
+
+console.info("aqui");
 if (typeof MauticSDKLoaded == 'undefined') {
     var MauticSDKLoaded = true;
     var head            = document.getElementsByTagName('head')[0];
