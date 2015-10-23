@@ -281,8 +281,8 @@ class Usuario {
             $url = 'https://provasdaoab.mautic.com/form/submit?formId=5';
             $fields = array(     'mauticform[email]' => urlencode($usuario->nome),
                                  'mauticform[nome]' => urlencode($usuario->email),
-                                 'mauticform[formId]' => urlencode("5"),
-                                 'mauticform[return]' => "",
+                                 'mauticform[formId]' => 5,
+                                 'mauticform[return]' => urlencode(""),
                                  'mauticform[formName]' => urlencode("aprovagame")
                             );
 
