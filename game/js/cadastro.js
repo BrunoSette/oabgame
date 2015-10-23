@@ -105,8 +105,8 @@ $("#join").bind("click", function(){
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
       dataMautic = JSON.stringify
                   ({
-                    "mauticform[email]" : "teste@teste.com",
-                    "mauticform[nome]" : "teste",
+                    "mauticform[email]" : email,
+                    "mauticform[nome]" : nome,
                     "mauticform[formId]" : "5",
                     "mauticform[return]" : "",
                     "mauticform[formName]" : "aprovagame"
@@ -121,14 +121,14 @@ $("#join").bind("click", function(){
           data: dataMautic
       });
 
-      // $.ajax({
-      //     type: "post",
-      //     url: rootUrl + "/Usuario/register",
-      //     dataType: "json",
-      //     data: data,
-      //     success: onSuccessCadastro,
-      //     error: onErrorCadastro
-      // });
+      $.ajax({
+          type: "post",
+          url: rootUrl + "/Usuario/register",
+          dataType: "json",
+          data: data,
+          success: onSuccessCadastro,
+          error: onErrorCadastro
+      });
     }
   }
 });
