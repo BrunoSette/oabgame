@@ -105,23 +105,8 @@ $("#join").bind("click", function(){
     if (!erro)
     {
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
-      dataMautic = JSON.stringify
-                  ({
-                    "mauticform[email]" : email,
-                    "mauticform[nome]" : nome,
-                    "mauticform[formId]" : "5",
-                    "mauticform[return]" : "",
-                    "mauticform[formName]" : "aprovagame"
-                   });
 
       ga('send', 'event', 'Cadastro', 'Sem Facebook');
-
-      $.ajax({
-          type: "post",
-          url: "https://provasdaoab.mautic.com/form/submit?formId=5",
-          dataType: "json",
-          data: dataMautic
-      });
 
       $.ajax({
           type: "post",
