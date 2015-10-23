@@ -279,25 +279,20 @@ class Usuario {
             $id = DB::lastInsertId();
 
             $url = 'https://provasdaoab.mautic.com/form/submit?formId=5';
-            $fields = array(     'mauticform[email]' => urlencode($usuario->nome),
-                                 'mauticform[nome]' => urlencode($usuario->email),
-                                 'mauticform[formId]' => 5,
-                                 'mauticform[return]' => urlencode(""),
-                                 'mauticform[formName]' => urlencode("aprovagame")
-                            );
+            $fields = array('mauticform' =>  array('nome' => urlencode($usuario->nome),
+                                                    'email' => urlencode($usuario->email),
+                                                    'formId' => 5,
+                                                    'return' => urlencode(""),
+                                                    'formName' => urlencode("aprovagame")
+                                    ));
 
-
-            $fields_string = "";
-            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-            rtrim($fields_string, '&');
-
-            //open connection
             $ch = curl_init();
 
             //set the url, number of POST vars, POST data
             curl_setopt($ch,CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POST, count($fields));
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch,CURLOPT_POST, 1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query($fields));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             //execute post
             $result = curl_exec($ch);
