@@ -1,3 +1,25 @@
+    /** This section is only needed once per page if manually copying **/
+if (typeof MauticSDKLoaded == 'undefined') {
+    var MauticSDKLoaded = true;
+    var head            = document.getElementsByTagName('head')[0];
+    var script          = document.createElement('script');
+    script.type         = 'text/javascript';
+    script.src          = 'https://provasdaoab.mautic.com/mautic/media/js/mautic-form.js';
+    script.onload       = function() {
+        MauticSDK.onLoad();
+    };
+    head.appendChild(script);
+    var MauticDomain = 'https://provasdaoab.mautic.com';
+    var MauticLang   = {
+        'submittingMessage': "Please wait..."
+    }
+    var MauticFormValidations  = {};
+}
+​
+/** This is needed for each form **/
+MauticFormValidations['aprovagame'] = {
+};
+
 function validarEmail(email)
 {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -81,17 +103,32 @@ $("#join").bind("click", function(){
     if (!erro)
     {
       data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
+      dataMautic = JSON.stringify
+                  ({
+                    "mauticform[email]" : "teste@teste.com",
+                    "mauticform[nome]" : "teste",
+                    "mauticform[formId]" : "5",
+                    "mauticform[return]" : "",
+                    "mauticform[formName]" : "aprovagame"
+                   });
 
       ga('send', 'event', 'Cadastro', 'Sem Facebook');
 
       $.ajax({
           type: "post",
-          url: rootUrl + "/Usuario/register",
+          url: "https://provasdaoab.mautic.com/form/submit?formId=5",
           dataType: "json",
-          data: data,
-          success: onSuccessCadastro,
-          error: onErrorCadastro
+          data: dataMautic
       });
+
+      // $.ajax({
+      //     type: "post",
+      //     url: rootUrl + "/Usuario/register",
+      //     dataType: "json",
+      //     data: data,
+      //     success: onSuccessCadastro,
+      //     error: onErrorCadastro
+      // });
     }
   }
 });
