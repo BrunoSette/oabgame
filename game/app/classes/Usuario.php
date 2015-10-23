@@ -278,7 +278,6 @@ class Usuario {
 
             $id = DB::lastInsertId();
 
-
             $url = 'https://provasdaoab.mautic.com/form/submit?formId=5';
             $fields = array(     'mauticform[email]' => urlencode($usuario->nome),
                                  'mauticform[nome]' => urlencode($usuario->email),
@@ -288,9 +287,9 @@ class Usuario {
                             );
 
 
+            $fields_string = "";
             foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
             rtrim($fields_string, '&');
-
 
             //open connection
             $ch = curl_init();
