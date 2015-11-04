@@ -1,5 +1,8 @@
 <?php
 
+use Mautic\MauticApi;
+use Mautic\Auth\ApiAuth;
+
 class Usuario {
 
     private function atualiza_acesso()
@@ -266,47 +269,51 @@ class Usuario {
 
         $db_usuario = $stmt->fetch();
 
-        if(!$db_usuario)
+        if(true)
         {
-            $today = explode("/", date("Y/m/d"));
-            $newToday = "$today[0]-$today[1]-$today[2]";
+            // $today = explode("/", date("Y/m/d"));
+            // $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 3) ";
+            // $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
+            // ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 3) ";
 
-            $stmtUsuario = DB::query($sql);
+            // $stmtUsuario = DB::query($sql);
+            // $id = DB::lastInsertId();
 
-            $id = DB::lastInsertId();
+            $publicKey = '2_62zkfnighs000kcwws004kkkcs48ccs8ogkcs0s0c8co4o44oo'; 
+            $secretKey = '277wde6g2ztw4soo8soc4c8co0wkks444s0so0o0gsgscss4kk'; 
+            $callback  = 'www.aprovagame.com.br/game'; 
 
-            $url = 'https://provasdaoab.mautic.com/form/submit?formId=5';
-            $fields = array('mauticform' =>  array('nome' => urlencode($usuario->nome),
-                                                    'email' => urlencode($usuario->email),
-                                                    'formId' => 5,
-                                                    'return' => urlencode(""),
-                                                    'formName' => urlencode("aprovagame")
-                                    ));
+            // ApiAuth::initiate will accept an array of OAuth settings
+            $settings = array(
+                'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance
+                'version'          => 'OAuth2',  // Version of the OAuth can be OAuth2 or OAuth1a. OAuth2 is the default value.
+                'clientKey'        => $publicKey,       // Client/Consumer key from Mautic
+                'clientSecret'     => $secretKey,       // Client/Consumer secret key from Mautic
+                'callback'         => $callback        // Redirect URI/Callback URI for this script
+            );
 
-            $ch = curl_init();
+            $auth = ApiAuth::initiate($settings);
+            $leadApi = MauticApi::getContext("leads", $auth, "https://provasdaoab.mautic.com");
 
-            //set the url, number of POST vars, POST data
-            curl_setopt($ch,CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POST, 1);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, http_build_query($fields));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $data = array(
+                'firstname' => $usuario->nome,
+                'email'     => $usuario->email,
+                'ipAddress' => $_SERVER['REMOTE_ADDR']
+            );
 
-            //execute post
-            $result = curl_exec($ch);
+            $lead = $leadApi->create($data);
 
-            //close connection
-            curl_close($ch);
+            $response = $listApi->addLead($lead, 2);
 
-            $_SESSION['FBID'] = $id;
-            $_SESSION['FULLNAME'] = $usuario->nome;
-            $_SESSION['EMAIL'] = $usuario->email;
-            $_SESSION['MOEDAS'] = 100;
-            $_SESSION['PONTUACAO'] = 1500;
+            // $_SESSION['FBID'] = $id;
+            // $_SESSION['FULLNAME'] = $usuario->nome;
+            // $_SESSION['EMAIL'] = $usuario->email;
+            // $_SESSION['MOEDAS'] = 100;
+            // $_SESSION['PONTUACAO'] = 1500;
 
-            return $id;
+            return true;
+            //return $id;
         }
         else
         {
