@@ -1,2 +1,13 @@
 {
+    "name": "root/app",
+    "authors": [
+        {
+            "name": "Bruno Sette",
+            "email": "brunosette@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mautic/api-library": "dev-master"
+    }
 }

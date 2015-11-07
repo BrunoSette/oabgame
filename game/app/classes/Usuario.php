@@ -280,31 +280,30 @@ class Usuario {
             // $stmtUsuario = DB::query($sql);
             // $id = DB::lastInsertId();
 
-            $publicKey = '2_62zkfnighs000kcwws004kkkcs48ccs8ogkcs0s0c8co4o44oo'; 
-            $secretKey = '277wde6g2ztw4soo8soc4c8co0wkks444s0so0o0gsgscss4kk'; 
-            $callback  = 'www.aprovagame.com.br/game'; 
+            $publicKey = '6rnjre9zv604ggk0scgcoc8kos8c8kgcw0go8w8og48k8o8wg'; 
+            $secretKey = '6d3tsglonew4gkc408oo04k8oss8cckss0o4ks4g0kg8wkkw0k'; 
+            $callback  = 'https://www.aprovagame.com.br/game'; 
 
-            // ApiAuth::initiate will accept an array of OAuth settings
-            $settings = array(
-                'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance
-                'version'          => 'OAuth2',  // Version of the OAuth can be OAuth2 or OAuth1a. OAuth2 is the default value.
-                'clientKey'        => $publicKey,       // Client/Consumer key from Mautic
-                'clientSecret'     => $secretKey,       // Client/Consumer secret key from Mautic
-                'callback'         => $callback        // Redirect URI/Callback URI for this script
-            );
+            $auth = ApiAuth::initiate(array(
+                                'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance
+                                'version'          => 'OAuth',  // Version of the OAuth can be OAuth2 or OAuth1a. OAuth2 is the default value.
+                                'clientKey'        => $publicKey,       // Client/Consumer key from Mautic
+                                'clientSecret'     => $secretKey,       // Client/Consumer secret key from Mautic
+                                'callback'         => $callback        // Redirect URI/Callback URI for this script
+                            ));
 
-            $auth = ApiAuth::initiate($settings);
             $leadApi = MauticApi::getContext("leads", $auth, "https://provasdaoab.mautic.com");
 
-            $data = array(
+            $lead = $leadApi->create(array(
                 'firstname' => $usuario->nome,
                 'email'     => $usuario->email,
+                'lastname'  => ' ',
                 'ipAddress' => $_SERVER['REMOTE_ADDR']
-            );
+            ));
 
-            $lead = $leadApi->create($data);
+            var_dump($lead);
 
-            $response = $listApi->addLead($lead, 2);
+            //$response = $leadApi->addLead($lead, 2);
 
             // $_SESSION['FBID'] = $id;
             // $_SESSION['FULLNAME'] = $usuario->nome;

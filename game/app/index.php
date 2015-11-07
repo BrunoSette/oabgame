@@ -8,8 +8,7 @@ require 'Slim/Slim.php';
 require 'classes/isdk/isdk.php';
 require 'includes/utilities.php';
 require 'classes/Swift/lib/swift_required.php';
-require 'lib/mautic/lib/Mautic/MauticApi.php';
-
+require 'vendor/autoload.php';
 
 
 \Slim\Slim::registerAutoloader();
