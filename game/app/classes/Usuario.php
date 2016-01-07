@@ -280,9 +280,9 @@ class Usuario {
             // $stmtUsuario = DB::query($sql);
             // $id = DB::lastInsertId();
 
-            $publicKey = '6rnjre9zv604ggk0scgcoc8kos8c8kgcw0go8w8og48k8o8wg'; 
-            $secretKey = '6d3tsglonew4gkc408oo04k8oss8cckss0o4ks4g0kg8wkkw0k'; 
-            $callback  = 'https://www.aprovagame.com.br/game'; 
+            $publicKey = '3_53rba05urow8sokcskk4848wckoo4osw08koo0cgk0wc4g0wso'; 
+            $secretKey = '44ey4l7gaomcgkoko0k40w0g88gw40gc4os4gg40g84wc4w44w'; 
+            $callback  = 'http://www.aprovagame.com.br/game/cadastro'; 
 
             $auth = ApiAuth::initiate(array(
                                 'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance
@@ -293,6 +293,8 @@ class Usuario {
                             ));
 
             $leadApi = MauticApi::getContext("leads", $auth, "https://provasdaoab.mautic.com");
+
+            var_dump($leadApi);
 
             $lead = $leadApi->create(array(
                 'firstname' => $usuario->nome,
