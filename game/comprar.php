@@ -1,5 +1,5 @@
 <?php include("template/_header.php"); ?>
-	<section class="mainbox geral-container" style="overflow: hidden;">
+	<section class="mainbox geral-container col-md-12" style="overflow: hidden;">
 		<div class="mb10" style="overflow: hidden;">
 			<div class="container">
 
@@ -73,7 +73,7 @@
 										ou em até 06 x R$ 10,17
 									</p>
 									<div>
-										<a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&off=s1sss3r0&checkoutMode=2" class="hotmart-fb mt10" class=""><img src="http://cdn.aprovagame.com.br/img/comprar.png" id="comprar-logado" alt="" width="370" height="162"></a>
+										<a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&off=s1sss3r0&checkoutMode=2" class="hotmart-fb mt10" class=""><img src="https://cdn.aprovagame.com.br/img/comprar.png" id="comprar-logado" alt="" width="370" height="162"></a>
 									</div>									
 								</div>
 							</article>
@@ -90,14 +90,6 @@
 		&copy; 2016 - Todos os direitos reservados.
 		</div>
 	</footer>
-	<script type="text/javascript">
-	   var _mfq = _mfq || [];
-	   (function() {
-	       var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-	       mf.src = "//cdn.mouseflow.com/projects/2160b7a6-3750-4b2c-9c9f-6e6dac83da6a.js";
-	       document.getElementsByTagName("head")[0].appendChild(mf);
-	   })();
-	</script>
 	<script type="text/javascript">
         function importHotmart(){ 
                 var imported = document.createElement('script'); 
