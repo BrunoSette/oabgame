@@ -34,7 +34,7 @@ class Usuario {
         // pega imagem maior do usuario
         if ($user->face_id)
         {
-            $link = "http://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
+            $link = "https://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
@@ -205,7 +205,7 @@ class Usuario {
                             <br>
                             <br>
                             <div>
-                            <p style="color: #fff">http://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
+                            <p style="color: #fff">https://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
                             </div>
                             <br />
                             <br />
@@ -282,7 +282,7 @@ class Usuario {
 
             $publicKey = '3_53rba05urow8sokcskk4848wckoo4osw08koo0cgk0wc4g0wso'; 
             $secretKey = '44ey4l7gaomcgkoko0k40w0g88gw40gc4os4gg40g84wc4w44w'; 
-            $callback  = 'http://www.aprovagame.com.br/game/cadastro'; 
+            $callback  = 'https://www.aprovagame.com.br/game/cadastro'; 
 
             $auth = ApiAuth::initiate(array(
                                 'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance

@@ -27,7 +27,7 @@
 	<footer class="geral-container game">
 	<div class="container">
 		<div class="row">
-			&copy; 2013-2014 - Todos os direitos reservados.
+			&copy; 2016 - Todos os direitos reservados.
 		</div>
 	</div>
 	</footer>
