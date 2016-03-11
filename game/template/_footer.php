@@ -3,7 +3,7 @@
 	<footer class="geral-container game">
 	<div class="container">
 	<div class="row">
-		&copy; 2015 - Todos os direitos reservados.
+		&copy; 2016 - Todos os direitos reservados.
 		</div>
 	</div>
 	</footer>
@@ -21,25 +21,6 @@
 		}
 
 	</script>
-
-
-<!--	<script>
-		var tag = document.createElement('script');
-		tag.src = 'https://www.youtube.com/iframe_api';
-
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		function onYouTubeIframeAPIReady()
-		{
-			console.info("aqui");
-		}
-
-	</script>
-=======
->>>>>>> 4842ac9caf72e6751942ab1ad9f877a7710af67e
--->
 
 	<script type="text/javascript">
 	   var _mfq = _mfq || [];
@@ -60,9 +41,9 @@
 	<script src="js/app.js"></script>
 	<script src="js/usuario.js"></script>
 	<script src="js/min/script.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/highcharts-more.js"></script>
-	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 	<script>
 		// FB.Event.subscribe('message.send', function(){
 		// 	console.info("aqui");
@@ -73,32 +54,10 @@
 			
 			FB.ui({
 	  			method: 'send',
-	  			link: 'http://www.aprovagame.com.br',
+	  			link: 'https://www.aprovagame.com.br',
 			});
 		});
 	</script>
-
-
-
-
-<!-- Início Mouse Flow Code -->
-<script type="text/javascript">
-   var _mfq = _mfq || [];
-   (function() {
-       var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-       mf.src = "//cdn.mouseflow.com/projects/8a9b9760-213c-44b2-826d-59e599c051ec.js";
-       document.getElementsByTagName("head")[0].appendChild(mf);
-   })();
-
-   	var userEmail = <?php echo json_encode($_SESSION['EMAIL']); ?>;
-	var userName = <?php echo json_encode($_SESSION['FULLNAME']); ?>;
-
-   _mfq.push(["setVariable", "Nome", userName]);
-   _mfq.push(["setVariable", "Email", userEmail]);
-
-</script>
-<!-- Fim do Mouse Flow Code -->
-
 
 </body>
 </html>

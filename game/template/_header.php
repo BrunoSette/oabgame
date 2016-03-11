@@ -6,10 +6,10 @@ session_start();
 <!doctype html>
 <html lang="pt">
 <head>
-	<meta property="og:url" content="http://www.aprovagame.com.br" />
+	<meta property="og:url" content="https://www.aprovagame.com.br" />
   	<meta property="og:site_name" content="Aprova Game"/>
   	<meta property="og:title" content="Aprender nunca foi tão divertido" />
-  	<meta property="og:image" content="http://www.aprovagame.com.br/game/img/logo.png" />
+  	<meta property="og:image" content="https://www.aprovagame.com.br/game/img/logo.png" />
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
@@ -63,7 +63,7 @@ session_start();
 	ga('send', 'pageview');
 
 	</script>
-	<script src="http://www.youtube.com/player_api" type="text/javascript"></script>
+	<script src="https://www.youtube.com/player_api" type="text/javascript"></script>
 	<script>
 		// Include the UserVoice JavaScript SDK (only needed once on a page)
 		UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z9b5Wod1CzErI3dGsjo1iA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
@@ -98,10 +98,6 @@ session_start();
 
 	<!-- End Google Analytics -->
 
-
-	<!-- Visual Webiste Optimizer Code -->
-	<?php include_once("src/visualwebsite.php") ?>
-	
 
 </head>
 <body>
