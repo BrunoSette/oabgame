@@ -73,7 +73,9 @@
 										ou em até 06 x R$ 10,17
 									</p>
 									<div>
-										<a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&off=s1sss3r0&checkoutMode=2" class="hotmart-fb mt10" class=""><img src="https://cdn.aprovagame.com.br/img/comprar.png" id="comprar-logado" alt="" width="370" height="162"></a>
+										 <a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&checkoutMode=2" class="hotmart-fb mt10"><img src='https://cdn.aprovagame.com.br/img/comprar.png' id="comprar-logado" alt="" width="370" height="162"></a> 
+
+							
 									</div>									
 								</div>
 							</article>
@@ -90,14 +92,17 @@
 		&copy; 2016 - Todos os direitos reservados.
 		</div>
 	</footer>
-	<script type="text/javascript">
-        function importHotmart(){ 
-                var imported = document.createElement('script'); 
-                imported.src = 'https://static.hotmart.net.br/checkout/widget.min.js'; 
-                document.head.appendChild(imported); 
-        } 
-        importHotmart(); 
- </script> 
+	<!-- Hotmart -->
+		<script type="text/javascript">
+		function importHotmart(){ 
+	 		var imported = document.createElement('script'); 
+	 		imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+	 		document.head.appendChild(imported); 
+		} 
+	 	importHotmart(); 
+	 </script> 
+	 <!-- Hotmart -->
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
