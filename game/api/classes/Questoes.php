@@ -32,7 +32,7 @@
 			        $res->intervalo = $stmt2->fetchAll();
 
 		        	$arrayLink = explode("/", $result->video);
-		        	$link = "http://www.youtube.com/embed/" . $arrayLink[3] . "?start=" .$intervalo[0]->start_video . "&end=" . $intervalo[0]->end_video. "&rel=0&enablejsapi=1";
+		        	$link = "https://www.youtube.com/embed/" . $arrayLink[3] . "?start=" .$intervalo[0]->start_video . "&end=" . $intervalo[0]->end_video. "&rel=0&enablejsapi=1";
 		        	$res->video_embed = $link;
 				}
 				else
@@ -162,7 +162,7 @@
 
 			while($res = $stmtConcursos->fetch())
 			{
-				$res->imagem = "http://www.aprovagame.com.br/game/img/concursos/" . $res->imagem;
+				$res->imagem = "https://www.aprovagame.com.br/game/img/concursos/" . $res->imagem;
 				$ret[] = $res;
 			}
 

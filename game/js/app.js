@@ -121,7 +121,7 @@ var Modal = function()
         {
             $(".box-overlay").css("background", 'rgba(0,0,0,0.96)');
 
-            var html = "<a href='http://www.aprovagame.com.br/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
+            var html = "<a href='https://www.aprovagame.com.br/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
             $(ret).children('.box-content').children('p').html(html);
         }
     }
