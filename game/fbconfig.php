@@ -25,7 +25,7 @@ if ($user)
     $femail = $user_profile['email'];
     $birthday = $user_profile['birthday'];
     $location = $user_profile['location']['name'];
-    $picture =  "http://graph.facebook.com/".$fbid."/picture";
+    $picture =  "https://graph.facebook.com/".$fbid."/picture";
     $gender = $user_profile['gender'];
        
     $usuario = new Usuario();

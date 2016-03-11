@@ -96,8 +96,8 @@
 	<script src="js/graficos.js"></script>
 	<script src="js/Chart.min.js"></script>
 	<script src="js/min/script.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/highcharts-more.js"></script>
-	<script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 </body>
 </html>

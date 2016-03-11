@@ -19,7 +19,7 @@
 	</section>
 	<div class="box-overlay"></div>
 	<footer class="geral-container game">
-		&copy; 2013-2014 - Todos os direitos reservados.
+		&copy; 2013-2016 - Todos os direitos reservados.
 	</footer>
 	<script type="text/javascript">
 	   var _mfq = _mfq || [];
