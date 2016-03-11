@@ -229,7 +229,7 @@ class Usuario {
 
         if ($user->face_id) // pega foto maior do usuario
         {
-            $link = "http://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
+            $link = "https://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
