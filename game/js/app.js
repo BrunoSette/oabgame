@@ -1,7 +1,7 @@
 // variaveis globais
 
-var rootUrl = "http://www.aprovagame.com.br/game/app";
-var clienteUrl = "http://www.aprovagame.com.br/game";
+var rootUrl = "https://www.aprovagame.com.br/game/app";
+var clienteUrl = "https://www.aprovagame.com.br/game";
 
 // var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
 // var clienteUrl = "http://local.estudandoonline.com.br/game/game";
