@@ -14,7 +14,7 @@
 					<head>
 						<meta charset="UTF-8">
 						<title>'.$Title.'</title>
-						<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+						<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 						<style>
 							body {font-family: "Open Sans", sans-serif;}
 							a {color: #fff;}
@@ -32,8 +32,8 @@
 										Atenciosamente, <br>
 										<br>
 										Equipe AprovaGame<br> 
-										<img style="width: 200px;" src="http://www.aprovagame.com.br/game/img/logo.png" /><br />
-										<a href="http://www.aprovagame.com.br/" style="color:#fff;">www.aprovagame.com.br</a> <br>
+										<img style="width: 200px;" src="https://www.aprovagame.com.br/game/img/logo.png" /><br />
+										<a href="https://www.aprovagame.com.br/" style="color:#fff;">www.aprovagame.com.br</a> <br>
 									</div>
 								</div>
 								<span style="padding:0px"></span>

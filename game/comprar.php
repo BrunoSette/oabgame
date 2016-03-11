@@ -14,14 +14,14 @@
 							<article>
 								<div class="shop-firt-ad">
 									<div class="col-md-6">
-										<div class="w30 mr15 left"><img src="http://aws.provasdaoab.com.br/imagens/vantagem-300-questoes.png" alt="Aumente seu nível"></div>
+										<div class="w30 mr15 left"><img src="https://aws.provasdaoab.com.br/imagens/vantagem-300-questoes.png" alt="Aumente seu nível"></div>
 										<div>
 											<h3>300 questões extras</h3>
 											<article>Aumente o número de questões disponíveis, para reforçar ainda mais seus estudos. São 300 perguntas extras! O que aumenta ainda mais suas chances de cumprir os desafios, aumentar seu nível e posição no ranking. </article>
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="w30 mr15 left"><img src="http://aws.provasdaoab.com.br/imagens/vantagem-moedas.png" alt="Vencer os desafios"></div>
+										<div class="w30 mr15 left"><img src="https://aws.provasdaoab.com.br/imagens/vantagem-moedas.png" alt="Vencer os desafios"></div>
 										<div>
 											<h3>500 moedas</h3>
 											<article>
@@ -33,14 +33,14 @@
 
 								<div class="shop-second-ad">
 									<div class="col-md-6">
-										<div class="left mr15 w30"><img src="http://cdn.aprovagame.com.br/img/vantagem-grafico.png" alt="Conferir seu desempenho"></div>
+										<div class="left mr15 w30"><img src="https://cdn.aprovagame.com.br/img/vantagem-grafico.png" alt="Conferir seu desempenho"></div>
 										<div>
 											<h3>Confira seu desempenho</h3>
 											<article>Tenha ainda a sua disposição vários gráficos atualizados para acompanhar seu desempenho. Você vai poder identificar em quais matérias está melhor ou pior e ainda qual seu percentual de acerto das questões.</article>
 										</div>
 									</div>
 									<div class="col-md-6">
-										<div class="left mr15 w30"><img src="http://aws.provasdaoab.com.br/imagens/vantagem-sem-anuncios.png" alt="Vencer os desafios"></div>
+										<div class="left mr15 w30"><img src="https://aws.provasdaoab.com.br/imagens/vantagem-sem-anuncios.png" alt="Vencer os desafios"></div>
 										<div>
 											<h3>Sem propaganda</h3>
 											<article>
@@ -56,7 +56,7 @@
 
 								<div class="shop-friend-invite">
 									<div class="col-md-6">
-										<div style="width: 80%"><img src="http://cdn.aprovagame.com.br/img/bonus.png" alt=""></div>
+										<div style="width: 80%"><img src="https://cdn.aprovagame.com.br/img/bonus.png" alt=""></div>
 									</div>
 									<div style="col-md-6">
 										<h1 class="color-green">COMPRE 01, LEVE 02!</h1>
@@ -101,7 +101,7 @@
 	<script type="text/javascript">
         function importHotmart(){ 
                 var imported = document.createElement('script'); 
-                imported.src = 'http://static.hotmart.net.br/checkout/widget.min.js'; 
+                imported.src = 'https://static.hotmart.net.br/checkout/widget.min.js'; 
                 document.head.appendChild(imported); 
         } 
         importHotmart(); 
