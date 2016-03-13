@@ -343,6 +343,7 @@ class Usuario {
                              "localizacao" => $usuario[5]
                            );
 
+
            $stmtUsuario = DB::query($sql);
            $id = DB::lastInsertId();
            $_SESSION['FBID'] = $id;
