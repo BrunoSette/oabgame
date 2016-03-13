@@ -292,29 +292,13 @@ class Usuario {
                                 'callback'         => $callback        // Redirect URI/Callback URI for this script
                             ));
 
-            $leadApi = MauticApi::getContext("leads", $auth, "https://provasdaoab.mautic.com");
+            $_SESSION['FBID'] = $id;
+            $_SESSION['FULLNAME'] = $usuario->nome;
+            $_SESSION['EMAIL'] = $usuario->email;
+            $_SESSION['MOEDAS'] = 100;
+            $_SESSION['PONTUACAO'] = 1500;
 
-            var_dump($leadApi);
-
-            $lead = $leadApi->create(array(
-                'firstname' => $usuario->nome,
-                'email'     => $usuario->email,
-                'lastname'  => ' ',
-                'ipAddress' => $_SERVER['REMOTE_ADDR']
-            ));
-
-            var_dump($lead);
-
-            //$response = $leadApi->addLead($lead, 2);
-
-            // $_SESSION['FBID'] = $id;
-            // $_SESSION['FULLNAME'] = $usuario->nome;
-            // $_SESSION['EMAIL'] = $usuario->email;
-            // $_SESSION['MOEDAS'] = 100;
-            // $_SESSION['PONTUACAO'] = 1500;
-
-            return true;
-            //return $id;
+            return $id;
         }
         else
         {
@@ -358,8 +342,6 @@ class Usuario {
                              "email" => $usuario[3],
                              "localizacao" => $usuario[5]
                            );
-
-           cadastrarInFusion($params);
 
            $stmtUsuario = DB::query($sql);
            $id = DB::lastInsertId();
@@ -640,10 +622,15 @@ class Usuario {
 
         while($res = $stmt->fetch())
         {
-            if (intval($res->acertou))
-                $ret[intval($res->id)]->acertos++;
+            if (intval($res->acertou) != 0){
+                if(isset($ret[intval($res->id)])){
+                    $ret[intval($res->id)]->acertos++;
+                }
+            }
 
-            $ret[intval($res->id)]->respostas++;
+            if(isset($ret[intval($res->id)])){
+                $ret[intval($res->id)]->respostas++;
+            }
         }
         
         return $ret;
@@ -688,7 +675,9 @@ class Usuario {
         }
 
         for ($i = 1; $i <= $diaAtual; $i++)
-            if (!$ret[$i]) $ret[$i] = 0;
+            if (isset($ret[$i])){
+                $ret[$i] = 0;
+            }
 
         return $ret;
     }
@@ -724,17 +713,28 @@ class Usuario {
             }
         }
 
+         $ret = array();
+
         for ($i = 1; $i <= $diaAtual; $i++)
         {
-            if (!$ret[$i]) $ret[$i] = 0;
-            if (!$resTotal[$i]) $resTotal[$i] = 0;
-            if (!$resAcertos[$i]) $resAcertos[$i] = 0;
+            if (isset($ret[$i])){
+                $ret[$i] = 0;  
+            } 
+            if (isset($resTotal[$i])){
+                $resTotal[$i] = 0;
+            }
 
-            if ($resTotal[$i] != 0)
-                $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
-            else
+            if (isset($resAcertos[$i])){
+                $resAcertos[$i] = 0;
+            }
+
+            if (isset($resTotal[$i]) && $resTotal[$i] != 0){
+                if(isset($resHit[$i])){
+                    $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
+                }
+            } else {
                 $resHit[$i] = 0;
-
+            }
         }
 
         return $resHit;
