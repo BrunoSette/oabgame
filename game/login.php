@@ -43,6 +43,6 @@
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/login.js?v1"></script>
 </body>
 </html>
