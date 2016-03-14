@@ -1,8 +1,5 @@
 <?php
 
-use Mautic\MauticApi;
-use Mautic\Auth\ApiAuth;
-
 class Usuario {
 
     private function atualiza_acesso()
@@ -34,7 +31,7 @@ class Usuario {
         // pega imagem maior do usuario
         if ($user->face_id)
         {
-            $link = "https://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
+            $link = "http://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
@@ -54,18 +51,6 @@ class Usuario {
         $sql = "SELECT status_pagamento FROM tb_usuario WHERE email=:mail";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("mail", $email);
-        $stmt->execute();
-
-        $status = $stmt->fetch();
-        
-        return $status->status_pagamento;
-    }
-
-    public function get_premium()
-    {
-        $sql = "SELECT status_pagamento FROM tb_usuario WHERE email = :mail";
-        $stmt = DB::prepare($sql);
-        $stmt->bindParam("mail", $_SESSION["EMAIL"]);
         $stmt->execute();
 
         $status = $stmt->fetch();
@@ -104,6 +89,7 @@ class Usuario {
                 $stmtUsuario = DB::query($sql);
             }
 
+            // incrementa a quantidade de acessos do usuário e atualiza a data de ultimo acesso.
             $this->atualiza_acesso();
 
             return true;
@@ -115,7 +101,9 @@ class Usuario {
     // verifica se usuario existe
     public function post_login($usuario)
     {
+        
         $sql = "SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)";
+        //$sql = "SELECT * FROM tb_usuario WHERE (email = '".$usuario->email."' and senha='".md5($usuario->senha)."')";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
@@ -191,7 +179,8 @@ class Usuario {
         {
             $code = (string)$db_usuario->id . substr((string)md5(time()), 0, 8);
 
-            $sql = "INSERT INTO tb_recupera_senha (usuario, code)  VALUES 
+            $sql = "INSERT INTO tb_recupera_senha (usuario, code) 
+                VALUES 
                 (
                     '" . $db_usuario->id . "', 
                     '" . $code ."'
@@ -205,7 +194,7 @@ class Usuario {
                             <br>
                             <br>
                             <div>
-                            <p style="color: #fff">https://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
+                            <p style="color: #fff">http://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
                             </div>
                             <br />
                             <br />
@@ -269,28 +258,17 @@ class Usuario {
 
         $db_usuario = $stmt->fetch();
 
-        if(true)
+        if(!$db_usuario)
         {
-            // $today = explode("/", date("Y/m/d"));
-            // $newToday = "$today[0]-$today[1]-$today[2]";
+            $today = explode("/", date("Y/m/d"));
+            $newToday = "$today[0]-$today[1]-$today[2]";
 
-            // $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
-            // ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 3) ";
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) VALUES 
+            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1) ";
 
-            // $stmtUsuario = DB::query($sql);
-            // $id = DB::lastInsertId();
+            $stmtUsuario = DB::query($sql);
 
-            $publicKey = '3_53rba05urow8sokcskk4848wckoo4osw08koo0cgk0wc4g0wso'; 
-            $secretKey = '44ey4l7gaomcgkoko0k40w0g88gw40gc4os4gg40g84wc4w44w'; 
-            $callback  = 'https://www.aprovagame.com.br/game/cadastro'; 
-
-            $auth = ApiAuth::initiate(array(
-                                'baseUrl'          => 'https://provasdaoab.mautic.com',       // Base URL of the Mautic instance
-                                'version'          => 'OAuth',  // Version of the OAuth can be OAuth2 or OAuth1a. OAuth2 is the default value.
-                                'clientKey'        => $publicKey,       // Client/Consumer key from Mautic
-                                'clientSecret'     => $secretKey,       // Client/Consumer secret key from Mautic
-                                'callback'         => $callback        // Redirect URI/Callback URI for this script
-                            ));
+            $id = DB::lastInsertId();
 
             $_SESSION['FBID'] = $id;
             $_SESSION['FULLNAME'] = $usuario->nome;
@@ -319,7 +297,7 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (face_id, nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) 
+            $sql = "INSERT INTO tb_usuario (face_id, nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) 
                     VALUES 
                     (
                         $usuario[0],
@@ -336,8 +314,7 @@ class Usuario {
                         '$newToday',
                         1,
                         0,
-                        1,
-                        5
+                        1
                     ) ";
 
             $params = array( "nome" => $usuario[2],
@@ -658,6 +635,13 @@ class Usuario {
         return $res;
     }
 
+    public function post_escolher_disciplinas()
+    {   
+        $_SESSION['disciplinas'] = null;
+        $_SESSION['disciplinas'] = implode(",", $_POST['disciplina']);
+        return true;
+    }
+
     public function get_questoes_grafico()
     {
         $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
@@ -768,29 +752,13 @@ class Usuario {
         return $resHit;
     }
 
-    public function post_perdeu_vida()
-    {
-        $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas - 1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
-        $stmtUsuario = DB::query($sql);
-    }
-
-    public function get_lifes()
-    {
-        $sql = "SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
-        
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $res = $stmt->fetch();
-
-        return $res;
-    }
-
     public function post_update($user)
     {
-        if($user->notificacoes) $user->notificacoes = 1;
-        
-        else $user->notificacoes = 0;
+
+        if($user->notificacoes)
+            $user->notificacoes = 1;
+        else
+            $user->notificacoes = 0;
 
         if ($user->convidado != "")
         {   
