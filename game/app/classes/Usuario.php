@@ -8,6 +8,35 @@ class Usuario {
         $stmtUsuario = DB::query($sql);
     }
 
+    public function get_premium()
+    {
+        $sql = "SELECT status_pagamento FROM tb_usuario WHERE email = :mail";
+        $stmt = DB::prepare($sql);
+        $stmt->bindParam("mail", $_SESSION["EMAIL"]);
+        $stmt->execute();
+        $status = $stmt->fetch();
+        
+        return $status->status_pagamento;
+    }
+
+    public function post_perdeu_vida()
+    {
+        $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas - 1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
+        $stmtUsuario = DB::query($sql);
+    }
+
+    public function get_lifes()
+    {
+        $sql = "SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
+        
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
+
+        $res = $stmt->fetch();
+
+        return $res;
+    }
+
     public function get_profile()
     {
         $sql = "SELECT * FROM tb_usuario WHERE (email=:user_email)";
@@ -31,7 +60,7 @@ class Usuario {
         // pega imagem maior do usuario
         if ($user->face_id)
         {
-            $link = "http://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
+            $link = "https://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
@@ -194,7 +223,7 @@ class Usuario {
                             <br>
                             <br>
                             <div>
-                            <p style="color: #fff">http://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
+                            <p style="color: #fff">https://www.aprovagame.com.br/game/recupera?api_key='.$code.'</p>
                             </div>
                             <br />
                             <br />
