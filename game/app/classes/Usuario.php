@@ -298,6 +298,8 @@ class Usuario {
             $_SESSION['MOEDAS'] = 100;
             $_SESSION['PONTUACAO'] = 1500;
 
+            subscribeMailChimp($usuario->email, $usuario->nome);
+
             return $id;
         }
         else
@@ -349,6 +351,8 @@ class Usuario {
            $_SESSION['FBID'] = $id;
            $_SESSION['MOEDAS'] = 100;
            $_SESSION['PONTUACAO'] = 1500;
+
+           subscribeMailChimp($usuario->email, $usuario->nome);
 
            return $id;
         }

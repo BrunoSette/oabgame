@@ -162,7 +162,11 @@
 
 			while($res = $stmtConcursos->fetch())
 			{
+<<<<<<< HEAD
 				$res->imagem = "https://www.aprovagame.com.br/game/img/concursos/" . $res->imagem;
+=======
+				$res->imagem = "http://www.aprovagame.com.br/game/img/concursos/" . $res->imagem;
+>>>>>>> Correções nos gráficos e adicionar usuario ao mailchimp
 				$ret[] = $res;
 			}
 

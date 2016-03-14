@@ -1,6 +1,6 @@
 <?php include("template/_header.php"); ?>
-	<section class="mainbox geral-container" style="overflow: hidden;">
-		<div class="mb10" style="overflow: hidden;">
+	<section class="mainbox geral-container">
+		<div class="mb10">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
