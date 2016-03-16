@@ -293,7 +293,7 @@ function obtemRanking()
                     if (result.result[i].foto_profile == "")
                         html += "<img src='img/sem-foto.png' class='left mr5' alt=''>";
                     else
-                        html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
+                        html += "<img src='" + result.result[i].foto_profile.replace('http','https') + "' class='left mr5' alt=''>";
                     
                     html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
                     html += "<p> " + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";

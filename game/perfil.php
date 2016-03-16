@@ -39,6 +39,6 @@
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
 	<script src="js/min/perfil.js?v1"></script>
-	<script src="js/usuario.js?v1"></script>
+	<script src="js/usuario.js?v2"></script>
 </body>
 </html>
