@@ -38,7 +38,7 @@
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
-	<script src="js/min/perfil.js"></script>
-	<script src="js/usuario.js"></script>
+	<script src="js/min/perfil.js?v1"></script>
+	<script src="js/usuario.js?v1"></script>
 </body>
 </html>
