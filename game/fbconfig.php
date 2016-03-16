@@ -79,6 +79,7 @@ else
 		));
 
  $loginUrl = str_replace('http:', 'https:',  $loginUrl);
+ var_dump($loginUrl);die();
  header("Location: ".$loginUrl);
 }
 ?>
