@@ -212,7 +212,7 @@ function rankingAmigos()
                 if (result.result[i] != null)
                 {
                     html += "<li>";
-                    html += "<img src='" + result.result[i].foto_profile + "' class='left mr5' alt=''>";
+                    html += "<img src='" + result.result[i].foto_profile.replace('http','https') + "' class='left mr5' alt=''>";
 
                     if (tipo == 1)
                         html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
