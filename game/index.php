@@ -2,7 +2,8 @@
 session_start(); 
 
 if (isset($_SESSION['FBID'])){
-	var_dump(stripos($_SERVER['SERVER_PROTOCOL'],'https'));die();
+	echo "<pre>";
+	var_dump($_SERVER, $_SERVER['HTTPS']);die();
 	// if(stripos($_SERVER['SERVER_PROTOCOL'],'https') === false){
 		 // header("Location: https://www.aprovagame.com.br/game/#_=_");
 	// }
