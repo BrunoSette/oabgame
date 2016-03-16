@@ -74,7 +74,7 @@ class FacebookRedirectLoginHelper
   {
     $this->appId = FacebookSession::_getTargetAppId($appId);
     $this->appSecret = FacebookSession::_getTargetAppSecret($appSecret);
-    $this->redirectUrl = 'https://www.aprovagame.com.br/game/';
+    $this->redirectUrl = $redirectUrl;
   }
 
   /**

@@ -70,13 +70,13 @@ if ($user)
 
 if ($user)
 {
-	header("Location: .");
+	header("Location: https://www.aprovagame.com.br/game/");
 }
 else
 {
  $loginUrl = $facebook->getLoginUrl(array(
 		'scope'		=> 'email, public_profile, user_location, user_birthday', 
 		));
- header("Location: ".$loginUrl);
+ header("Location: https://www.aprovagame.com.br/game/");
 }
 ?>
