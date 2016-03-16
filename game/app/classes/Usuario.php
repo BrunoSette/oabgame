@@ -47,7 +47,7 @@ class Usuario {
 
         $user = $stmt->fetch();
 
-        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]} AND badge != '0'";
         $stmt = DB::prepare($sql);
         $stmt->execute();
 
