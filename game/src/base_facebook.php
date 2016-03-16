@@ -579,7 +579,6 @@ abstract class BaseFacebook
       $params['scope'] = implode(',', $scopeParams);
     }
 
- $currentUrl = str_replace('http', 'https',  $currentUrl);
     return $this->getUrl(
       'www',
       'dialog/oauth',
