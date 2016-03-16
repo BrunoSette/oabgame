@@ -78,7 +78,7 @@ else
 		'scope'		=> 'email, public_profile, user_location, user_birthday', 
 		));
 
- $loginUrl = str_replace('http%', 'https%',  $loginUrl);
+ // $loginUrl = str_replace('http%', 'https',  $loginUrl);
  // var_dump($loginUrl);die();
  header("Location: ".$loginUrl);
 }
