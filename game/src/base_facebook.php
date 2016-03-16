@@ -579,12 +579,13 @@ abstract class BaseFacebook
       $params['scope'] = implode(',', $scopeParams);
     }
 
+ $currentUrl = str_replace('http', 'https',  $currentUrl);
     return $this->getUrl(
       'www',
       'dialog/oauth',
       array_merge(array(
                     'client_id' => $this->getAppId(),
-                    'redirect_uri' => 'https://www.aprovagame.com.br/game/fbconfig', // possibly overwritten
+                    'redirect_uri' => $currentUrl, // possibly overwritten
                     'state' => $this->state),
                   $params));
   }
