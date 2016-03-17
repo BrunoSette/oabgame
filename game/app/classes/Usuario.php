@@ -292,8 +292,8 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5) ";
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas, concurso) VALUES 
+            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5, $usuario->concurso) ";
 
             $stmtUsuario = DB::query($sql);
 
@@ -750,8 +750,7 @@ class Usuario {
         $resAcertos = 0;
         $resTotal = 0;
 
-        while($res = $stmt->fetch())
-        {
+        while($res = $stmt->fetch()) {
             $resTotal++;
 
             if ($res->acertou)
@@ -771,16 +770,13 @@ class Usuario {
         else
             $user->notificacoes = 0;
 
-        if ($user->convidado != "")
-        {   
-
+        if ($user->convidado != "") {   
             $sql = "SELECT * FROM tb_usuario WHERE email = '$user->convidado'";
             $stmt = DB::prepare($sql);
             $stmt->execute();
             $user_c = $stmt->fetch();
 
-            if (!$user_c)
-            {
+            if (!$user_c) {
                 $senha = randomPassword();
                 $emailArray = explode("@", $user->convidado);
                 $nome = $emailArray[0];
@@ -862,8 +858,7 @@ class Usuario {
             }
         }
 
-        if ($user->nova_senha != "")
-        {
+        if ($user->nova_senha != "") {
             $sql = "UPDATE tb_usuario SET 
                 nome = '$user->nome',
                 localizacao = '$user->localizacao',
@@ -874,8 +869,7 @@ class Usuario {
                 convidado = '$user->convidado'
                 WHERE id = {$_SESSION["FBID"]} ";
         }
-        else
-        {
+        else {
             $sql = "UPDATE tb_usuario SET  nome = '$user->nome', localizacao = '$user->localizacao', aniversario = '$user->aniversario', email = '$user->email', lembretes = $user->notificacoes, convidado = '$user->convidado' WHERE id = {$_SESSION["FBID"]} ";
         }
 

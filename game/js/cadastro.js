@@ -42,11 +42,12 @@ $("#facebook-login").bind("click", function(){
 });
 
 $("#join").bind("click", function(){
-  var nome, email, senha;
+  var nome, email, senha, concurso;
 
   nome = $("form #nome").val();
   email = $("form #email").val();
   senha = $("form #senha").val();
+  concurso = $("form #concurso").val();
   senha_confirm = $("form #senha_confirm").val();
 
   if(nome != "" && email != "" && senha != "" && senha_confirm != "")
@@ -79,11 +80,12 @@ $("#join").bind("click", function(){
 
     if (!erro)
     {
-      data = JSON.stringify({"nome": nome, "email": email, "senha": senha});
+      data = JSON.stringify({"nome": nome, 
+                            "email": email, 
+                            "senha": senha, 
+                            "concurso" : concurso});
 
       ga('send', 'event', 'Cadastro', 'Sem Facebook');
-
-      console.info("aqui");
 
       $.ajax({
           type: "post",
