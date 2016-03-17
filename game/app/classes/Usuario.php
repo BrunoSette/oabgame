@@ -292,8 +292,8 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1) ";
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
+            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5) ";
 
             $stmtUsuario = DB::query($sql);
 
@@ -326,7 +326,7 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (face_id, nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel) 
+            $sql = "INSERT INTO tb_usuario (face_id, nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) 
                     VALUES 
                     (
                         $usuario[0],
@@ -343,7 +343,8 @@ class Usuario {
                         '$newToday',
                         1,
                         0,
-                        1
+                        1,
+                        5
                     ) ";
 
             $params = array( "nome" => $usuario[2],
