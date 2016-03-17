@@ -25,7 +25,7 @@
 							    <input type="text" class="form-control" id="nome" required/>
 							</div>
 							<div class="form-group">
-							  	<label for="concurso">Concurso</label>
+							  	<label for="concurso">Interesse: </label>
 							    <select name="concurso" id="concurso">
 							    	<option value="1">Concurso Nível Médio</option>
 							    	<option value="2">Concurso Nível Superior</option>

@@ -29,7 +29,7 @@
 				    </div>
 				  </div>
 				  <div class="form-group col-sm-5" style="float:none">
-				    <label for="nome">Concurso</label>
+				    <label for="nome">Interesse: </label>
 							    <select name="concurso" id="concurso">
 							    	<option value="1">Concurso Nível Médio</option>
 							    	<option value="2">Concurso Nível Superior</option>
