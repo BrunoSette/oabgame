@@ -710,18 +710,15 @@ class Usuario {
         $resTotal = array();
         $resHit = array();
 
-        for ($i = 1; $i <= $diaAtual; $i++)
-        {
+        for ($i = 1; $i <= $diaAtual; $i++) {
             $resAcertos[$i] = 0; 
             $resTotal[$i] = 0; 
             $resHit[$i] = 0; 
         }
 
-        while($res = $stmt->fetch())
-        {
+        while($res = $stmt->fetch()) {
             $data = explode("-", $res->data);
-            if (intval($data[1]) == intval($mesAtual))
-            {
+            if (intval($data[1]) == intval($mesAtual)) {
                 $resTotal[intval($data[2])]++;
 
                 if ($res->acertou)
@@ -729,26 +726,13 @@ class Usuario {
             }
         }
 
-         $ret = array();
+        $ret = array();
 
-        for ($i = 1; $i <= $diaAtual; $i++)
-        {
-            if (isset($ret[$i])){
-                $ret[$i] = 0;  
-            } 
-            if (isset($resTotal[$i])){
-                $resTotal[$i] = 0;
+        for ($i = 1; $i <= $diaAtual; $i++) {
+            if ($resTotal[$i] != 0) {
+                $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
             }
-
-            if (isset($resAcertos[$i])){
-                $resAcertos[$i] = 0;
-            }
-
-            if (isset($resTotal[$i]) && $resTotal[$i] != 0){
-                if(isset($resHit[$i])){
-                    $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
-                }
-            } else {
+            else {
                 $resHit[$i] = 0;
             }
         }
