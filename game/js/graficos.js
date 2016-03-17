@@ -109,6 +109,8 @@ function grafico_taxa_acerto_mes()
         dataType: "json",
         success: function(e) 
         {
+            console.dir(e);
+
         	var d = new Date();
 			var n = d.getMonth();
 
