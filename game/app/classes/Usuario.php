@@ -684,22 +684,16 @@ class Usuario {
 
         $ret = array();
 
-        // for ($i = 1; $i <= $diaAtual; $i++) $ret[] = 0;
+        for ($i = 1; $i <= $diaAtual; $i++) $ret[$i] = 0;
 
         while($res = $stmt->fetch())
         {
-            var_dump($res);
-            // $data = explode("-", $res->data);
-            // if (intval($data[1]) == intval($mesAtual))
-            //     $ret[intval($data[2])]++;
+            $data = explode("-", $res->data);
+            if (intval($data[1]) == intval($mesAtual))
+                $ret[intval($data[2])]++;
         }
 
-        // for ($i = 1; $i <= $diaAtual; $i++)
-        //     if (isset($ret[$i])){
-        //         $ret[$i] = 0;
-        //     }
-
-        return $_SESSION;
+        return $ret;
     }
 
     public function get_taxa_acertos_mes()
