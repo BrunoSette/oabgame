@@ -674,31 +674,32 @@ class Usuario {
 
     public function get_questoes_grafico()
     {
-        // $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
+        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
         
-        // $stmt = DB::prepare($sql);
-        // $stmt->execute();
+        $stmt = DB::prepare($sql);
+        $stmt->execute();
 
-        // $mesAtual = date('m');
-        // $diaAtual = date('d');
+        $mesAtual = date('m');
+        $diaAtual = date('d');
 
-        // $ret = array();
+        $ret = array();
 
         // for ($i = 1; $i <= $diaAtual; $i++) $ret[] = 0;
 
-        // while($res = $stmt->fetch())
-        // {
-        //     $data = explode("-", $res->data);
-        //     if (intval($data[1]) == intval($mesAtual))
-        //         $ret[intval($data[2])]++;
-        // }
+        while($res = $stmt->fetch())
+        {
+            var_dump($res);
+            // $data = explode("-", $res->data);
+            // if (intval($data[1]) == intval($mesAtual))
+            //     $ret[intval($data[2])]++;
+        }
 
         // for ($i = 1; $i <= $diaAtual; $i++)
         //     if (isset($ret[$i])){
         //         $ret[$i] = 0;
         //     }
 
-        return array(10, 20, 30);
+        return true;
     }
 
     public function get_taxa_acertos_mes()
