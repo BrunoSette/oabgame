@@ -712,7 +712,9 @@ class Usuario {
 
         for ($i = 1; $i <= $diaAtual; $i++)
         {
-            $resAcertos[] = 0; $resTotal[] = 0; $resHit[] = 0; 
+            $resAcertos[$i] = 0; 
+            $resTotal[$i] = 0; 
+            $resHit[$i] = 0; 
         }
 
         while($res = $stmt->fetch())
