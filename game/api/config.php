@@ -2,7 +2,7 @@
 	
 	// configurações do banco de dados
 
-	define("DB_HOST", "root@45.55.126.9");
+	define("DB_HOST", "45.55.126.9");
 	define("DB_NAME", "localhost");
 	define("DB_USER", "root");
 	define("DB_PASSWORD", "VouPassar7777!@#$");
