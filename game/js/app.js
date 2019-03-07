@@ -1,7 +1,7 @@
 // variaveis globais
 
-var rootUrl = "http://www.provasdaoab.com.br/aprovagame/game/app";
-var clienteUrl = "http://www.provasdaoab.com.br/aprovagame/game";
+var rootUrl = "https://www.provasdaoab.com.br/aprovagame/game/app";
+var clienteUrl = "https://www.provasdaoab.com.br/aprovagame/game";
 
 // var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
 // var clienteUrl = "http://local.estudandoonline.com.br/game/game";
