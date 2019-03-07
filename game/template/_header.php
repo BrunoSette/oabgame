@@ -1,15 +1,9 @@
-<?php 
-session_start(); 
-//if(!isset($_SESSION["FBID"])) header("Location: ./");
-?>
+<?php session_start(); ?>
 
 <!doctype html>
 <html lang="pt">
 <head>
-	<meta property="og:url" content="https://http://www.provasdaoab.com.br/aprovagame" />
-  	<meta property="og:site_name" content="Aprova Game"/>
-  	<meta property="og:title" content="Aprender nunca foi tão divertido" />
-  	<meta property="og:image" content="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" />
+  	<meta property="og:site_name" content="OABGame"/>
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
