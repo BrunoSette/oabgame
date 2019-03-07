@@ -42,7 +42,7 @@
 	<script src="js/boots.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/app.js?v1"></script>
-	<script src="js/login.js?v1"></script>
+	<script src="js/app.js"></script>
+	<script src="js/login.js"></script>
 </body>
 </html>
