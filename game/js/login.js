@@ -31,8 +31,8 @@ function onErrorLogin(error)
 {
     console.info(error);
 }
-var rootUrl = "https://www.aprovagame.com.br/game/app";
-var clienteUrl = "https://www.aprovagame.com.br/game";
+var rootUrl = "https://www.provasdaoab.com.br/aprovagame/game/app";
+var clienteUrl = "https://www.provasdaoab.com.br/aprovagame/game";
 
 $(".fb-link").bind("click", function() { ga('send', 'event', 'Cadastro', 'Facebook'); });
 
