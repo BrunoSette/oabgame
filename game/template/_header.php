@@ -32,7 +32,7 @@ session_start();
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 
-	<title>AprovaGame</title>
+	<title>OABGame</title>
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
@@ -47,8 +47,6 @@ session_start();
 	a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	// New Google Analytics code to set User ID.
-
 	<?php
 	 //New Google Analytics code to set User ID.
 	if (isset($_SESSION["FBID"]))
@@ -58,9 +56,6 @@ session_start();
 	}
 
 	?>
-
-	ga('require', 'displayfeatures');
-	ga('send', 'pageview');
 
 	</script>
 	<script src="https://www.youtube.com/player_api" type="text/javascript"></script>
@@ -170,7 +165,6 @@ session_start();
 	         <ul class="nav navbar-nav">
 			  	<li><a href="index" title="game"><i class="fa fa-gamepad"></i><div class="menu-mobile ">game</div></a></li>
 		    	<li><a href="perfil" title="perfil"><i class="fui-user"></i><div class="menu-mobile ">perfil</div></a></li>
-		    	<li><a href="graficos" title="estatistica"><i class="fa fa-area-chart"></i><div class="menu-mobile mll5">gráficos</div></a></li>
 		    	<?php if(!$_SESSION["PREMIUM"]) echo "<li><a href='comprar' id='comprar' title='comprar'><i class='fa fa-shopping-cart'></i><div class='menu-mobile mll5'>comprar</div></a></li>"; ?>
 			    <li><a href="config" title="configuração"><i class="fui-gear"></i><div class="menu-mobile mll2">ajustes</div></a></li>
 	          </ul>
