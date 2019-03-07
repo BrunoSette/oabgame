@@ -87,6 +87,8 @@ $("#join").bind("click", function(){
 
       ga('send', 'event', 'Cadastro', 'Sem Facebook');
 
+      console.dir(rootUrl)
+
       $.ajax({
           type: "post",
           url: rootUrl + "/Usuario/register",
