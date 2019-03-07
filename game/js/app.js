@@ -1,10 +1,7 @@
 // variaveis globais
 
-var rootUrl = "https://www.provasdaoab.com.br/aprovagame/game/app";
-var clienteUrl = "https://www.provasdaoab.com.br/aprovagame/game";
-
-// var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
-// var clienteUrl = "http://local.estudandoonline.com.br/game/game";
+var rootUrl = "https://www.provasdaoab.com.br/oabgame/game/app";
+var clienteUrl = "https://www.provasdaoab.com.br/oabgame/game";
 
 const RESPOSTA_CORRETA = 5;
 const PULAR_PERGUNTA = -10;
@@ -39,27 +36,8 @@ var acertosSeguidos = 0;
 var modaisAbertos = 0;
 var qtd_multipla = 0, qtd_vouf = 0;
 
-$("#comprar").bind('click', function(){
-    console.info("aqui");
-    ga('send', 'event', 'botao', 'Carrinho');
-});
-
-function isUndefined(e)
-{
-	if(e == undefined)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-function goPage(page)
-{
-    location.href = clienteUrl + "/" + page;
-}
+function isUndefined(e) { if(e == undefined) return true else return false; }
+function goPage(page) { location.href = clienteUrl + "/" + page; }
 
 var Modal = function()
 {
@@ -67,20 +45,9 @@ var Modal = function()
     var titulo;
     var texto;
 
-    this.setCor = function(vCor)
-    {
-        this.cor = vCor;
-    }
-
-    this.setTitulo = function(vTitulo)
-    {
-        this.titulo = vTitulo;
-    }
-
-    this.setTexto = function(vTexto)
-    {
-        this.texto = vTexto;
-    }
+    this.setCor = function(vCor) { this.cor = vCor; }
+    this.setTitulo = function(vTitulo) { this.titulo = vTitulo; }
+    this.setTexto = function(vTexto) { this.texto = vTexto; }
 
     this.showModal = function(vTipo)
     {
@@ -430,9 +397,5 @@ $(document).ready(function()
 
         closeModal(selected);
     });
-
-    // if(sessionStorage.getItem("materias") == null){
-    //     escolherTipoQuestoes(true);
-    // }
 });
 
