@@ -30,7 +30,8 @@
 							    	<option value="1">Concurso Nível Médio</option>
 							    	<option value="2">Concurso Nível Superior</option>
 							    	<option value="3">Exame da Ordem</option>
-							    </select>
+							    	<option value="4">ENEM</option>
+								</select>
 							</div>
 							<div class="form-group">
 							  	<label for="email">E-mail</label>
