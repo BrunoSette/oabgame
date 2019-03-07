@@ -94,7 +94,7 @@ function isCorrect(resposta)
         if (video) 
             html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
 
-        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
+        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.provasdaoab.com.br/aprovagame/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
         var snd = new Audio("sounds/correct.mp3");
         snd.play();
@@ -134,7 +134,7 @@ function isCorrect(resposta)
         var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
         if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe> </div>";
 
-        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.aprovagame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
+        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.provasdaoab.com.br/aprovagame/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
         var myModal = new Modal();
             myModal.setCor("#E74C3C")

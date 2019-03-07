@@ -162,7 +162,7 @@
 
 			while($res = $stmtConcursos->fetch())
 			{
-				$res->imagem = "https://www.aprovagame.com.br/game/img/concursos/" . $res->imagem;
+				$res->imagem = "https://www.provasdaoab.com.br/aprovagame/game/img/concursos/" . $res->imagem;
 				$ret[] = $res;
 			}
 

@@ -1,19 +1,19 @@
 function userProfile(profile)
 {
     var badges = [];
-    badges[badgesEnum.TRES_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/seguidos3-180.png", "exibe" : false};
-    badges[badgesEnum.SETE_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/seguidos7-180.png", "exibe" : false};
-    badges[badgesEnum.DEZ_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/seguidos10-180.png", "exibe" : false};
-    badges[badgesEnum.QUINZE_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/seguidos15-180.png", "exibe" : false};
-    badges[badgesEnum.DEZ_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/acertou10-180.png", "exibe" : false};
-    badges[badgesEnum.VINTE_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/acertou20-180.png", "exibe" : false};
-    badges[badgesEnum.CINQUENTA_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/acertou50-180.png", "exibe" : false};
-    badges[badgesEnum.CEM_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/acertou100-180.png", "exibe" : false};
-    badges[badgesEnum.DUZENTAS_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.aprovagame.com.br/img/badges/acertou200-180.png", "exibe" : false};
-    badges[badgesEnum.JOGOU_2X] = {"src" : "https://cdn.aprovagame.com.br/img/badges/jogou2x-180.png", "exibe" : false};
-    badges[badgesEnum.JOGOU_5X] = {"src" : "https://cdn.aprovagame.com.br/img/badges/jogou5x-180.png", "exibe" : false};
-    badges[badgesEnum.JOGOU_10X] = {"src" : "https://cdn.aprovagame.com.br/img/badges/jogou10x-180.png", "exibe" : false};
-    badges[badgesEnum.JOGOU_15X] = {"src" : "https://cdn.aprovagame.com.br/img/badges/jogou15x-180.png", "exibe" : false};
+    badges[badgesEnum.TRES_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/seguidos3-180.png", "exibe" : false};
+    badges[badgesEnum.SETE_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/seguidos7-180.png", "exibe" : false};
+    badges[badgesEnum.DEZ_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/seguidos10-180.png", "exibe" : false};
+    badges[badgesEnum.QUINZE_ACERTOS_SEGUIDOS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/seguidos15-180.png", "exibe" : false};
+    badges[badgesEnum.DEZ_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/acertou10-180.png", "exibe" : false};
+    badges[badgesEnum.VINTE_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/acertou20-180.png", "exibe" : false};
+    badges[badgesEnum.CINQUENTA_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/acertou50-180.png", "exibe" : false};
+    badges[badgesEnum.CEM_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/acertou100-180.png", "exibe" : false};
+    badges[badgesEnum.DUZENTAS_RESPOSTAS_CORRETAS] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/acertou200-180.png", "exibe" : false};
+    badges[badgesEnum.JOGOU_2X] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/jogou2x-180.png", "exibe" : false};
+    badges[badgesEnum.JOGOU_5X] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/jogou5x-180.png", "exibe" : false};
+    badges[badgesEnum.JOGOU_10X] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/jogou10x-180.png", "exibe" : false};
+    badges[badgesEnum.JOGOU_15X] = {"src" : "https://cdn.provasdaoab.com.br/aprovagame/img/badges/jogou15x-180.png", "exibe" : false};
 
     for (i in profile.badges) 
         badges[parseInt(profile.badges[i].badge)].exibe = true;

@@ -12,7 +12,7 @@
 #RewriteRule ^([^/.]+)$ $1.php [L]
 
 # Pagina de erro 404
-#ErrorDocument 404 http://www.aprovagame.com.br/404page
+#ErrorDocument 404 http://www.provasdaoab.com.br/aprovagame/404page
 
 Options +MultiViews
 RewriteEngine On

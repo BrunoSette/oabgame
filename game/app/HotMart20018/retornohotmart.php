@@ -82,7 +82,7 @@
 							</div>
 							<div>
 
-							<a href="www.aprovagame.com.br/game" style="text-decoration:underline;font-weight:normal;color:#fff" target="_blank">
+							<a href="www.provasdaoab.com.br/aprovagame/game" style="text-decoration:underline;font-weight:normal;color:#fff" target="_blank">
 							Clique aqui para acessar.</a> 
 							<br>																		 
 							<br/>
@@ -136,7 +136,7 @@
 							</div>
 							<div>
 
-							<a href="www.aprovagame.com.br/game" style="text-decoration:underline;font-weight:normal; color:#fff;" target="_blank">
+							<a href="www.provasdaoab.com.br/aprovagame/game" style="text-decoration:underline;font-weight:normal; color:#fff;" target="_blank">
 							Clique aqui para acessar.</a> 
 							<br>																		 
 							<br/>

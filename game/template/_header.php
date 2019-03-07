@@ -9,7 +9,7 @@ session_start();
 	<meta property="og:url" content="https://www.aprovagame.com.br" />
   	<meta property="og:site_name" content="Aprova Game"/>
   	<meta property="og:title" content="Aprender nunca foi tão divertido" />
-  	<meta property="og:image" content="https://www.aprovagame.com.br/game/img/logo.png" />
+  	<meta property="og:image" content="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" />
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">

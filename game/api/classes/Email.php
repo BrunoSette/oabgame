@@ -32,7 +32,7 @@
 										Atenciosamente, <br>
 										<br>
 										Equipe AprovaGame<br> 
-										<img style="width: 200px;" src="https://www.aprovagame.com.br/game/img/logo.png" /><br />
+										<img style="width: 200px;" src="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" /><br />
 										<a href="https://www.aprovagame.com.br/" style="color:#fff;">www.aprovagame.com.br</a> <br>
 									</div>
 								</div>

@@ -1,7 +1,7 @@
 // variaveis globais
 
-var rootUrl = "http://www.aprovagame.com.br/game/app";
-var clienteUrl = "http://www.aprovagame.com.br/game";
+var rootUrl = "http://www.provasdaoab.com.br/aprovagame/game/app";
+var clienteUrl = "http://www.provasdaoab.com.br/aprovagame/game";
 
 // var rootUrl = "http://local.estudandoonline.com.br/game/game/app";
 // var clienteUrl = "http://local.estudandoonline.com.br/game/game";
@@ -121,7 +121,7 @@ var Modal = function()
         {
             $(".box-overlay").css("background", 'rgba(0,0,0,0.96)');
 
-            var html = "<a href='http://www.aprovagame.com.br/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
+            var html = "<a href='http://www.provasdaoab.com.br/aprovagame/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
             $(ret).children('.box-content').children('p').html(html);
         }
     }

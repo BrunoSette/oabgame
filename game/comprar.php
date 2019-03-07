@@ -33,7 +33,7 @@
 
 								<div class="shop-second-ad">
 									<div class="col-md-6">
-										<div class="left mr15 w30"><img src="https://cdn.aprovagame.com.br/img/vantagem-grafico.png" alt="Conferir seu desempenho"></div>
+										<div class="left mr15 w30"><img src="https://cdn.provasdaoab.com.br/aprovagame/img/vantagem-grafico.png" alt="Conferir seu desempenho"></div>
 										<div>
 											<h3>Confira seu desempenho</h3>
 											<article>Tenha ainda a sua disposição vários gráficos atualizados para acompanhar seu desempenho. Você vai poder identificar em quais matérias está melhor ou pior e ainda qual seu percentual de acerto das questões.</article>
@@ -56,7 +56,7 @@
 
 								<div class="shop-friend-invite">
 									<div class="col-md-6">
-										<div style="width: 80%"><img src="https://cdn.aprovagame.com.br/img/bonus.png" alt=""></div>
+										<div style="width: 80%"><img src="https://cdn.provasdaoab.com.br/aprovagame/img/bonus.png" alt=""></div>
 									</div>
 									<div style="col-md-6">
 										<h1 class="color-green">COMPRE 01, LEVE 02!</h1>
@@ -73,7 +73,7 @@
 										ou em até 06 x R$ 10,17
 									</p>
 									<div>
-										 <a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&checkoutMode=2" class="hotmart-fb mt10"><img src='https://cdn.aprovagame.com.br/img/comprar.png' id="comprar-logado" alt="" width="370" height="162"></a> 
+										 <a onclick="return false;" href="https://www.hotmart.net.br/checkout.html?order=B2495144B&checkoutMode=2" class="hotmart-fb mt10"><img src='https://cdn.provasdaoab.com.br/aprovagame/img/comprar.png' id="comprar-logado" alt="" width="370" height="162"></a> 
 
 							
 									</div>									
