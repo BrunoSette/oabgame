@@ -180,125 +180,49 @@ function isCorrect(resposta)
 
 function findQuestion(differentQuestion)
 {
-    if(getVidas() > 0)
+    // if(getVidas() > 0)
+    // {
+    var naoEncontrou = false;
+
+    showUI();
+
+    if (isUndefined(differentQuestion)) { differentQuestion = -1 };
+    if (qtd_vouf < 4) // pega questão de v ou f
     {
-        var naoEncontrou = false;
-
-        showUI();
-
-        if (isUndefined(differentQuestion)) { differentQuestion = -1 };
-        if (qtd_vouf < 4) // pega questão de v ou f
-        {
-            $.ajax({
-                type: "get",
-                url: rootUrl + "/Questoes/questao",
-                dataType: "json",
-                async: false,
-                data : "id="+differentQuestion+"&tipo=1",
-                success: function(result) 
+        $.ajax({
+            type: "get",
+            url: rootUrl + "/Questoes/questao",
+            dataType: "json",
+            async: false,
+            data : "id="+differentQuestion+"&tipo=1",
+            success: function(result) 
+            {
+                if(result.result.data.enunciado)
                 {
-                    if(result.result.data.enunciado)
-                    {
-                        $(".question").text(result.result.data.enunciado);
+                    $(".question").text(result.result.data.enunciado);
 
-                        var html = "<li id='respV'>";
-                            html += "<input type='radio' name='option' value='V' id='V'/>";
-                            html += "<div>";
-                            html += "<label for='V' class='w100'>";
-                            html += "<p class='option left'>V</p>";
-                            html += "<p class='teste' data-option='V'>Verdadeiro</p>";
-                            html += "</label>";
-                            html += "</div>";
-                            html += "</li>";
-
-                            html += "<li id='respF'>";
-                            html += "<input type='radio' name='option' value='F' id='F'/>";
-                            html += "<div>";
-                            html += "<label for='F' class='w100'>";
-                            html += "<p class='option left'>F</p>";
-                            html += "<p class='teste' data-option='F'>Falso</p>";
-                            html += "</label>";
-                            html += "</div>";
-                            html += "</li>";
-
-                        $("#alternativas").html(html);
-
-                        if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
-                        else $(".subject").css('background-color', '#1ABC9C');
-
-                        gabarito = result.result.data.gabarito;
-                        comentario = result.result.data.comentario;
-                        idQuestao = result.result.data.id;
-                        video = result.result.data.video_embed;
-                        multipla_escolha = result.result.data.multipla_escolha;
-                        intervalos_video = result.result.intervalo;
-
-                        qtd_vouf++;
-
-                        if (qtd_vouf == 4) {qtd_multipla = 0;};
-
-                        if (intervalos_video != null) {intervalos_video.splice(0,1);}
-                    }
-                    else
-                        naoEncontrou = true;
-                },
-                error: function(result){ console.info(result); }
-            });
-        }
-
-        if(qtd_vouf >= 4 || naoEncontrou)
-        {
-            $.ajax({
-                type: "get",
-                url: rootUrl + "/Questoes/questao",
-                dataType: "json",
-                data : "id="+differentQuestion+"&tipo=2",
-                success: function(result) 
-                {
-                    $(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
-
-                    var html = "<li id='respA'>";
-                        html += "<input type='radio' name='option' value='A' id='A'/>";
+                    var html = "<li id='respV'>";
+                        html += "<input type='radio' name='option' value='V' id='V'/>";
                         html += "<div>";
-                        html += "<label for='A' class='w100'>";
-                        html += "<p class='option left'>A</p>";
-                        html += "<p class='teste' data-option='A'>"+result.result.data.alternativa_a+"</p>";
+                        html += "<label for='V' class='w100'>";
+                        html += "<p class='option left'>V</p>";
+                        html += "<p class='teste' data-option='V'>Verdadeiro</p>";
                         html += "</label>";
                         html += "</div>";
                         html += "</li>";
 
-                        html += "<li id='respB'>";
-                        html += "<input type='radio' name='option' value='B' id='B'/>";
+                        html += "<li id='respF'>";
+                        html += "<input type='radio' name='option' value='F' id='F'/>";
                         html += "<div>";
-                        html += "<label for='B' class='w100'>";
-                        html += "<p class='option left'>B</p>";
-                        html += "<p class='teste' data-option='B'>"+result.result.data.alternativa_b+"</p>";
-                        html += "</label>";
-                        html += "</div>";
-                        html += "</li>";
-
-                        html += "<li id='respC'>";
-                        html += "<input type='radio' name='option' value='C' id='C'/>";
-                        html += "<div>";
-                        html += "<label for='C' class='w100'>";
-                        html += "<p class='option left'>C</p>";
-                        html += "<p class='teste' data-option='C'>"+result.result.data.alternativa_c+"</p>";
-                        html += "</label>";
-                        html += "</div>";
-                        html += "</li>";
-
-                        html += "<li id='respD'>";
-                        html += "<input type='radio' name='option' value='D' id='D'/>";
-                        html += "<div>";
-                        html += "<label for='D' class='w100'>";
-                        html += "<p class='option left'>D</p>";
-                        html += "<p class='teste' data-option='D'>"+result.result.data.alternativa_d+"</p>";
+                        html += "<label for='F' class='w100'>";
+                        html += "<p class='option left'>F</p>";
+                        html += "<p class='teste' data-option='F'>Falso</p>";
                         html += "</label>";
                         html += "</div>";
                         html += "</li>";
 
                     $("#alternativas").html(html);
-                    
+
                     if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
                     else $(".subject").css('background-color', '#1ABC9C');
 
@@ -309,23 +233,99 @@ function findQuestion(differentQuestion)
                     multipla_escolha = result.result.data.multipla_escolha;
                     intervalos_video = result.result.intervalo;
 
-                    qtd_multipla++;
+                    qtd_vouf++;
 
-                    if (qtd_multipla == 3) qtd_vouf = 0;
+                    if (qtd_vouf == 4) {qtd_multipla = 0;};
 
-                    if (intervalos_video != null) {intervalos_video.splice(0,1);};
-                },
-                error: function(result){ console.info(result); }
-            });
-        }
+                    if (intervalos_video != null) {intervalos_video.splice(0,1);}
+                }
+                else
+                    naoEncontrou = true;
+            },
+            error: function(result){ console.info(result); }
+        });
     }
-    else
+
+    if(qtd_vouf >= 4 || naoEncontrou)
     {
-        hideUI();
-        var html = "Você não possui vidas suficientes para jogar, em instantes você poderá jogar novamente!";
-        $("#alternativas").html(html);
-        $(".subject > div").text("Suas vidas acabaram :(");
+        $.ajax({
+            type: "get",
+            url: rootUrl + "/Questoes/questao",
+            dataType: "json",
+            data : "id="+differentQuestion+"&tipo=2",
+            success: function(result) 
+            {
+                $(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
+
+                var html = "<li id='respA'>";
+                    html += "<input type='radio' name='option' value='A' id='A'/>";
+                    html += "<div>";
+                    html += "<label for='A' class='w100'>";
+                    html += "<p class='option left'>A</p>";
+                    html += "<p class='teste' data-option='A'>"+result.result.data.alternativa_a+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li id='respB'>";
+                    html += "<input type='radio' name='option' value='B' id='B'/>";
+                    html += "<div>";
+                    html += "<label for='B' class='w100'>";
+                    html += "<p class='option left'>B</p>";
+                    html += "<p class='teste' data-option='B'>"+result.result.data.alternativa_b+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li id='respC'>";
+                    html += "<input type='radio' name='option' value='C' id='C'/>";
+                    html += "<div>";
+                    html += "<label for='C' class='w100'>";
+                    html += "<p class='option left'>C</p>";
+                    html += "<p class='teste' data-option='C'>"+result.result.data.alternativa_c+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                    html += "<li id='respD'>";
+                    html += "<input type='radio' name='option' value='D' id='D'/>";
+                    html += "<div>";
+                    html += "<label for='D' class='w100'>";
+                    html += "<p class='option left'>D</p>";
+                    html += "<p class='teste' data-option='D'>"+result.result.data.alternativa_d+"</p>";
+                    html += "</label>";
+                    html += "</div>";
+                    html += "</li>";
+
+                $("#alternativas").html(html);
+                
+                if (!isUndefined(result.result.data.titulo)) $(".subject").text(result.result.data.titulo); 
+                else $(".subject").css('background-color', '#1ABC9C');
+
+                gabarito = result.result.data.gabarito;
+                comentario = result.result.data.comentario;
+                idQuestao = result.result.data.id;
+                video = result.result.data.video_embed;
+                multipla_escolha = result.result.data.multipla_escolha;
+                intervalos_video = result.result.intervalo;
+
+                qtd_multipla++;
+
+                if (qtd_multipla == 3) qtd_vouf = 0;
+
+                if (intervalos_video != null) {intervalos_video.splice(0,1);};
+            },
+            error: function(result){ console.info(result); }
+        });
     }
+    // }
+    // else
+    // {
+    //     hideUI();
+    //     var html = "Você não possui vidas suficientes para jogar, em instantes você poderá jogar novamente!";
+    //     $("#alternativas").html(html);
+    //     $(".subject > div").text("Suas vidas acabaram :(");
+    // }
 }
 
 function eliminarResposta()
