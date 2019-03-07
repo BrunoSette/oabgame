@@ -3,7 +3,7 @@ function validarEmail(email) {
   return re.test(email);
 }
 
-function validarNome(nome)m{
+function validarNome(nome) {
   var re = /^[a-zA-Z\s]*$/; 
   return re.test(nome);
 }

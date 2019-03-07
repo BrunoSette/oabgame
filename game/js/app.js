@@ -1,6 +1,6 @@
 // variaveis globais
-// var rootUrl = "https://www.provasdaoab.com.br/oabgame/game/app";
-// var clienteUrl = "https://www.provasdaoab.com.br/oabgame/game";
+var rootUrl = "https://www.provasdaoab.com.br/oabgame/game/app";
+var clienteUrl = "https://www.provasdaoab.com.br/oabgame/game";
 
 const RESPOSTA_CORRETA = 5;
 const PULAR_PERGUNTA = -10;
