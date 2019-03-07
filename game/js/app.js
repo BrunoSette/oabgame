@@ -35,7 +35,11 @@ var acertosSeguidos = 0;
 var modaisAbertos = 0;
 var qtd_multipla = 0, qtd_vouf = 0;
 
-function isUndefined(e) { if(e == undefined) return true else return false; }
+function isUndefined(e) { 
+    if(e == undefined) { return true; }
+    else { return false; }
+}
+
 function goPage(page) { location.href = clienteUrl + "/" + page; }
 
 var Modal = function()
