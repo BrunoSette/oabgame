@@ -31,7 +31,7 @@
 	   })();
 	</script>
 	<div id="fb-root"></div>
-<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
@@ -59,6 +59,6 @@
 		});
 	</script>
 
-<script type="text/javascript" src="https://app.hotmart.com/js/hotmart.js?campaign=1ee829a9-9581-43ed-8953-8526d2177242" id="hotmart-js"></script> -->
+<script type="text/javascript" src="https://app.hotmart.com/js/hotmart.js?campaign=1ee829a9-9581-43ed-8953-8526d2177242" id="hotmart-js"></script>
 </body>
 </html>

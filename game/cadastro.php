@@ -65,7 +65,7 @@
 	<script src="js/boots.js"></script>
 	<script src="js/respond.min.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
+	<script src="js/app.js"></script>
 	<script src="js/cadastro.js"></script>
 	<script type="text/javascript" src="https://app.hotmart.com/js/hotmart.js?campaign=1ee829a9-9581-43ed-8953-8526d2177242" id="hotmart-js"></script>
 
