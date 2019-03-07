@@ -28,7 +28,7 @@ $("#message").bind("click", function() {
 });
 
 $("#join").bind("click", function(){
-  var nome = $("form #nome").val();;
+  var nome = $("form #nome").val();
   var email = $("form #email").val();
   var senha = $("form #senha").val();
   var senha_confirm = $("form #senha_confirm").val();
