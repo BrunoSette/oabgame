@@ -292,8 +292,8 @@ class Usuario {
             $today = explode("/", date("Y/m/d"));
             $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas, concurso) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5, $usuario->concurso) ";
+            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
+            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5) ";
 
             $stmtUsuario = DB::query($sql);
 
