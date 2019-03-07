@@ -22,8 +22,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
 	<title>OABGame</title>
 	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="https://cdn.provasdaoab.com.br/aprovagame/css/glycon_boots.css" />
-	<link rel="stylesheet" href="https://cdn.provasdaoab.com.br/aprovagame/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://www.oabgame.com.br/game/css/glycon_boots.css" />
+	<link rel="stylesheet" href="https://www.oabgame.com.br/game/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 
@@ -34,7 +34,7 @@
 		<nav class="navbar navbar-inverse">
 	      	<div class="container">
 		        <div class="navbar-header">
-		        	<a class="navbar-brand" href="https://http://www.provasdaoab.com.br/aprovagame/"><img src="img/logo.png" class="logo" alt="logomarca"></a>
+		        	<a class="navbar-brand" href="https://www.oabgame.com.br/game/"><img src="img/logo.png" class="logo" alt="logomarca"></a>
 		        </div>    
 	       	</div>
 	      	</div>
