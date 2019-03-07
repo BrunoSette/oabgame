@@ -78,6 +78,8 @@ $("#join").bind("click", function(){
       erro = true;
     }
 
+    console.dir('test')
+
     if (!erro)
     {
       data = JSON.stringify({"nome": nome, 
@@ -89,14 +91,14 @@ $("#join").bind("click", function(){
 
       console.dir(rootUrl)
 
-      $.ajax({
-          type: "post",
-          url: rootUrl + "/Usuario/register",
-          dataType: "json",
-          data: data,
-          success: onSuccessCadastro,
-          error: onErrorCadastro
-      });
+      // $.ajax({
+      //     type: "post",
+      //     url: rootUrl + "/Usuario/register",
+      //     dataType: "json",
+      //     data: data,
+      //     success: onSuccessCadastro,
+      //     error: onErrorCadastro
+      // });
     }
   }
 });
