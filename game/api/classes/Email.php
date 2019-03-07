@@ -33,7 +33,7 @@
 										<br>
 										Equipe AprovaGame<br> 
 										<img style="width: 200px;" src="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" /><br />
-										<a href="https://www.aprovagame.com.br/" style="color:#fff;">www.aprovagame.com.br</a> <br>
+										<a href="https://http://www.provasdaoab.com.br/aprovagame/" style="color:#fff;">http://www.provasdaoab.com.br/aprovagame</a> <br>
 									</div>
 								</div>
 								<span style="padding:0px"></span>

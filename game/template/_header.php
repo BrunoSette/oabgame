@@ -6,7 +6,7 @@ session_start();
 <!doctype html>
 <html lang="pt">
 <head>
-	<meta property="og:url" content="https://www.aprovagame.com.br" />
+	<meta property="og:url" content="https://http://www.provasdaoab.com.br/aprovagame" />
   	<meta property="og:site_name" content="Aprova Game"/>
   	<meta property="og:title" content="Aprender nunca foi tão divertido" />
   	<meta property="og:image" content="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" />

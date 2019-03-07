@@ -54,7 +54,7 @@
 			
 			FB.ui({
 	  			method: 'send',
-	  			link: 'https://www.aprovagame.com.br',
+	  			link: 'https://http://www.provasdaoab.com.br/aprovagame',
 			});
 		});
 	</script>

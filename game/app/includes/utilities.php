@@ -58,7 +58,7 @@ function randomPassword()
     	<br>
     	Equipe AprovaGame<br> 
     	<img style="width: 200px;" src="http://www.provasdaoab.com.br/aprovagame/game/img/logo.png" /><br />
-    	<a href="http://www.aprovagame.com.br/" style="color:#fff;">www.aprovagame.com.br</a> <br>
+    	<a href="http://http://www.provasdaoab.com.br/aprovagame/" style="color:#fff;">http://www.provasdaoab.com.br/aprovagame</a> <br>
     	</div>
     	</div>
     	<span style="padding:0px"></span>

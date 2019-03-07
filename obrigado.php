@@ -52,7 +52,7 @@ window._fbq.push(['track', '6031376445080', {'value':'0.00','currency':'BRL'}]);
 		<nav class="navbar navbar-inverse">
 	      	<div class="container">
 		        <div class="navbar-header">
-		        	<a class="navbar-brand" href="http://www.aprovagame.com.br/"><img src="game/img/logo.png" class="logo" alt="logomarca"></a>
+		        	<a class="navbar-brand" href="http://http://www.provasdaoab.com.br/aprovagame/"><img src="game/img/logo.png" class="logo" alt="logomarca"></a>
 		        </div>    
 	       	</div>
 	      	</div>
