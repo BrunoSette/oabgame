@@ -801,7 +801,7 @@ class Usuario {
                             </div>
                             <div>
 
-                            <a href="www.provasdaoab.com.br/aprovagame/game" style="text-decoration:underline;font-weight:normal; color:#fff;" target="_blank">
+                            <a href="www.oabgame.com.br/game" style="text-decoration:underline;font-weight:normal; color:#fff;" target="_blank">
                             Clique aqui para acessar.</a> 
                             <br>                                                                         
                             <br/>

@@ -57,8 +57,8 @@
 																				Atenciosamente, <br>
 																				<br>
 																				Equipe AprovaGame<br> 
-																				<img style="width: 200px;" src="https://www.provasdaoab.com.br/aprovagame/game/img/logo.png" /><br />
-																				<a href="https://http://www.provasdaoab.com.br/aprovagame/" style="color:#fff;">http://www.provasdaoab.com.br/aprovagame</a> <br>
+																				<img style="width: 200px;" src="https://www.oabgame.com.br/game/img/logo.png" /><br />
+																				<a href="https://http://www.oabgame.com.br/game/" style="color:#fff;">http://www.oabgame.com.br/</a> <br>
 																		</div>
 																</div>
 																<span style="padding:0px"></span>
