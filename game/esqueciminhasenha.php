@@ -20,7 +20,7 @@
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" />
-	<title>AprovaGame</title>
+	<title>OABGame</title>
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="https://cdn.provasdaoab.com.br/aprovagame/css/glycon_boots.css" />
 	<link rel="stylesheet" href="https://cdn.provasdaoab.com.br/aprovagame/css/bootstrap.min.css" />
@@ -68,10 +68,10 @@
 	</section>
 	<footer class="geral-container">
 		<div class="container">
-			<div class="row">
+			<!-- <div class="row">
 				<div class="icon"><div class="left mr10"><i class="fui-location"></i></div> CS Tecnologia - Rua José Bonifácio, 205 sala 108 – Recife/PE</div>
 				<div class="icon"><div class="left mr10"><i class="fui-mail"></i></div> questoes@provasdaoab.com.br</div>
-			</div>
+			</div> -->
 		</div>
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -85,9 +85,9 @@
 	<div class="box-overlay"></div>
 	<footer class="geral-container game">
 	<div class="container">
-		<div class="row">
+		<!-- <div class="row">
 			&copy; 2014-2015 - Todos os direitos reservados.
-		</div>
+		</div> -->
 	</div>
 	</footer>
 

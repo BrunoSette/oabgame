@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['FBID'])){
 	if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http'){
-		 header("Location: https://www.provasdaoab.com.br/aprovagame/game/#_=_");
+		 header("Location: https://www.oabgame.com.br/game/#_=_");
 	}
 }
 

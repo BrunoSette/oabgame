@@ -45,8 +45,8 @@
 	<footer class="geral-container">
 		<div class="container">
 			<div class="row">
-				<div class="icon"><div class="left mr10"><i class="fui-location"></i></div> CS Tecnologia - Rua José Bonifácio, 205 sala 108 – Recife/PE</div>
-				<div class="icon"><div class="left mr10"><i class="fui-mail"></i></div> questoes@aprovagame.com.br</div>
+				<!-- <div class="icon"><div class="left mr10"><i class="fui-location"></i></div> CS Tecnologia - Rua José Bonifácio, 205 sala 108 – Recife/PE</div>
+				<div class="icon"><div class="left mr10"><i class="fui-mail"></i></div> questoes@aprovagame.com.br</div> -->
 			</div>
 		</div>
 	</footer>
