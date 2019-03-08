@@ -382,15 +382,13 @@ class Usuario {
 
         $i = $j = $k = 0;
         $myUser;
-        while($user = $stmt->fetch())
-        {
+        while($user = $stmt->fetch()) {
             $nomeCompleto = explode(" ", $user->nome);
             if(count($nomeCompleto) > 1){
                 $user->nome = $nomeCompleto[0] . " " . $nomeCompleto[1];
             }
             
             $user->posicao = $i + 1;
-
             $users[$i] = $user;
 
             if ($user->id == $_SESSION['FBID']) $myUser = $i;
@@ -398,29 +396,23 @@ class Usuario {
             $i++;
         }
 
-        if ($myUser == 0)
-        {
-            for ($j = $myUser; $j < 5; $j++)
-            { 
+        if ($myUser == 0) {
+            for ($j = $myUser; $j < 5; $j++) { 
                 $ret[$k] = $users[$j];
                 $k++;
             }
         }
-        else if($myUser == 1)
-        {
+        else if($myUser == 1) {
             $ret[$k] = $users[0];
             $k++;
 
-            for ($j= $myUser; $j < 5; $j++)
-            { 
+            for ($j= $myUser; $j < 5; $j++) { 
                 $ret[$k] = $users[$j];
                 $k++;
             }
         }
-        else
-        {
-            for ($j= $myUser - 2; $j <= $myUser + 2; $j++)
-            { 
+        else {
+            for ($j= $myUser - 2; $j <= $myUser + 2; $j++) { 
                 $ret[$k] = $users[$j];
                 $k++;
             }
@@ -467,10 +459,16 @@ class Usuario {
                 WHERE id = {$_SESSION["FBID"]} ";
         }
         else {
-            $sql = "UPDATE tb_usuario SET  nome = '$user->nome', localizacao = '$user->localizacao', aniversario = '$user->aniversario', email = '$user->email', lembretes = $user->notificacoes WHERE id = {$_SESSION["FBID"]} ";
+            $sql = "UPDATE tb_usuario SET 
+                    nome = '$user->nome',
+                    localizacao = '$user->localizacao',
+                    aniversario = '$user->aniversario',
+                    email = '$user->email',
+                    lembretes = $user->notificacoes
+                    WHERE id = {$_SESSION["FBID"]} ";
         }
 
-        DB::query($sql);
+        //DB::query($sql);
 
         return true;
     }
