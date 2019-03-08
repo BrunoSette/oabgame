@@ -10,10 +10,10 @@ function validarNome(nome) {
 
 function onSuccessCadastro(data) {
   if (data.result) {
-    $.cookie.json = true;
-    $.cookie('usuario', data.result, {expires: 1});
-    $("#message").text("Cadastro efetuado com sucesso! Em 5 segundos você será direcionado para a página de login.").css('display', 'block').addClass('alert alert-success');
-    
+    $("#message").text("Cadastro efetuado com sucesso! Em 5 segundos você será direcionado para a página de login.")
+                  .css('display', 'block')
+                  .addClass('alert alert-success');
+                  
     setTimeout(function () { window.location.href = "/game"; }, 5000);
   }
   else {
