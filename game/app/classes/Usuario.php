@@ -2,14 +2,14 @@
 
 class Usuario {
 
-    private function atualiza_acesso()
-    {
+    /*  Incrementa a quantidade de acessos do usuário e atualiza a 
+    data de ultimo acesso. */
+    private function atualiza_acesso() {
         $sql = "UPDATE tb_usuario SET qtd_acessos = qtd_acessos + 1 WHERE id = {$_SESSION["FBID"]} ";
         $stmtUsuario = DB::query($sql);
     }
 
-    public function get_premium()
-    {
+    public function get_premium() {
         $sql = "SELECT status_pagamento FROM tb_usuario WHERE email = :mail";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("mail", $_SESSION["EMAIL"]);
@@ -19,36 +19,27 @@ class Usuario {
         return $status->status_pagamento;
     }
 
-    public function post_perdeu_vida()
-    {
+    public function post_perdeu_vida() {
         $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas - 1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
         $stmtUsuario = DB::query($sql);
     }
 
-    public function get_lifes()
-    {
-        $sql = "SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
-        
-        $stmt = DB::prepare($sql);
+    public function get_lifes() {
+        $stmt = DB::prepare("SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}");
         $stmt->execute();
-
         $res = $stmt->fetch();
 
         return $res;
     }
 
-    public function get_profile()
-    {
-        $sql = "SELECT * FROM tb_usuario WHERE (email=:user_email)";
-        $stmt = DB::prepare($sql);
-
+    public function get_profile() {
+        $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:user_email)");
         $stmt->bindParam("user_email", $_SESSION["EMAIL"]);
         $stmt->execute();
 
         $user = $stmt->fetch();
 
-        $sql = "SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]} AND badge != '0'";
-        $stmt = DB::prepare($sql);
+        $stmt = DB::prepare("SELECT badge FROM tb_badges_usuario WHERE usuario = {$_SESSION["FBID"]} AND badge != '0'");
         $stmt->execute();
 
         $res = $stmt->fetchall();
@@ -57,9 +48,8 @@ class Usuario {
         $user->larger_foto_profile = null; 
         $user->data_cadastro = implode("/", array_reverse(explode("-", $user->data_cadastro)));   
 
-        // pega imagem maior do usuario
-        if ($user->face_id)
-        {
+        // Pega imagem maior do usuario
+        if ($user->face_id) {
             $link = "https://graph.facebook.com/" . $user->face_id . "/picture?redirect=0&height=200&type=normal&width=200";
             $curl = curl_init();
             curl_setopt_array($curl, array(
@@ -75,64 +65,39 @@ class Usuario {
         return $user;
     }
 
-    public function isPremium($email)
-    {
-        $sql = "SELECT status_pagamento FROM tb_usuario WHERE email=:mail";
-        $stmt = DB::prepare($sql);
-        $stmt->bindParam("mail", $email);
-        $stmt->execute();
-
-        $status = $stmt->fetch();
-        
-        return $status->status_pagamento;
-    }
-
     // Verifica se ha email passado por parametro cadastrado no banco de dados
-    public function get_face_profile($email, $aniversario, $localizacao, $foto, $genero)
-    {
+    public function get_face_profile($email, $aniversario, $localizacao, $foto, $genero) {
         $sql = "SELECT email, id, localizacao, foto_profile, aniversario, genero FROM tb_usuario WHERE (email=:user_email)";
         $stmt = DB::prepare($sql);
-
         $stmt->bindParam("user_email", $email);
         $stmt->execute();
-
         $user = $stmt->fetch();
 
-        if ($user)
-        {
-            $_SESSION['FBID'] = $user->id;
-            
-            if ($user->foto_profile == "" || $user->genero == "")
-            {
-                $parts = explode('/', $aniversario);
-                $aniversario  = "$parts[2]-$parts[0]-$parts[1]";
+        if (!$user) return false;
 
-                $sql = "UPDATE tb_usuario SET 
-                        aniversario = '$aniversario',
-                        foto_profile = '$foto',
-                        localizacao = '$localizacao',
-                        genero = '$genero',
-                        via_fb = 1
-                        WHERE email = '$email' ";
+        $_SESSION['FBID'] = $user->id;
+        if ($user->foto_profile == "" || $user->genero == "") {
+            $parts = explode('/', $aniversario);
+            $aniversario  = "$parts[2]-$parts[0]-$parts[1]";
 
-                $stmtUsuario = DB::query($sql);
-            }
+            $sql = "UPDATE tb_usuario SET 
+                    aniversario = '$aniversario',
+                    foto_profile = '$foto',
+                    localizacao = '$localizacao',
+                    genero = '$genero',
+                    via_fb = 1
+                    WHERE email = '$email' ";
 
-            // incrementa a quantidade de acessos do usuário e atualiza a data de ultimo acesso.
-            $this->atualiza_acesso();
-
-            return true;
+            $stmtUsuario = DB::query($sql);
         }
-        
-        return false;
+
+        $this->atualiza_acesso();
+
+        return true;
     }
 
-    // verifica se usuario existe
-    public function post_login($usuario)
-    {
-        
+    public function post_login($usuario) {
         $sql = "SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)";
-        //$sql = "SELECT * FROM tb_usuario WHERE (email = '".$usuario->email."' and senha='".md5($usuario->senha)."')";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
@@ -140,63 +105,44 @@ class Usuario {
 
         $db_usuario = $stmt->fetch();
 
-        if ($db_usuario)
-        {
-            $_SESSION['FBID'] = $db_usuario->id;
-            $_SESSION['FULLNAME'] = $db_usuario->nome;
-            $_SESSION['EMAIL'] = $db_usuario->email;
-            $_SESSION['MOEDAS'] = $db_usuario->pontuacao;
-            $_SESSION['PONTUACAO'] = $db_usuario->pontuacao_geral;
-            $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
+        if (!$db_usuario) return false;
+        
+        $_SESSION['FBID'] = $db_usuario->id;
+        $_SESSION['FULLNAME'] = $db_usuario->nome;
+        $_SESSION['EMAIL'] = $db_usuario->email;
+        $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
 
-            if ($db_usuario->status_pagamento)
-            {
-                $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
-            }
+        if ($db_usuario->status_pagamento)
+            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
 
-            // incrementa a quantidade de acessos do usuário e atualiza a data de ultimo acesso.
-            $this->atualiza_acesso();
+        $this->atualiza_acesso();
 
-            return $db_usuario;
-        }
-        else
-        {
-            return false;
-        }
+        return $db_usuario;
     }
 
-    public function post_recupera($data)
-    {
-        $sql = "SELECT * FROM tb_recupera_senha WHERE (code=:api_key)";
-        $stmt = DB::prepare($sql);
+    public function post_recupera($data) {
+        $stmt = DB::prepare("SELECT * FROM tb_recupera_senha WHERE (code=:api_key)");
         $stmt->bindParam("api_key", $data->api);
         $stmt->execute();
 
         $db_usuario = $stmt->fetch();
 
-        if ($db_usuario)
-        {
+        if ($db_usuario) {
             $sql = "UPDATE tb_usuario SET senha = '".md5($data->senha)."' WHERE id = $db_usuario->usuario ";
             $stmtUsuario = DB::query($sql);   
 
-            $resposta = array(
-                    "code" => 202,
-                    "message" => "Senha alterada com sucesso."
-                );
+            $resposta = array("code" => 202,
+                              "message" => "Senha alterada com sucesso.");
         }
-        else
-        {
-            $resposta = array(
-                    "code" => 404,
-                    "message" => "Código de acesso inválido."
-                );
+        else {
+            $resposta = array("code" => 404,
+                              "message" => "Código de acesso inválido.");
         }
 
         return $resposta;
     }
 
-    public function post_esqueci($data)
-    {
+    public function post_esqueci($data) {
         $sql = "SELECT id, nome FROM tb_usuario WHERE (email=:user_email)";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("user_email", $data->email);
@@ -204,8 +150,7 @@ class Usuario {
 
         $db_usuario = $stmt->fetch();
 
-        if ($db_usuario)
-        {
+        if ($db_usuario) {
             $code = (string)$db_usuario->id . substr((string)md5(time()), 0, 8);
 
             $sql = "INSERT INTO tb_recupera_senha (usuario, code) 
@@ -234,7 +179,6 @@ class Usuario {
 
                             <br>                                                                         
                             <br/>
-                
                         ';
 
             $transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
@@ -266,8 +210,7 @@ class Usuario {
                 );
 
         }
-        else
-        {
+        else {
             $resposta = array(
                     "code" => 404,
                     "message" => "E-mail informado não encontra-se cadastrado em nossa base de dados."
@@ -278,8 +221,7 @@ class Usuario {
     }
 
     // cadastra novo usuario via formulario
-    public function post_register($usuario)
-    {
+    public function post_register($usuario) {
         $sql = "SELECT id FROM tb_usuario WHERE (email=:login)";
         $stmt = DB::prepare($sql);
         $stmt->bindParam("login", $usuario->email);
@@ -287,39 +229,30 @@ class Usuario {
 
         $db_usuario = $stmt->fetch();
 
-        if(!$db_usuario)
-        {
-            $today = explode("/", date("Y/m/d"));
-            $newToday = "$today[0]-$today[1]-$today[2]";
+        if($db_usuario) return false;
 
-            $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
-            ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 5) ";
+        $today = explode("/", date("Y/m/d"));
+        $newToday = "$today[0]-$today[1]-$today[2]";
 
-            $stmtUsuario = DB::query($sql);
+        $sql = "INSERT INTO tb_usuario (nome, email, senha, pontuacao, pontuacao_geral, qtd_acessos, ultimo_acesso, via_fb, via_email, nivel, qtd_vidas) VALUES 
+        ('$usuario->nome', '$usuario->email', '" . md5($usuario->senha) . "', 100, 1500, 0, '$newToday', 0, 1, 1, 10) ";
 
-            $id = DB::lastInsertId();
+        $stmtUsuario = DB::query($sql);
 
-            $_SESSION['FBID'] = $id;
-            $_SESSION['FULLNAME'] = $usuario->nome;
-            $_SESSION['EMAIL'] = $usuario->email;
-            $_SESSION['MOEDAS'] = 100;
-            $_SESSION['PONTUACAO'] = 1500;
+        $id = DB::lastInsertId();
 
-            subscribeMailChimp($usuario->email, $usuario->nome);
+        $_SESSION['FBID'] = $id;
+        $_SESSION['FULLNAME'] = $usuario->nome;
+        $_SESSION['EMAIL'] = $usuario->email;
 
-            return $id;
-        }
-        else
-        {
-            return false;
-        }
+        subscribeMailChimp($usuario->email, $usuario->nome);
+
+        return $id;
     }
     
     // cadastra novo usuario via facebook login api
-    public function post_face_register($usuario)
-    {  
-        if (isset($usuario[3]) && $usuario[3] != " ")
-        {
+    public function post_face_register($usuario) {  
+        if (isset($usuario[3]) && $usuario[3] != " ") {
             $parts = explode('/', $usuario[4]);
             $date  = "$parts[2]-$parts[0]-$parts[1]";
 
@@ -339,37 +272,28 @@ class Usuario {
                         '$usuario[5]',
                         '$date',
                         '$usuario[7]',
-                        0,
+                        1,
                         '$newToday',
                         1,
                         0,
                         1,
-                        5
+                        10
                     ) ";
-
-            $params = array( "nome" => $usuario[2],
-                             "email" => $usuario[3],
-                             "localizacao" => $usuario[5]
-                           );
-
 
            $stmtUsuario = DB::query($sql);
            $id = DB::lastInsertId();
            $_SESSION['FBID'] = $id;
-           $_SESSION['MOEDAS'] = 100;
-           $_SESSION['PONTUACAO'] = 1500;
 
            subscribeMailChimp($usuario->email, $usuario->nome);
 
            return $id;
         }
-        else
-            return false;
+
+        return false;
     }
 
     // desloga usuario
-    public function get_logout()
-    {
+    public function get_logout() {
         $_SESSION["FBID"] = NULL;
         $_SESSION["USERNAME"] = NULL;
         unset($_SESSION['FBID']);
@@ -377,45 +301,35 @@ class Usuario {
     }
 
     // retorna moedas do usuario
-    public function get_pontuation($email)
-    {
-        $sql = "SELECT pontuacao FROM tb_usuario WHERE email=:mail";
-        $stmt = DB::prepare($sql);
+    public function get_pontuation($email) {
+        $stmt = DB::prepare("SELECT pontuacao FROM tb_usuario WHERE email=:mail");
         $stmt->bindParam("mail", $email);
         $stmt->execute();
 
         $pontuacao = $stmt->fetch();
-        
         return $pontuacao->pontuacao;
     }
 
-    // retorna pontucao do usuario
-    public function get_pontuation_geral($email)
-    {
-        $sql = "SELECT pontuacao_geral FROM tb_usuario WHERE email=:mail";
-        $stmt = DB::prepare($sql);
+    // Retorna pontucao do usuario
+    public function get_pontuation_geral($email) {
+        $stmt = DB::prepare("SELECT pontuacao_geral FROM tb_usuario WHERE email=:mail");
         $stmt->bindParam("mail", $email);
         $stmt->execute();
 
         $pontuacao = $stmt->fetch();
-        
         return $pontuacao->pontuacao_geral;
     }
 
-    // incrementa moedas do usuario
-    public function post_pontuation($pontuation)
-    {
+    // Incrementa moedas do usuario
+    public function post_pontuation($pontuation) {
         $sql = "UPDATE tb_usuario SET pontuacao = pontuacao + ({$pontuation->pontuation}) WHERE email = '".$_SESSION["EMAIL"]."'";
-        $_SESSION['MOEDAS'] += $pontuation->pontuation;
         $stmtUsuario = DB::query($sql);
         return true;
     }
 
-    // incrementa pontuacao do usuario
-    public function post_pontuation_geral($pontuation)
-    {
+    // Incrementa pontuacao do usuario
+    public function post_pontuation_geral($pontuation) {
         $sql = "UPDATE tb_usuario SET pontuacao_geral = pontuacao_geral + 100 WHERE email = '".$_SESSION["EMAIL"]."'";
-        $_SESSION['PONTUACAO'] += 100;
         $stmtUsuario = DB::query($sql);
         return true;
     }
@@ -425,8 +339,7 @@ class Usuario {
     * @return bool
     * @date 28/12
     */
-    public function post_do_question($params)
-    {
+    public function post_do_question($params) {
         $usuario = $_SESSION['FBID'];
 
         $today = explode("/", date("Y/m/d"));
@@ -459,8 +372,7 @@ class Usuario {
     * @return array
     * @date 31/12
     */
-    public function get_ranking()
-    {
+    public function get_ranking() {
         $sql = "SELECT id, nome, foto_profile, pontuacao_geral AS pontuacao FROM tb_usuario ORDER BY pontuacao DESC";
         $stmt = DB::prepare($sql);
         $stmt->execute();
@@ -517,53 +429,21 @@ class Usuario {
         return $ret;
     }
 
-    public function post_store_friendlist($data)
-    {
-        $today = explode("/", date("Y/m/d"));
-        $newToday = "$today[0]-$today[1]-$today[2]";
-
-        foreach ($data as $value)
-        {
-            $picture = "https://graph.facebook.com/" . $value["id"] . "/picture";
-
-            $sql = "INSERT INTO tb_amigos (usuario, amigo, foto_amigo, nome_amigo, via, data_amizade) 
-                    VALUES 
-                    (
-                        {$_SESSION['FBID']}, 
-                        {$value["id"]}, 
-                        '$picture', 
-                        '".$value["name"]."',
-                        1,
-                        '$newToday'
-                    ) ";
-
-            $stmtUsuario = DB::query($sql);
-        }
-
-        return true;
-    }
-
-    // retorna nivel do usuario
-    public function get_nivel()
-    {
-        $sql = "SELECT nivel FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
-        $stmt = DB::prepare($sql);
+    // Retorna nivel do usuario.
+    public function get_nivel() {
+        $stmt = DB::prepare("SELECT nivel FROM tb_usuario WHERE id = {$_SESSION["FBID"]}");
         $stmt->execute();
 
         $res = $stmt->fetch();
-        
         return $res->nivel;
     }
 
-    public function post_update_nivel($nivel)
-    {
-        $sql = "UPDATE tb_usuario SET nivel = $nivel->novo WHERE email = '".$_SESSION["EMAIL"]."'";
-        $stmtUsuario = DB::query($sql);
+    public function post_update_nivel($nivel) {
+        DB::query("UPDATE tb_usuario SET nivel = $nivel->novo WHERE email = '".$_SESSION["EMAIL"]."'");
         return true;
     }
 
-    public function get_acertos()
-    {
+    public function get_acertos() {
         $sql = "SELECT COUNT(id) AS acertos FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]} AND acertou = 1 ";
         $stmt = DB::prepare($sql);
         $stmt->execute();
@@ -573,255 +453,8 @@ class Usuario {
         return $res->acertos;
     }
 
-    public function get_materia_grafico()
-    {
-        $sql = "SELECT 
-        tb_questao_usuario.usuario, tb_questao_usuario.questao, tb_questao_usuario.acertou, tb_questoes_multiplaescolha.id, 
-        tb_questoes_multiplaescolha.materia, tb_disciplinas.id 
-        FROM tb_questao_usuario, tb_questoes_multiplaescolha, tb_disciplinas  WHERE 
-        usuario = {$_SESSION["FBID"]}
-        AND tb_questao_usuario.questao = tb_questoes_multiplaescolha.id 
-        AND tb_disciplinas.titulo  = tb_questoes_multiplaescolha.materia";
-        
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $sql = "SELECT * FROM tb_disciplinas";
-        $stmtDisciplinas = DB::prepare($sql);
-        $stmtDisciplinas->execute();
-        $ret = array();
-        while($res = $stmtDisciplinas->fetch())
-        {
-            $res->acertos = 0;
-            $res->respostas = 0;
-            $ret[] = $res;
-        }
-
-        while($res = $stmt->fetch())
-        {
-            if (intval($res->acertou) != 0){
-                if(isset($ret[intval($res->id)])){
-                    $ret[intval($res->id)]->acertos++;
-                }
-            }
-
-            if(isset($ret[intval($res->id)])){
-                $ret[intval($res->id)]->respostas++;
-            }
-        }
-        
-        return $ret;
-    }
-
-    public function get_materias()
-    {
-        $filtro = $_GET['filtro'];
-        $sql = "SELECT * FROM tb_disciplinas";
-        $stmtDisciplinas = DB::prepare($sql);
-        $stmtDisciplinas->execute();
-        $res = $stmtDisciplinas->fetchall();
-
-        if($filtro == true){
-            $escolhidas = @explode(',',$_SESSION['disciplinas']);
-            foreach ($res as $key => $value) {
-                 $value->escolhida = in_array($value->id,$escolhidas);
-             } 
-        }
-        return $res;
-    }
-
-    public function post_escolher_disciplinas()
-    {   
-        $_SESSION['disciplinas'] = null;
-        $_SESSION['disciplinas'] = implode(",", $_POST['disciplina']);
-        return true;
-    }
-
-    public function get_questoes_grafico()
-    {
-        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
-        
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $mesAtual = date('m');
-        $diaAtual = date('d');
-
-        $ret = array();
-
-        for ($i = 1; $i <= $diaAtual; $i++) $ret[$i] = 0;
-
-        while($res = $stmt->fetch())
-        {
-            $data = explode("-", $res->data);
-            if (intval($data[1]) == intval($mesAtual))
-                $ret[intval($data[2])]++;
-        }
-
-        return $ret;
-    }
-
-    public function get_taxa_acertos_mes()
-    {
-        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
-        
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $mesAtual = date('m');
-        $diaAtual = date('d');
-
-        $resAcertos = array();
-        $resTotal = array();
-        $resHit = array();
-
-        for ($i = 1; $i <= $diaAtual; $i++) {
-            $resAcertos[$i] = 0; 
-            $resTotal[$i] = 0; 
-            $resHit[$i] = 0; 
-        }
-
-        while($res = $stmt->fetch()) {
-            $data = explode("-", $res->data);
-            if (intval($data[1]) == intval($mesAtual)) {
-                $resTotal[intval($data[2])]++;
-
-                if ($res->acertou)
-                    $resAcertos[intval($data[2])]++;
-            }
-        }
-
-        $ret = array();
-
-        for ($i = 1; $i <= $diaAtual; $i++) {
-            if ($resTotal[$i] != 0) {
-                $resHit[$i] = ceil(100 * $resAcertos[$i]/$resTotal[$i]);
-            }
-            else {
-                $resHit[$i] = 0;
-            }
-        }
-
-        return $resHit;
-    }
-
-    public function get_taxa_acertos()
-    {
-        $sql = "SELECT data, acertou FROM tb_questao_usuario WHERE usuario = {$_SESSION["FBID"]}";
-        
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $resAcertos = 0;
-        $resTotal = 0;
-
-        while($res = $stmt->fetch()) {
-            $resTotal++;
-
-            if ($res->acertou)
-                $resAcertos++;
-        }
-
-        $resHit = ceil(100*$resAcertos/$resTotal);
-
-        return $resHit;
-    }
-
-    public function post_update($user)
-    {
-
-        if($user->notificacoes)
-            $user->notificacoes = 1;
-        else
-            $user->notificacoes = 0;
-
-        if ($user->convidado != "") {   
-            $sql = "SELECT * FROM tb_usuario WHERE email = '$user->convidado'";
-            $stmt = DB::prepare($sql);
-            $stmt->execute();
-            $user_c = $stmt->fetch();
-
-            if (!$user_c) {
-                $senha = randomPassword();
-                $emailArray = explode("@", $user->convidado);
-                $nome = $emailArray[0];
-
-                $today = explode("/", date("Y/m/d"));
-                $newToday = "$today[0]-$today[1]-$today[2]";
-
-                $Mensagem = '
-                            <br/>
-                            Parabéns!<br />
-                            <strong>Você foi convidado por '.$user->nome.' para ter acesso gratuito a nossa plataforma!!. Segue abaixo seus dados para acesso:</strong>.  <br>
-                            <br>
-                            <br>
-                            <div>
-                            E-mail: '.$user->convidado.' <br />
-                            Senha: '.$senha.' <br />  
-                            </div>
-                            <br />
-                            <br />
-                            <div>
-                            Acesse agora a nossa plataforma e bons estudos!
-                            </div>
-                            <div>
-
-                            <a href="www.oabgame.com.br/game" style="text-decoration:underline;font-weight:normal; color:#fff;" target="_blank">
-                            Clique aqui para acessar.</a> 
-                            <br>                                                                         
-                            <br/>
-                
-                        ';
-
-                    $sql = "INSERT INTO tb_usuario (face_id, nome, email, senha, pontuacao, pontuacao_geral, foto_profile, localizacao, aniversario, genero, qtd_acessos, ultimo_acesso, data_cadastro, via_fb, via_email, nivel, status_pagamento, convite) 
-                            VALUES 
-                            (
-                               0,
-                                '$nome', 
-                                '$user->convidado', 
-                                '" . md5($senha) . "', 
-                                100,
-                                1500,
-                                '',
-                                '',
-                                '',
-                                '',
-                                0,
-                                '$newToday',
-                                '$newToday',
-                                0,
-                                1,
-                                1,
-                                1,
-                                0
-                            ) ";
-
-                    $stmtUsuario = DB::query($sql);
-
-                    $transport = Swift_SmtpTransport::newInstance('smtp.mandrillapp.com', 587);
-                    $transport->setUsername('BrunoSette');
-                    $transport->setPassword('_J7RRVN_BJqYWq1rxuaa7g');
-                    $swift     = Swift_Mailer::newInstance($transport);
-
-                    // Cabeçalho
-                    $subject   = "AprovaGame";
-                    $from      = array('questoes@provasdaoab.com.br'  => 'AprovaGame' );
-                    $to        = array( $user->convidado => $nome); 
-
-                    $html = CorpoEmail("AprovaGame", $nome, $Mensagem);
-
-                    $message = Swift_Message::newInstance();
-                    $headers = $message->getHeaders();
-                    $headers->addTextHeader('Subject', 'Um convite para você!');
-                    $headers->addTextHeader('X-MC-Track', 'opens, clicks_htmlonly');
-                    $headers->addTextHeader('X-MC-GoogleAnalytics', 'provasdaoab.com.br');
-
-                    $message->setFrom($from);
-                    $message->setBody($html, 'text/html');
-                    $message->setTo($to);
-                    $recipients = $swift->send($message, $failures);
-            }
-        }
+    public function post_update($user) {
+        $user->notificacoes = $user->notificacoes ? 1 : 0;
 
         if ($user->nova_senha != "") {
             $sql = "UPDATE tb_usuario SET 

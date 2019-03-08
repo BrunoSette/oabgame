@@ -79,16 +79,13 @@ var Modal = function() {
     }
 }
 
-function verificarPrimeiroAcesso()
-{
+function verificarPrimeiroAcesso() {
 	$.ajax({
         type: "get",
         url: rootUrl + "/Anuncios/dia_acesso",
         dataType: "json",
-        success: function(result)
-        { 
-        	if (result.result)
-        	{        		
+        success: function(result) { 
+        	if (result.result) {        		
                 var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
                 snd.play();
 
@@ -96,21 +93,19 @@ function verificarPrimeiroAcesso()
                 html += "<br />";
                 html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
 
-    var myModal = new Modal();
-    myModal.setCor("#f5d313");
-    myModal.setTitulo("Você recebeu E$ 10!");
-    myModal.setTexto(html);
-    myModal.showModal('F');
+                var myModal = new Modal();
+                myModal.setCor("#f5d313");
+                myModal.setTitulo("Você recebeu E$ 10!");
+                myModal.setTexto(html);
+                myModal.showModal('F');
 
-    updateMoedas(PRIMEIRO_ACESSO);
-}
-},
-error: function(result){ console.info(result); }
-});
+                updateMoedas(PRIMEIRO_ACESSO);
+            }
+        }, error: function(result){ console.info(result); }
+    });
 }
 
-function closeModal(selected)
-{   
+function closeModal(selected) {   
     $(selected).remove();
 
     if (modaisAbertos - 1 == 0)
@@ -277,4 +272,3 @@ $(document).ready(function() {
         closeModal(selected);
     });
 });
-
