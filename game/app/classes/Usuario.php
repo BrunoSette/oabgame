@@ -97,14 +97,15 @@ class Usuario {
     }
 
     public function post_login($usuario) {
-        $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
-        $stmt->bindParam("login", $usuario->email);
-        $stmt->bindParam("senha", md5($usuario->senha));
-        $stmt->execute();
+        var_dump($usuario);
+        
+        
+        // $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
+        // $stmt->bindParam("login", $usuario->email);
+        // $stmt->bindParam("senha", md5($usuario->senha));
+        // $stmt->execute();
 
-        $db_usuario = $stmt->fetch();
-
-        var_dump($db_usuario);
+        // $db_usuario = $stmt->fetch();
 
         // if (!$db_usuario)
         //     return false;
