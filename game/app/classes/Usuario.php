@@ -102,7 +102,6 @@ class Usuario {
         $stmt->execute();
 
         $db_usuario = $stmt->fetch();
-
         if (!$db_usuario)
             return false;
         
