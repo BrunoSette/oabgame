@@ -1,3 +1,10 @@
+var gabarito;
+var comentario;
+var idQuestao;
+var multipla_escolha;
+var qtd_multipla = 0, qtd_vouf = 0;
+var acertosSeguidos = 0;
+
 function getMoedas() { return parseInt($("#userCash").html()); }
 function getPontuacao() { return parseInt($("#userScore").html()); }
 function getVidas() { return parseInt($("#userLifes").html()); }

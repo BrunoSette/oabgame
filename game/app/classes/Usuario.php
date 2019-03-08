@@ -102,21 +102,20 @@ class Usuario {
         $stmt->execute();
 
         $db_usuario = $stmt->fetch();
+        
+        if (!$db_usuario)
+            return false;
+        
+        $_SESSION['FBID'] = $db_usuario->id;
+        $_SESSION['FULLNAME'] = $db_usuario->nome;
+        $_SESSION['EMAIL'] = $db_usuario->email;
+        $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
+
+        if ($db_usuario->status_pagamento)
+            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+
+        var_dump($_SESSION);
         var_dump($db_usuario);
-        
-        // if (!$db_usuario)
-        //     return false;
-        
-        // $_SESSION['FBID'] = $db_usuario->id;
-        // $_SESSION['FULLNAME'] = $db_usuario->nome;
-        // $_SESSION['EMAIL'] = $db_usuario->email;
-        // $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
-
-        // if ($db_usuario->status_pagamento)
-        //     $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
-
-        // var_dump($_SESSION);
-        // var_dump($db_usuario);
 
         // $this->atualiza_acesso();
 

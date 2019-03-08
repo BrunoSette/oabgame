@@ -25,14 +25,8 @@ badgesEnum = {
     JOGOU_15X : 13
 };
 
-var gabarito;
-var comentario;
-var idQuestao;
-var multipla_escolha;
 var openedModal = false;
-var acertosSeguidos = 0;
 var modaisAbertos = 0;
-var qtd_multipla = 0, qtd_vouf = 0;
 
 function isUndefined(e) { return e == undefined ? true : false; }
 function goPage(page) { location.href = clienteUrl + "/" + page; }
@@ -263,8 +257,7 @@ $(document).ready(function() {
         var tipo = $(this).attr("data-tipo");
         var selected = $(this).parent("p").parent(".box-content").parent(".box-modal");
 
-        if(tipo == "prox")
-        {
+        if(tipo == "prox"){
             $("input[name='option']").attr('checked', false);
             findQuestion();
         }

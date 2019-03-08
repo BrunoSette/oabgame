@@ -1,10 +1,5 @@
-function onSuccessLogin(data)
-{
-  console.info(data);
+function onSuccessLogin(data) {
   if (data.result) {
-    $.cookie.json = true;
-    $.cookie('usuario', data.result, {expires: 1});
-
     goPage("sistema");
   }
   else {
@@ -19,13 +14,11 @@ $("form").on("submit", function() {
   var senha = $("form #senha").val();
 
   if(email != "" && senha != "") {
-    data = JSON.stringify({"email": email, "senha": senha});
-
     $.ajax({
         type: "post",
         url: rootUrl + "/Usuario/login",
         dataType: "json",
-        data: data,
+        data: JSON.stringify({"email": email, "senha": senha}),
         success: onSuccessLogin,
         error: onErrorLogin
     });

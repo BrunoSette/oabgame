@@ -4,9 +4,7 @@
 		<div class="container">
 			<div class="row">
 			<div class="col-md-4 col-md-offset col-xs-offset-1 col-sm-offset-1">
-				<figure>
-					<img src="img/logo.png" alt="Logomarca OABgame" />
-				</figure>
+				<figure> <img src="img/logo.png" alt="Logomarca OABgame" /> </figure>
 			</div>
 			<div class="col-md-5 col-sm-offset">
 			<div class="box-login">
@@ -40,8 +38,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
-	<script src="js/respond.min.js"></script>
-	<script src="js/jquery.cookie.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/login.js"></script>
 </body>
