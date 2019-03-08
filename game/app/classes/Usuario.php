@@ -98,8 +98,8 @@ class Usuario {
 
     public function post_login($usuario) {
         var_dump($usuario);
-        
-        
+
+
         // $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
         // $stmt->bindParam("login", $usuario->email);
         // $stmt->bindParam("senha", md5($usuario->senha));
@@ -121,6 +121,8 @@ class Usuario {
         // $this->atualiza_acesso();
 
         // return $db_usuario;
+
+        return true;
     }
 
     public function post_recupera($data) {
