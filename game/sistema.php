@@ -28,15 +28,11 @@
 				</div>
 			</header>
 			<article>
-				<p class="question"> </p>
-				
+				<p class="question"> </p>				
 				<form action="javascript:void(0);">
-				
 					<ul id="alternativas"> </ul>
-				
 					<div class="row" id="show-milhao">
 						<div class="options-help col-md-offset-3">
-							
 							<div id="eliminar-resposta" class="btn btn-lg btn-primary col-xs-5 col-sm-4">
 								<i class="fa fa-bomb"></i>Excluir 1 Alternativa
 								<p class="valor">
@@ -65,9 +61,6 @@
 			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br />
 			
 			<div class="fb-like-box" data-href="https://www.facebook.com/aprovagame" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="false"></div><br />
-			
-			<!-- Lateral Aprova Game -->
-			<?php if(!$_SESSION["PREMIUM"]) include("template/_ads.php"); ?>
 		</div>
 		</div><!-- end/row -->
 		</div><!-- end/container -->
