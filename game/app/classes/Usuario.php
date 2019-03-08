@@ -470,7 +470,9 @@ class Usuario {
 
         //DB::query($sql);
 
-        return $sql;
+        echo ($sql);
+
+        return true;
     }
 }
 
