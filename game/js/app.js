@@ -66,28 +66,18 @@ var Modal = function()
 
         $(ret).children('.box-content').children('div').children('p').html(this.texto);
 
-        if (vTipo == 'F' || vTipo == 'f')
-        {
+        if (vTipo == 'F' || vTipo == 'f') {
             $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "fechar");
             $(ret).children('.box-content').children('p').children('.modal-action').text("Fechar");
         }
-        else if(vTipo == 'P' || vTipo == 'p')
-        {
-
-            player = new YT.Player('ytplayer', {
-               events: {
-                   'onStateChange': intervalo
-               }
-           });
-            $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
-            $(ret).children('.box-content').children('p').children('.modal-action').text("Próxima pergunta");
-        }
-        else if(vTipo == 'C' || vTipo == 'c')
-        {
+        else if(vTipo == 'C' || vTipo == 'c') {
             $(".box-overlay").css("background", 'rgba(0,0,0,0.96)');
 
             var html = "<a href='https://www.provasdaoab.com.br/aprovagame/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
             $(ret).children('.box-content').children('p').html(html);
+        }
+        else {
+            console.dir("Invalido")
         }
     }
 }
