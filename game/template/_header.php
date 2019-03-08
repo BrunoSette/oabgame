@@ -90,7 +90,7 @@
 		
         <!-- foto do aluno -->
 		<div class="navbar-right" id="user-box" style="color: #fff; margin-top: 10px; background-color: #3A546E; padding: 5px; cursor: pointer;">
-        	<img src="" alt="" id="userImage" style="vertical-align: middle" />
+        	<img src="" alt="" id="userImage" style="vertical-align: middle; height: auto; width: auto; max-height: 55px; max-width: 250px;" />
 			<div style="display: inline-block;">
 				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
