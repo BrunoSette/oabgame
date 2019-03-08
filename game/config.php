@@ -30,13 +30,13 @@
 				  </div>
 				<br class="clear" />
 				
-				<div class="form-group col-sm-5">
 				<h4>Acesso</h4>
+<!-- 				<div class="form-group col-sm-5">
 				    <label for="email" class="control-label">Email</label>
 				    <div class="">
 				      <input type="email" class="form-control" id="email" placeholder="Email">
 				    </div>
-				  </div> 
+				  </div>  -->
 				  <div class="form-group col-sm-5" style="float:none">
 				    <label for="nova-senha" class="control-label">Nova senha</label>
 				    <div class="">
