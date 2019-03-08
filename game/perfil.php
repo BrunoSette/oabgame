@@ -14,7 +14,7 @@
 		</div>
 		<div class="friends-box col-md-4">
 			<header>
-				<h3><i class="fa fa-trophy"></i> Ranking Geral</h3>
+				<h3><i class="fa fa-trophy"></i> Ranking</h3>
 			</header>
 			<article>
 			</article>
@@ -25,17 +25,15 @@
 	<div class="box-overlay"></div>
 
 	<footer class="geral-container game">
-	<div class="container">
-		<div class="row">
-			&copy; 2019 - Todos os direitos reservados.
+		<div class="container">
+			<div class="row"> &copy; 2019 - Todos os direitos reservados. </div>
 		</div>
-	</div>
 	</footer>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
 	<script src="js/flat-ui-pro.min.js"></script>
-	<script src="js/respond.min.js"></script>>
+	<script src="js/respond.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/perfil.js"></script>
 	<script src="js/usuario.js"></script>
