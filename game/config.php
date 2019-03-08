@@ -28,14 +28,6 @@
 				      <input type="date" class="form-control" id="aniversario" placeholder="aniversario">
 				    </div>
 				  </div>
-				  <div class="form-group col-sm-5" style="float:none">
-				    <label for="nome">Interesse: </label>
-							    <select name="concurso" id="concurso">
-							    	<option value="1">Concurso Nível Médio</option>
-							    	<option value="2">Concurso Nível Superior</option>
-							    	<option value="3">Exame da Ordem</option>
-							    </select>
-				  </div>
 				<br class="clear" />
 				
 				<div class="form-group col-sm-5">
