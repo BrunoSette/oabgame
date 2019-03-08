@@ -2,31 +2,27 @@
 
 class Badges {
 
-    public function post_concede_badge($params)
-    {
+    public function post_concede_badge($params) {
         $usuario = $_SESSION['FBID'];
-
-        $sql = "SELECT * FROM `tb_badges_usuario` WHERE `badge` = $params->badge AND `usuario` = $usuario ";
-        $stmt = DB::prepare($sql);
+        
+        $stmt = DB::prepare("SELECT * FROM `tb_badges_usuario` WHERE `badge` = $params->badge AND `usuario` = $usuario ");
         $stmt->execute();
-
         $res = $stmt->fetch();
 
-        if (!$res)
-        {
-            $sql = "INSERT INTO tb_badges_usuario (usuario, badge) 
-                VALUES 
-                (
-                    " . $usuario . ", 
-                    " . $params->badge . "
-                ) ";
+        // Usuário já possui o badge. return.
+        if ($res) return false;
 
-            $stmtUsuario = DB::query($sql);
+        // Usuario não possui o badge. Atribua badge a ele.
+        $sql = "INSERT INTO tb_badges_usuario (usuario, badge) 
+            VALUES 
+            (
+                " . $usuario . ", 
+                " . $params->badge . "
+            ) ";
 
-            return true;
-        }
+        $stmtUsuario = DB::query($sql);
 
-        return false;
+        return true;
     }
 
     public function post_badge($param)

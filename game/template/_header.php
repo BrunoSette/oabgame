@@ -98,9 +98,6 @@
 			<div style="display: inline-block;">
 				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
-			<?php if($_SESSION["PREMIUM"]) { ?>
-	        	<img src='img/usuario_premium.png' alt='' class='left mr10' style='width: 50px' />
-        	<?php } ?>
 		</div><!-- /foto do aluno -->
 		
 			<div class= "tooltip-sys" style="top: 70px;">

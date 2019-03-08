@@ -89,7 +89,8 @@ function badges_vezes_jogadas() {
 }
 
 function badge_acertos_seguidos() {
-	var img, data;
+	var img;
+    var data;
 	var concedeBadge = false;
 
 	if (acertosSeguidos == 3) {
@@ -113,27 +114,26 @@ function badge_acertos_seguidos() {
         concedeBadge = true;
 	}
 
-	if (concedeBadge) {
-        $.ajax({
-            type: "post",
-            url: rootUrl + "/Badges/concede_badge",
-            data: JSON.stringify(data),
-            dataType: "json",
-            success: function(e) {
-            	if(e.result == true) {
-            		var myModal = new Modal();
-                        myModal.setTitulo("Parabéns, você recebeu um badge!");
-                        myModal.setTexto(img);
-                        myModal.showModal('F');
-            	}
-            }, 
-            error: function(e) {console.info(e);}
-    	});
+    if (!concedeBadge)
+        return false;
 
-		return true;
-	}
+    $.ajax({
+        type: "post",
+        url: rootUrl + "/Badges/concede_badge",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function(e) {
+        	if(e.result == true) {
+        		var myModal = new Modal();
+                    myModal.setTitulo("Parabéns, você recebeu um badge!");
+                    myModal.setTexto(img);
+                    myModal.showModal('F');
+        	}
+        }, 
+        error: function(e) { console.info(e); }
+	});
 
-	return false;
+	return true;
 }
 
 function badge_acertos() {
@@ -200,6 +200,8 @@ function atualizaPerfil() {
         dataType: "json",
         success: function(e) {	
         	var imgHtml;
+
+            console.dir(e.result);
 
             $(".tooltip-sys .txt-profile .nivel").text("Nível " + e.result.nivel);
            
@@ -276,10 +278,8 @@ function obtemRanking() {
     });
 }
 
-$(document).ready(function()
-{
+$(document).ready(function() {
 	badges_vezes_jogadas();
-	// verificaPontuacao();
 	atualizaPerfil();
     obtemRanking();
 });
