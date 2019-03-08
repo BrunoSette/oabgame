@@ -228,7 +228,7 @@ function atualizaPerfil() {
         $(".tooltip-sys .txt-profile .nivel").text("Nível " + e.result.nivel);
         var genero = (e.result.genero == "female") ? "female" : "male";
         var img_url = GeneroNivelImageURL[genero][e.result.nivel - 1];
-        $(".tooltip-sys  .image-profile").html("<img src='" + img_url + "' alt=''/>";);
+        $(".tooltip-sys  .image-profile").html("<img src='" + img_url + "' alt=''/>");
 
         // Preenche imagem do usuário.
         var user_image = e.result.foto_profile ? e.result.foto_profile : img_url;
