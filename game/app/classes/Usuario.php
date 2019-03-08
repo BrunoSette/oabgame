@@ -95,6 +95,12 @@ class Usuario {
         return true;
     }
 
+    /*
+    * Realiza a autenticação do usuário através do formulário. Caso autenticado, 
+    * retorna o perfil do usuário, caso contrário retorna false.
+    * @return object
+    * @date 08/03
+    */
     public function post_login($usuario) {
         $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
         $stmt->bindParam("login", $usuario->email);
@@ -116,11 +122,7 @@ class Usuario {
 
         $this->atualiza_acesso();
 
-        var_dump($_SESSION);
-
-        // return $db_usuario;
-
-        return true;
+        return $db_usuario;
     }
 
     public function post_recupera($data) {
