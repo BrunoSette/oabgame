@@ -331,6 +331,7 @@ $(document).ready(function() {
     setVidas(getUserLifes());
 
     verificarPrimeiroAcesso();
+    
     rankingAmigos();
 
 	findQuestion();
