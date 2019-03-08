@@ -115,8 +115,8 @@ class Usuario {
         // if ($db_usuario->status_pagamento)
         //     $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
 
-        var_dump($_SESSION);
-        var_dump($db_usuario);
+        // var_dump($_SESSION);
+        // var_dump($db_usuario);
 
         // $this->atualiza_acesso();
 
