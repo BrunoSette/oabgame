@@ -1,10 +1,10 @@
 function onSuccessLogin(data) {
   if (data.result) {
     goPage("sistema");
-    // ToDO: salvar informações retornadas localmente.
   }
   else {
-    $("#message").addClass("login-error").text("Usuário e/ou senha incorretos").css('display', 'block');;
+    $("#message").addClass("login-error")
+                 .text("Usuário e/ou senha incorretos").css('display', 'block');;
   }
 }
 

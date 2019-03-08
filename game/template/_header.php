@@ -88,13 +88,9 @@
           
         </div>
 		
-        	<!-- foto do aluno -->
+        <!-- foto do aluno -->
 		<div class="navbar-right" id="user-box" style="color: #fff; margin-top: 10px; background-color: #3A546E; padding: 5px; cursor: pointer;">
-			<?php if (isset($_SESSION["PICTURE"]) && $_SESSION["PICTURE"]) { ?>
-                <img src="<?php echo $_SESSION["PICTURE"]; ?> " alt="" style="vertical-align: middle">
-        	<?php } else { ?>
-        		<img src="img/sem-foto.png" alt="" style="vertical-align: middle" />
-			<?php } ?>
+        	<img src="" alt="" id="userImage" style="vertical-align: middle" />
 			<div style="display: inline-block;">
 				Eu <i class="fui-triangle-down small" id="btn_abrir_tool"></i>
 			</div>
