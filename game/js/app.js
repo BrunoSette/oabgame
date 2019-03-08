@@ -37,8 +37,7 @@ var qtd_multipla = 0, qtd_vouf = 0;
 function isUndefined(e) { return e == undefined ? true : false; }
 function goPage(page) { location.href = clienteUrl + "/" + page; }
 
-var Modal = function()
-{
+var Modal = function() {
     var cor;
     var titulo;
     var texto;
@@ -47,8 +46,7 @@ var Modal = function()
     this.setTitulo = function(vTitulo) { this.titulo = vTitulo; }
     this.setTexto = function(vTexto) { this.texto = vTexto; }
 
-    this.showModal = function(vTipo)
-    {
+    this.showModal = function(vTipo) {
         openedModal = true; modaisAbertos++;
 
         var myHtml = "<div class='box-modal' data-attr='" + modaisAbertos + "'><div class='box-content'><h3></h3><div><p></p></div><p><button class='btn btn-info modal-action' data-tipo='fechar'></button></p></div></div>";
@@ -70,14 +68,13 @@ var Modal = function()
             $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "fechar");
             $(ret).children('.box-content').children('p').children('.modal-action').text("Fechar");
         }
+        else if(vTipo == 'P' || vTipo == 'p') {
+            $(ret).children('.box-content').children('p').children('.modal-action').attr("data-tipo", "prox");
+            $(ret).children('.box-content').children('p').children('.modal-action').text("Próxima pergunta");
+        }
         else if(vTipo == 'C' || vTipo == 'c') {
             $(".box-overlay").css("background", 'rgba(0,0,0,0.96)');
-
-            var html = "<a href='https://www.provasdaoab.com.br/aprovagame/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
-            $(ret).children('.box-content').children('p').html(html);
-        }
-        else {
-            console.dir("Invalido")
+            $(ret).children('.box-content').children('p').html("<a href='https://www.provasdaoab.com.br/aprovagame/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>");
         }
     }
 }
