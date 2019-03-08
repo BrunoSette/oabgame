@@ -4,7 +4,7 @@ class Badges {
 
     public function post_concede_badge($params) {
         $usuario = $_SESSION['FBID'];
-        
+
         $stmt = DB::prepare("SELECT * FROM `tb_badges_usuario` WHERE `badge` = $params->badge AND `usuario` = $usuario ");
         $stmt->execute();
         $res = $stmt->fetch();
@@ -25,12 +25,9 @@ class Badges {
         return true;
     }
 
-    public function post_badge($param)
-    {
+    public function post_badge($param) {
         $usuario = $_SESSION['FBID'];
-
-        $sql = "SELECT * FROM `tb_badges_usuario` WHERE `badge` = $param->badge AND `usuario` = $usuario ";
-        $stmt = DB::prepare($sql);
+        $stmt = DB::prepare("SELECT * FROM `tb_badges_usuario` WHERE `badge` = $param->badge AND `usuario` = $usuario ");
         $stmt->execute();
 
         $res = $stmt->fetch();

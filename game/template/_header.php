@@ -31,33 +31,6 @@
 	<link rel="stylesheet" href="css/glycon_boots.css" />
 	<link rel="stylesheet" href="css/web-font.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
-
-	<!-- Google Analytics --> 
-	<script>
-
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];
-	a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	<?php
-	 //New Google Analytics code to set User ID.
-	if (isset($_SESSION["FBID"]))
-	{
-	  	$gacode = "ga('create', 'UA-58671300-1', { 'userId': '%s' });";
-		echo sprintf($gacode,$_SESSION["FBID"]);
-	}
-
-	?>
-
-	</script>
-	<script src="https://www.youtube.com/player_api" type="text/javascript"></script>
-	
-
-	<!-- End Google Analytics -->
-
-
 </head>
 <body>
 	<div id="fb-root"></div>
@@ -71,9 +44,7 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 	
-	<header class="topo">
-	<?php  $fullName = explode(" ", $_SESSION["FULLNAME"]); $nome = $fullName[0];?>
-		
+	<header class="topo">	
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
