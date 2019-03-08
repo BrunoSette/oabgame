@@ -111,11 +111,12 @@ class Usuario {
         $_SESSION['EMAIL'] = $db_usuario->email;
         $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
 
-        if ($db_usuario->status_pagamento)
-            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+        // if ($db_usuario->status_pagamento)
+        //     $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
 
         var_dump($_SESSION);
-        
+        var_dump($db_usuario);
+
         // $this->atualiza_acesso();
 
         // return $db_usuario;
