@@ -121,48 +121,33 @@ function closeModal(selected)
     if (modaisAbertos == 0) openedModal = false;
 }
 
-function rankingAmigos()
-{
+function rankingAmigos() {
     $.ajax({
         type: "get",
         url: rootUrl + "/Usuario/ranking_friends",
         dataType: "json",
-        success: function(result)
-        {
-            var tipo = result.result.tipo;
-
-            result.result = result.result.data;
-
+        success: function(result) {
             var html = "<ul>";
-
-            for(i in result.result)
-            {
-                if (result.result[i] != null)
-                {
+            for(var i = 0; i < 5; i++) {
+                if (result.result[i] != null) {
                     html += "<li>";
-                    html += "<img src='" + result.result[i].foto_profile.replace('http','https') + "' class='left mr5' alt=''>";
-
-                    if (tipo == 1)
-                        html += "<h4>" + (parseInt(i) + 1) + "&ordm; " + result.result[i].nome + "</h4>";
-                    else 
-                        html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
+                    if (result.result[i].foto_profile == "")
+                        html += "<img src='img/sem-foto.png' class='left mr5' alt=''>";
+                    else
+                        html += "<img src='" + result.result[i].foto_profile.replace('http','https') + "' class='left mr5' alt=''>";
                     
-                    html += "<p>" + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
+                    html += "<h4>" + result.result[i].posicao + "&ordm; " + result.result[i].nome + "</h4>";
+                    html += "<p> " + result.result[i].pontuacao + "<i class='small'> pontos</i></p>";
                     html += "</li>";
                 }
             }
-
             html += "</ul>";
-
             $(".ranking-box > article").html(html);
         },
-        error: function(e)
-        {
-            console.log(e);
-        }
+        error: function(e) { console.log(e); }
     });
 
-setTimeout(rankingAmigos, 10000);
+    setTimeout(rankingAmigos, 10000);
 }
 
 function verificaPontuacao() {
