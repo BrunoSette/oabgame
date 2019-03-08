@@ -124,7 +124,7 @@ function closeModal(selected)
 function rankingAmigos() {
     $.ajax({
         type: "get",
-        url: rootUrl + "/Usuario/ranking_friends",
+        url: rootUrl + "/Usuario/ranking",
         dataType: "json",
         success: function(result) {
             var html = "<ul>";

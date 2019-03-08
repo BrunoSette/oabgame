@@ -517,41 +517,6 @@ class Usuario {
         return $ret;
     }
 
-    public function get_ranking_friends()
-    {
-        $friends = @$_SESSION['FRIENDS'];
-
-        if (!$friends)
-        {
-            $ret = $this->get_ranking();
-
-            return array('data' => $ret, 'tipo' => 2);
-        }
-
-        $ids = array();
-        
-        $sql = "SELECT face_id FROM tb_usuario WHERE id = {$_SESSION["FBID"]}";
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $myId = $stmt->fetch()->face_id;
-
-        foreach ($friends['data'] as $key => $friend) array_push($ids,$friend['id']);
-
-        $ids[] = $myId;
-
-        $ids = implode(",", $ids);
-
-        $sql = "SELECT nome, pontuacao_geral as pontuacao, foto_profile FROM tb_usuario WHERE face_id IN ($ids) ORDER BY pontuacao_geral DESC";
-
-        $stmt = DB::prepare($sql);
-        $stmt->execute();
-
-        $res = $stmt->fetchall();
-
-        return array('data' => $res, 'tipo' => 1);
-    }
-
     public function post_store_friendlist($data)
     {
         $today = explode("/", date("Y/m/d"));
