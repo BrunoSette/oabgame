@@ -53,37 +53,7 @@
 
 	</script>
 	<script src="https://www.youtube.com/player_api" type="text/javascript"></script>
-	<script>
-		// Include the UserVoice JavaScript SDK (only needed once on a page)
-		UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z9b5Wod1CzErI3dGsjo1iA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-
-		// Set colors
-		UserVoice.push(['set', {
-		  accent_color: '#6aba2e',
-		  trigger_color: 'white',
-		  trigger_background_color: '#e23a39'
-		}]);
-
-		// Identify the user and pass traits
-		// To enable, replace sample data with actual user traits and uncomment the line
-		var userEmail = <?php echo json_encode($_SESSION['EMAIL']); ?>;
-		var userName = <?php echo json_encode($_SESSION['FULLNAME']); ?>;
-
-		UserVoice.push(['identify', {
-		  email:      userEmail,
-		  name:       userName
-
-		}]);
-
-		// Add default trigger to the bottom-right corner of the window:
-		UserVoice.push(['addTrigger', { mode: 'satisfaction', trigger_position: 'bottom-right' }]);
-
-		// Or, use your own custom trigger:
-		//UserVoice.push(['addTrigger', '#id', { mode: 'satisfaction' }]);
-
-		// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
-		UserVoice.push(['autoprompt', {}]);
-	</script>
+	
 
 	<!-- End Google Analytics -->
 
