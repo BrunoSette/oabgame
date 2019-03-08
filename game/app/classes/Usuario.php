@@ -97,27 +97,29 @@ class Usuario {
     }
 
     public function post_login($usuario) {
-        $sql = "SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)";
-        $stmt = DB::prepare($sql);
+        $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
         $stmt->execute();
 
         $db_usuario = $stmt->fetch();
 
-        if (!$db_usuario) return false;
+        var_dump($db_usuario);
+
+        // if (!$db_usuario)
+        //     return false;
         
-        $_SESSION['FBID'] = $db_usuario->id;
-        $_SESSION['FULLNAME'] = $db_usuario->nome;
-        $_SESSION['EMAIL'] = $db_usuario->email;
-        $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
+        // $_SESSION['FBID'] = $db_usuario->id;
+        // $_SESSION['FULLNAME'] = $db_usuario->nome;
+        // $_SESSION['EMAIL'] = $db_usuario->email;
+        // $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
 
-        if ($db_usuario->status_pagamento)
-            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+        // if ($db_usuario->status_pagamento)
+        //     $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
 
-        $this->atualiza_acesso();
+        // $this->atualiza_acesso();
 
-        return $db_usuario;
+        // return $db_usuario;
     }
 
     public function post_recupera($data) {
