@@ -464,14 +464,13 @@ class Usuario {
                 email = '$user->email',
                 senha = '". md5($user->nova_senha) ."',
                 lembretes = $user->notificacoes,
-                convidado = '$user->convidado'
                 WHERE id = {$_SESSION["FBID"]} ";
         }
         else {
-            $sql = "UPDATE tb_usuario SET  nome = '$user->nome', localizacao = '$user->localizacao', aniversario = '$user->aniversario', email = '$user->email', lembretes = $user->notificacoes, convidado = '$user->convidado' WHERE id = {$_SESSION["FBID"]} ";
+            $sql = "UPDATE tb_usuario SET  nome = '$user->nome', localizacao = '$user->localizacao', aniversario = '$user->aniversario', email = '$user->email', lembretes = $user->notificacoes WHERE id = {$_SESSION["FBID"]} ";
         }
 
-        $stmtUsuario = DB::query($sql);
+        DB::query($sql);
 
         return true;
     }
