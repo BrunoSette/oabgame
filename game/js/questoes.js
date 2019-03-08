@@ -1,20 +1,8 @@
-function getMoedas()
-{
-    return parseInt($("#userCash").html());
-}
+function getMoedas() { return parseInt($("#userCash").html()); }
+function getPontuacao() { return parseInt($("#userScore").html()); }
+function getVidas() { return parseInt($("#userLifes").html()); }
 
-function getPontuacao()
-{
-    return parseInt($("#userScore").html());
-}
-
-function getVidas()
-{
-    return parseInt($("#userLifes").html());
-}
-
-function setVidas(value)
-{
+function setVidas(value) {
     var premium;
 
     $.ajax({
@@ -24,21 +12,19 @@ function setVidas(value)
         success: function(e) { premium = e.result; }
     });
 
-
-    if (premium == "1")
-    {
+    if (premium == "1") {
         $("#lifes").css('display', 'none');
         $("#userLifes").html(5000);
     }
-    else
-    {
+    else {
         $("#lifes").css('display', 'block');
         $("#userLifes").html(value);
     }
 }
 
-function perdeuVida()
-{
+function perdeuVida() {
+    setVidas(getVidas() - 1);
+
     $.ajax({
         type: "post",
         url: rootUrl + "/Usuario/perdeu_vida",
@@ -48,34 +34,19 @@ function perdeuVida()
     });
 }
 
-function hideUI()
-{
-    $("#show-milhao").css('display', 'none');
-    $("#pontuacao").css('display', 'none');
-}
-
-function showUI()
-{
-    $("#show-milhao").css('display', 'block');
-    $("#pontuacao").css('display', 'block');
-}
-
-function updateMoedas(value)
-{
+function updateMoedas(value) {
     var score = $("#userCash").html();
     score = parseInt(score) + value; 
     $("#userCash").html(score);
 }
 
-function updatePontuacao(value)
-{
+function updatePontuacao(value) {
     var score = $("#userScore").html();
     score = parseInt(score) + value; 
     $("#userScore").html(score);
 }
 
-function bloqueaShowDoMilhao()
-{
+function bloqueaShowDoMilhao() {
     var myModal = new Modal();
         myModal.setCor("#E74C3C");
         myModal.setTitulo("Saldo insuficiente");
@@ -83,19 +54,12 @@ function bloqueaShowDoMilhao()
         myModal.showModal('F');
 }
 
-function isCorrect(resposta)
-{
+function isCorrect(resposta) {
     var acertou = false; 
-    var valueScore;
+    var score;
 
-    if(gabarito == resposta)
-    {
+    if(gabarito == resposta) {
         var html = "Parabéns, sua resposta está correta. Continue jogando e aprendendo.<br /><br />Comentário: " + comentario;
-        if (video) 
-            html += "<br /><div class='video-wrapper'><iframe id='ytplayer' width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe></div>";
-
-        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.oabgame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
-
         var snd = new Audio("sounds/correct.mp3");
         snd.play();
 
@@ -105,21 +69,18 @@ function isCorrect(resposta)
             myModal.setTexto(html);
             myModal.showModal('P');
 
-        FB.XFBML.parse();
-
         $.ajax({
             type: "post",
             url: rootUrl + "/Usuario/pontuation_geral",
             dataType: "json",
-            success: function(e)
-            {
+            success: function(e) {
                 updatePontuacao(100);
                 if (verificaPontuacao()) atualizaPerfil();
             }, 
             error: function(e) { console.info(e); }
         });
         
-        data = {"pontuation" : RESPOSTA_CORRETA}; valueScore = RESPOSTA_CORRETA;
+        valueScore = RESPOSTA_CORRETA;
 
         acertou = true;
         acertosSeguidos++;
@@ -127,14 +88,9 @@ function isCorrect(resposta)
         badge_acertos_seguidos();
         badge_acertos();
     }
-    else
-    {
+    else {
         var respostaCompleta = $('.teste[data-option="'+ gabarito +'"]').html();
-
         var html = "Que pena, você errou a questão. <br />Resposta certa: " + respostaCompleta + "(Letra " + gabarito +")<br /><br />Comentário: " + comentario;
-        if (video) html += "<br /><div class='video-wrapper'><iframe width='480' height='360' src='" + video +"' frameborder='0' allowfullscreen></iframe> </div>";
-
-        html += "<br /><div class='fb-comments ml30 mt10' data-href='https://www.oabgame.com.br/game/"+idQuestao+"' data-numposts='10' data-colorscheme='light'></div>";
 
         var myModal = new Modal();
             myModal.setCor("#E74C3C")
@@ -142,30 +98,25 @@ function isCorrect(resposta)
             myModal.setTexto(html);
             myModal.showModal('P');            
 
-        FB.XFBML.parse();
+        score = RESPOSTA_ERRADA;
 
-        data = {"pontuation" : RESPOSTA_ERRADA};
-        valueScore = RESPOSTA_ERRADA;
-
-        setVidas(getVidas() - 1);
         perdeuVida();
 
         acertosSeguidos = 0;
     }
 
-    if (getMoedas() + valueScore >= 0)
-    {
+    if (getMoedas() + score >= 0) {
         $.ajax({
             type: "post",
             url: rootUrl + "/Usuario/pontuation",
-            data: JSON.stringify(data),
+            data: JSON.stringify({"pontuation" : score}),
             dataType: "json",
-            success: function(e) {updateMoedas(valueScore)}, 
+            success: function(e) { updateMoedas(score); }, 
             error: function(e) { console.info(e); }
         });
     }
 
-    // armazena a questao feita pelo usuario
+    // Armazena a questao feita pelo usuario.
     data = JSON.stringify({"questao" : idQuestao, "user_acertou" : acertou, "user_resposta" : resposta});
     $.ajax({
         type: "post",
@@ -180,23 +131,18 @@ function isCorrect(resposta)
 
 function findQuestion(differentQuestion)
 {
-    // if(getVidas() > 0)
-    // {
     var naoEncontrou = false;
 
-    showUI();
-
     if (isUndefined(differentQuestion)) { differentQuestion = -1 };
-    if (qtd_vouf < 4) // pega questão de v ou f
-    {
+
+    if (qtd_vouf < 4) { // pega questão de v ou f
         $.ajax({
             type: "get",
             url: rootUrl + "/Questoes/questao",
             dataType: "json",
             async: false,
             data : "id="+differentQuestion+"&tipo=1",
-            success: function(result) 
-            {
+            success: function(result)  {
                 if(result.result.data.enunciado)
                 {
                     $(".question").text(result.result.data.enunciado);
@@ -229,15 +175,11 @@ function findQuestion(differentQuestion)
                     gabarito = result.result.data.gabarito;
                     comentario = result.result.data.comentario;
                     idQuestao = result.result.data.id;
-                    video = result.result.data.video_embed;
                     multipla_escolha = result.result.data.multipla_escolha;
-                    intervalos_video = result.result.intervalo;
 
                     qtd_vouf++;
 
                     if (qtd_vouf == 4) {qtd_multipla = 0;};
-
-                    if (intervalos_video != null) {intervalos_video.splice(0,1);}
                 }
                 else
                     naoEncontrou = true;
@@ -246,15 +188,13 @@ function findQuestion(differentQuestion)
         });
     }
 
-    if(qtd_vouf >= 4 || naoEncontrou)
-    {
+    if(qtd_vouf >= 4 || naoEncontrou) {
         $.ajax({
             type: "get",
             url: rootUrl + "/Questoes/questao",
             dataType: "json",
             data : "id="+differentQuestion+"&tipo=2",
-            success: function(result) 
-            {
+            success: function(result)  {
                 $(".question").text('(' + result.result.data.organizadora + ' - ' + result.result.data.concurso + '/' + result.result.data.ano + ') ' + result.result.data.enunciado);
 
                 var html = "<li id='respA'>";
@@ -305,46 +245,29 @@ function findQuestion(differentQuestion)
                 gabarito = result.result.data.gabarito;
                 comentario = result.result.data.comentario;
                 idQuestao = result.result.data.id;
-                video = result.result.data.video_embed;
                 multipla_escolha = result.result.data.multipla_escolha;
-                intervalos_video = result.result.intervalo;
 
                 qtd_multipla++;
 
                 if (qtd_multipla == 3) qtd_vouf = 0;
-
-                if (intervalos_video != null) {intervalos_video.splice(0,1);};
             },
             error: function(result){ console.info(result); }
         });
     }
-    // }
-    // else
-    // {
-    //     hideUI();
-    //     var html = "Você não possui vidas suficientes para jogar, em instantes você poderá jogar novamente!";
-    //     $("#alternativas").html(html);
-    //     $(".subject > div").text("Suas vidas acabaram :(");
-    // }
 }
 
-function eliminarResposta()
-{
+function eliminarResposta() {
+    // Remove uma alternativa aleatoriamente.
     var chr;
-
-    ga('send', 'event', 'Respostas', 'EliminarResposta');
-
-    do
-    {
+    do {
         chr = String.fromCharCode(65 + ((Math.floor((Math.random() * 10) + 1)) % 3));
     }
     while(chr == gabarito);
 
-    data = JSON.stringify({"pontuation" : ELIMINAR_RESPOSTA});
     $.ajax({
         type: "post",
         url: rootUrl + "/Usuario/pontuation",
-        data: data,
+        data: JSON.stringify({"pontuation" : ELIMINAR_RESPOSTA}),
         dataType: "json",
         success: function(e) {updateMoedas(ELIMINAR_RESPOSTA)}, 
         error: function(e) { console.info(e); }
@@ -355,10 +278,7 @@ function eliminarResposta()
     $('html, body').animate({scrollTop: 0}, 1000); 
 }
 
-function pularPergunta()
-{
-    ga('send', 'event', 'Respostas', 'PularPergunta');
-
+function pularPergunta() {
     $.ajax({
         type: "post",
         url: rootUrl + "/Usuario/pontuation",
@@ -382,41 +302,26 @@ $("body").delegate("#respV", "click", function(){ if (!openedModal) isCorrect("V
 $("body").delegate("#respF", "click", function(){ if (!openedModal) isCorrect("F"); });
 
 $(document).ready(function() {
-
     var eliminouResposta = false;
-    var sair = false;
-
     var score = getMoedas();
 
     $("#eliminar-resposta").bind("click", function() {
-
-        if (score > 5 && multipla_escolha == 1)
-        {
-            if (!eliminouResposta)
-            {
-                eliminarResposta();
-                eliminouResposta = true;
-            }
+        if (score >= 5 && multipla_escolha == 1 && !eliminouResposta) {
+            eliminarResposta();
+            eliminouResposta = true;
         }
-        else
-        {
-            if (multipla_escolha == 0)
-            {
-                var myModal = new Modal();
-                    myModal.setCor("#E74C3C");
-                    myModal.setTitulo("Operação inválida");
-                    myModal.setTexto("Você não pode eliminar uma resposta de uma questão verdadeiro e falso.<br /><br />");
-                    myModal.showModal('F');
-            }
-            else
-                bloqueaShowDoMilhao();
+        else if (multipla_escolha == 0) {
+            var myModal = new Modal();
+                myModal.setCor("#E74C3C");
+                myModal.setTitulo("Operação inválida");
+                myModal.setTexto("Você não pode eliminar uma resposta de uma questão verdadeiro e falso.<br /><br />");
+                myModal.showModal('F');  
+        } else if(score < 5) {
+            bloqueaShowDoMilhao();
         }
     });
     
     $("#pular-pergunta").bind("click", function() {
-        var snd = new Audio("sounds/pular.mp3"); // buffers automatically when created
-        snd.play();
-
         if (score > 5) 
             pularPergunta(); 
         else

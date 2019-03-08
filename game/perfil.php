@@ -32,13 +32,12 @@
 	</div>
 	</footer>
 	
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
 	<script src="js/flat-ui-pro.min.js"></script>
-	<script src="js/respond.min.js"></script>
-	<script src="js/jquery.cookie.js"></script>
-	<script src="js/min/app.js"></script>
-	<script src="js/min/perfil.js?v1"></script>
-	<script src="js/usuario.js?v2"></script>
+	<script src="js/respond.min.js"></script>>
+	<script src="js/app.js"></script>
+	<script src="js/perfil.js"></script>
+	<script src="js/usuario.js"></script>
 </body>
 </html>

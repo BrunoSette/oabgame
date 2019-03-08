@@ -24,22 +24,17 @@ badgesEnum = {
     JOGOU_10X : 12,
     JOGOU_15X : 13
 };
-var intervalos_video;
+
 var gabarito;
 var comentario;
 var idQuestao;
 var multipla_escolha;
 var openedModal = false;
-var video;
 var acertosSeguidos = 0;
 var modaisAbertos = 0;
 var qtd_multipla = 0, qtd_vouf = 0;
 
-function isUndefined(e) { 
-    if(e == undefined) { return true; }
-    else { return false; }
-}
-
+function isUndefined(e) { return e == undefined ? true : false; }
 function goPage(page) { location.href = clienteUrl + "/" + page; }
 
 var Modal = function()
@@ -93,30 +88,6 @@ var Modal = function()
 
             var html = "<a href='https://www.provasdaoab.com.br/aprovagame/game/comprar'><button class='btn btn-info modal-action'>Saiba mais</button></a>";
             $(ret).children('.box-content').children('p').html(html);
-        }
-    }
-}
-
-function intervalo(event){
-    if(event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED){
-        if(intervalos_video.length > 0){
-            player.seekTo(intervalos_video[0].start_video);
-            tempo = setInterval(function(){
-                if(intervalos_video.length > 0 && player.getCurrentTime() >= intervalos_video[0].end_video){
-                    intervalos_video.splice(0,1);
-                    player.pauseVideo();
-                }
-            }, 1000);
-        }
-
-        if(event.data == YT.PlayerState.PAUSED){
-            player.playVideo();
-        }
-        if(intervalos_video.length == 0){
-            player.stopVideo();
-            if(window.tempo != undefined){
-                clearInterval(tempo);
-            }
         }
     }
 }
@@ -207,50 +178,42 @@ function rankingAmigos()
 setTimeout(rankingAmigos, 10000);
 }
 
-function verificaPontuacao()
-{
+function verificaPontuacao() {
     var score = getPontuacao();
     var novoNivel = 1;
-    var html, nivelAntigo;
+    var html;
 
-    if(score >= 2000 && score < 3000)
-    {
+    if(score >= 2000 && score < 3000) {
         novoNivel = 2;
         html = "<img src='img/aviso_nivel/nivel-2.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 3000 && score < 4500)
-    {
+    else if(score >= 3000 && score < 4500) {
         novoNivel = 3;
         html = "<img src='img/aviso_nivel/nivel-3.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 4500 && score < 8000)
-    {
+    else if(score >= 4500 && score < 8000) {
         novoNivel = 4;
         html = "<img src='img/aviso_nivel/nivel-4.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 8000 && score < 12000)
-    {
+    else if(score >= 8000 && score < 12000) {
         novoNivel = 5;
         html = "<img src='img/aviso_nivel/nivel-5.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 12000 && score < 17000)
-    {
+    else if(score >= 12000 && score < 17000) {
         novoNivel = 6;
         html = "<img src='img/aviso_nivel/nivel-6.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 17000 && score < 25000)
-    {
+    else if(score >= 17000 && score < 25000) {
         novoNivel = 7;
         html = "<img src='img/aviso_nivel/nivel-7.png' alt='' style='margin-left: 16%' />";
     }
-    else if(score >= 25000)
-    {
+    else if(score >= 25000) {
         novoNivel = 8;
         html = "<img src='img/aviso_nivel/nivel-8.png' alt='' style='margin-left: 16%' />";
     }
 
-    if (novoNivel != 1)
-    {   
+    if (novoNivel != 1) {   
+        var nivelAntigo;
         $.ajax({
             type: "get",
             url: rootUrl + "/Usuario/nivel",
@@ -259,35 +222,34 @@ function verificaPontuacao()
             success: function(e) { nivelAntigo = parseInt(e.result); },
             error: function(result){ console.info(result); }
         });
+
+        // Atualiza nivel do usuário.
+        if (nivelAntigo < novoNivel) {
+            $.ajax({ 
+                type: "post",
+                url: rootUrl + "/Usuario/update_nivel",
+                data: JSON.stringify({"novo" : novoNivel}),
+                dataType: "json",
+                error: function(e) {console.info(e);}
+            });
+
+            var snd = new Audio("sounds/news.mp3"); 
+            snd.play();
+
+            var myModal = new Modal();
+            myModal.setTitulo("Parabéns, você mudou o seu nível!");
+            myModal.setTexto(html);
+            myModal.showModal('F');
+            
+            return true;
+        }
     }
 
-    if (nivelAntigo < novoNivel)
-    {
-        $.ajax({ // atualiza nivel do usuário
-            type: "post",
-            url: rootUrl + "/Usuario/update_nivel",
-            data: JSON.stringify({"novo" : novoNivel}),
-            dataType: "json",
-            error: function(e) {console.info(e);}
-        });
-
-        var snd = new Audio("sounds/news.mp3"); 
-        snd.play();
-
-        var myModal = new Modal();
-        myModal.setTitulo("Parabéns, você mudou o seu nível!");
-        myModal.setTexto(html);
-        myModal.showModal('F');
-        
-        return true;
-    }
-    
     return false;
 }
 
-function getUserLifes()
-{
-    var lifes, premium;
+function getUserLifes() {
+    var lifes;
 
     $.ajax({
         type: "get",
@@ -299,60 +261,8 @@ function getUserLifes()
     return lifes;
 }
 
-function escolherTipoQuestoes(filtro){
-
-    $.ajax({
-        type: "get",
-        url: rootUrl + "/Usuario/materias",
-        data : {
-            filtro: filtro
-        },
-        success: function(data)
-        {   
-            var myModal = new Modal(),
-            html = "<form id='form-escolher-questoes'><ul>";
-
-            myModal.setCor("#E74C3C");
-            myModal.setTitulo("Escolha as matérias");
-            $(data.result).each(function(i,e){
-                var checked = e.escolhida == false ? '' : 'checked';
-                html += "<li class='opcao_materia'><input type='checkbox' "+checked+" name='disciplina[]'value="+e.id+">"+e.titulo+"</li>";
-            });
-            html += "<input type='submit' value='salvar' class='salvar_materia btn btn-danger'>";
-            html += "</ul></form>";
-            myModal.setTexto(html);
-            myModal.showModal('F');
-       }
-   });  
-}
-
-$('body').on('click','.salvar_materia',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: "post",
-        url: rootUrl + "/Usuario/escolher_disciplinas",
-        data:  $('#form-escolher-questoes').serialize(),
-        success: function(data)
-        { 
-        sessionStorage.setItem("materias","true");
-  
-        var selected = $(".box-modal").fadeOut('fast');
-        closeModal(selected);
-        findQuestion();
- 
-       }
-   });
-});
-
-
-$(".form_config").on('click','#escolherMaterias',function(e){
-    escolherTipoQuestoes(true);
-});
-
-$(document).ready(function()
-{
-    $("#user-box").bind('click', function()
-    {
+$(document).ready(function() {
+    $("#user-box").bind('click', function() {
         var status = $(".tooltip-sys").css('display');
 
         if (status == "none")
@@ -362,21 +272,15 @@ $(document).ready(function()
     });
 
     $("#linkSair").bind("click", function() {
-
-        sair = true;
         $.ajax({
             type: "get",
             url: rootUrl + "/Usuario/logout",
-            success: function()
-            {
-                $.removeCookie('usuario');
-                goPage("logout");
-            }
+            success: function() { goPage("logout"); }
         });
     });
 
     var lastScrollTop = 0;
-    $(window).scroll(function(event){
+    $(window).scroll(function(event) {
          var st = $(this).scrollTop();
          if (st > lastScrollTop + 40)
          {
@@ -388,7 +292,7 @@ $(document).ready(function()
         lastScrollTop = st;
     });
 
-    $("body").on('click', ".modal-action", function(){
+    $("body").on('click', ".modal-action", function() {
         var tipo = $(this).attr("data-tipo");
         var selected = $(this).parent("p").parent(".box-content").parent(".box-modal");
 
