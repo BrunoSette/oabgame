@@ -110,10 +110,10 @@
 				<div class="txt-profile">
 					<div>
 						<div class="left mr25">
-							<img src="img/coin.png" class="left mr5" alt=" "> <u id="userCash"><?php echo $_SESSION["MOEDAS"]; ?></u>
+							<img src="img/coin.png" class="left mr5" alt=" "> <u id="userCash"></u>
 						</div>
 						<div class="left mr25">
-							<u id="userScore"><?php echo $_SESSION["PONTUACAO"]; ?></u>
+							<u id="userScore"></u>
 							<p class="small">pontos</p>
 						</div>
 						<p class="txt-center nivel"></p>

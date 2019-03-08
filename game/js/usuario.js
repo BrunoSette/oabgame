@@ -194,56 +194,63 @@ function badge_acertos() {
 }
 
 function atualizaPerfil() {
+
+    var successGetUsuario = function(e) {
+        // Preenche moedas do usuário.
+        $("#userCash").text(e.result.pontuacao);
+
+        // Preenche o score do usuário.
+        $("#userScore").text(e.result.pontuacao_geral);
+
+        // Preenche o nível do usário.
+        $(".tooltip-sys .txt-profile .nivel").text("Nível " + e.result.nivel);
+        
+        var imgHtml;
+        if (e.result.genero == "female") {
+            if(e.result.nivel == 1)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-1.png' alt=''/>";
+            else if(e.result.nivel == 2)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-2.png' alt=''/>";
+            else if(e.result.nivel == 3)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-3.png' alt=''/>";
+            else if(e.result.nivel == 4)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-4.png' alt=''/>";
+            else if(e.result.nivel == 5)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-5.png' alt=''/>";
+            else if(e.result.nivel == 6)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-6.png' alt=''/>";
+            else if(e.result.nivel == 7)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-7.png' alt=''/>";
+            else if(e.result.nivel == 8)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-8.png' alt=''/>";
+        }
+        else {
+            if(e.result.nivel == 1)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-1.png' alt=''/>";
+            else if(e.result.nivel == 2)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-2.png' alt=''/>";
+            else if(e.result.nivel == 3)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-3.png' alt=''/>";
+            else if(e.result.nivel == 4)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-4.png' alt=''/>";
+            else if(e.result.nivel == 5)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-5.png' alt=''/>";
+            else if(e.result.nivel == 6)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-6.png' alt=''/>";
+            else if(e.result.nivel == 7)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-7.png' alt=''/>";
+            else if(e.result.nivel == 8)
+                imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-8.png' alt=''/>";
+        }
+
+        $(".tooltip-sys  .image-profile").html(imgHtml);
+    }
+
 	$.ajax({
         type: "get",
         url: rootUrl + "/Usuario/profile",
         dataType: "json",
-        success: function(e) {	
-        	var imgHtml;
-
-            console.dir(e.result);
-
-            $(".tooltip-sys .txt-profile .nivel").text("Nível " + e.result.nivel);
-           
-            if (e.result.genero == "female") {
-            	if(e.result.nivel == 1)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-1.png' alt=''/>";
-            	else if(e.result.nivel == 2)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-2.png' alt=''/>";
-			    else if(e.result.nivel == 3)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-3.png' alt=''/>";
-			    else if(e.result.nivel == 4)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-4.png' alt=''/>";
-			    else if(e.result.nivel == 5)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-5.png' alt=''/>";
-			    else if(e.result.nivel == 6)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-6.png' alt=''/>";
-			    else if(e.result.nivel == 7)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-7.png' alt=''/>";
-			    else if(e.result.nivel == 8)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/mulher/nivel-8.png' alt=''/>";
-            }
-            else {
-            	if(e.result.nivel == 1)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-1.png' alt=''/>";
-            	else if(e.result.nivel == 2)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-2.png' alt=''/>";
-			    else if(e.result.nivel == 3)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-3.png' alt=''/>";
-			    else if(e.result.nivel == 4)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-4.png' alt=''/>";
-			    else if(e.result.nivel == 5)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-5.png' alt=''/>";
-			    else if(e.result.nivel == 6)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-6.png' alt=''/>";
-			    else if(e.result.nivel == 7)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-7.png' alt=''/>";
-			    else if(e.result.nivel == 8)
-			        imgHtml = "<img src='https://www.oabgame.com.br/game/img/profile_nivel/homem/nivel-8.png' alt=''/>";
-            }
-
-            $(".tooltip-sys  .image-profile").html(imgHtml);
-        },
+        success: successGetUsuario,
         error: function(result){ console.info(result); }
      });
 }
