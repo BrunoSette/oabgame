@@ -468,9 +468,9 @@ class Usuario {
                     WHERE id = {$_SESSION["FBID"]} ";
         }
 
-        DB::query($sql);
+        //DB::query($sql);
 
-        return true;
+        return $sql;
     }
 }
 
