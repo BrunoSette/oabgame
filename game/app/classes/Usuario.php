@@ -5,8 +5,7 @@ class Usuario {
     /*  Incrementa a quantidade de acessos do usuário e atualiza a 
     data de ultimo acesso. */
     private function atualiza_acesso() {
-        $sql = "UPDATE tb_usuario SET qtd_acessos = qtd_acessos + 1 WHERE id = {$_SESSION["FBID"]} ";
-        $stmtUsuario = DB::query($sql);
+        DB::query("UPDATE tb_usuario SET qtd_acessos = qtd_acessos + 1 WHERE id = {$_SESSION["FBID"]} ");
     }
 
     public function get_premium() {
@@ -112,11 +111,11 @@ class Usuario {
         $_SESSION['EMAIL'] = $db_usuario->email;
         $_SESSION['PICTURE'] =  $db_usuario->foto_profile;
 
+        if ($db_usuario->status_pagamento)
+            $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
+
         var_dump($_SESSION);
-
-        // if ($db_usuario->status_pagamento)
-        //     $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
-
+        
         // $this->atualiza_acesso();
 
         // return $db_usuario;
