@@ -5,7 +5,7 @@ class Usuario {
     /*  Incrementa a quantidade de acessos do usuário e atualiza a 
     data de ultimo acesso. */
     private function atualiza_acesso() {
-        DB::query("UPDATE tb_usuario SET qtd_acessos = qtd_acessos + 1 WHERE id = {$_SESSION["FBID"]} ");
+        DB::query("UPDATE tb_usuario SET qtd_acessos = qtd_acessos+1 WHERE id = {$_SESSION["FBID"]}");
     }
 
     public function get_premium() {
@@ -19,7 +19,7 @@ class Usuario {
     }
 
     public function post_perdeu_vida() {
-        $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas - 1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
+        $sql = "UPDATE tb_usuario SET qtd_vidas = qtd_vidas-1 WHERE id = {$_SESSION["FBID"]} AND status_pagamento = 0";
         $stmtUsuario = DB::query($sql);
     }
 
@@ -102,7 +102,7 @@ class Usuario {
         $stmt->execute();
 
         $db_usuario = $stmt->fetch();
-        
+
         if (!$db_usuario)
             return false;
         
@@ -114,10 +114,9 @@ class Usuario {
         if ($db_usuario->status_pagamento)
             $_SESSION['PREMIUM'] = $db_usuario->status_pagamento;
 
-        var_dump($_SESSION);
-        var_dump($db_usuario);
+        $this->atualiza_acesso();
 
-        // $this->atualiza_acesso();
+        var_dump($_SESSION);
 
         // return $db_usuario;
 
