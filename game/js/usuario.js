@@ -195,7 +195,7 @@ function badge_acertos() {
 function atualizaPerfil() {
     // Função a ser chamada, caso a requisição seja executada com sucesso.
     var successGetUsuario = function(e) {
-        if(!e.result) goPage("login")
+        if(!e.result) goPage("login");
 
         // Preenche moedas do usuário.
         $("#userCash").text(e.result.pontuacao);
