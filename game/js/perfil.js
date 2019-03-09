@@ -21,7 +21,7 @@ function userProfile(profile) {
     pins[badgesEnum.JOGOU_15X] =                    {"src" : clienteUrl + "/img/badges/jogou15x-180.png", "exibe" : false};
 
     for (i in profile.badges) 
-        pins[parseInt(profile.pins[i].badge)].exibe = true;
+        pins[parseInt(profile.badges[i].badge)].exibe = true;
 
     // Preenche nivel do usuário.
     var genero = (profile.genero == "female") ? "female" : "male";
