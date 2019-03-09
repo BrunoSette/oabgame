@@ -134,8 +134,7 @@ function badge_acertos_seguidos() {
         concedeBadge = true;
 	}
 
-    if (!concedeBadge)
-        return false;
+    if (!concedeBadge) return false;
 
     $.ajax({
         type: "post",
@@ -277,8 +276,9 @@ function obtemRanking() {
     });
 }
 
+atualizaPerfil();
+
 $(document).ready(function() {
-	atualizaPerfil();
     badges_vezes_jogadas();
     obtemRanking();
 });
