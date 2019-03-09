@@ -127,11 +127,11 @@ function userProfile(profile) {
         for (i in pins) {
             if (pins[i].exibe) {
                 html += "<li style='padding: 5px 15px; border-bottom: 1px #eaeaea solid;' class='mr10'><img class='left' src='"+pins[i].src+"' style='width:10%;'/>";
-                html +=     "<span style='line-height: 85px; margin-left: 20px'>"+pins[i].ganhou+"</span>";                
+                html +=     "<span style='line-height: 85px; margin-left: 40px'>"+pins[i].ganhou+"</span>";                
             }
             else {
                 html += "<li style='padding: 5px 15px; border-bottom: 1px #eaeaea solid;' class='mr10'><img class='left' src='" + pins[i].src + "' style='width:10%; opacity: 0.35'/>";
-                html +=     "<span style='line-height: 85px; margin-left: 20px'>"+pins[i].ganhar+"</span>";
+                html +=     "<span style='line-height: 85px; margin-left: 40px'>"+pins[i].ganhar+"</span>";
             }
 
             html += "</li>";
