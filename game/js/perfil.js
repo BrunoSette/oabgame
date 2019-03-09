@@ -91,6 +91,8 @@ function getBadges() {
                                                         "title" : "Jogou quinze vezes",
                                                         "desc" : "Jogue quinze vezes e ganhe."
                                                     };
+
+    return pins;
 }
 
 function userProfile(profile) {
