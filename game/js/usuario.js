@@ -1,23 +1,3 @@
-var GeneroNivelImageURL = {
-    "female" : [clienteUrl + "/img/profile_nivel/mulher/nivel-1.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-2.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-3.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-4.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-5.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-6.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-7.png",
-                clienteUrl + "/img/profile_nivel/mulher/nivel-8.png"],
-
-    "male" :    [clienteUrl + "/img/profile_nivel/homem/nivel-1.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-2.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-3.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-4.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-5.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-6.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-7.png",
-                clienteUrl + "/img/profile_nivel/homem/nivel-8.png",]
-};
-
 function badges_vezes_jogadas() {
 	$.ajax({
         type: "get",

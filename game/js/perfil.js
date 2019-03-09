@@ -1,4 +1,7 @@
 function userProfile(profile) {
+
+    console.dir(profile);
+
     var pins = [];
     pins[badgesEnum.TRES_ACERTOS_SEGUIDOS] =        {"src" : clienteUrl + "/img/badges/seguidos3-180.png", "exibe" : false};
     pins[badgesEnum.SETE_ACERTOS_SEGUIDOS] =        {"src" : clienteUrl + "/img/badges/seguidos7-180.png", "exibe" : false};
