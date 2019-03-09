@@ -12,7 +12,6 @@ if(!$stmtLog) die(mysql_error());
 
 
 // criando um log
-
 $file = fopen("log.txt", "a+");
 $text = "Concedendo vidas aos usuarios às: " . date("Y-m-d H:i:s") . "\n";
 fwrite($file, $text);

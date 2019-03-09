@@ -22,7 +22,6 @@
 		&copy; 2019 - Todos os direitos reservados.
 	</footer>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="js/jquery.cookie.js"></script>
 	<script src="js/min/app.js"></script>
 	<script src="js/min/usuario.js"></script>
 </body>
