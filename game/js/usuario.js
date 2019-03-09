@@ -276,8 +276,9 @@ function obtemRanking() {
     });
 }
 
-$(document).ready(function() {
-    atualizaPerfil();
+atualizaPerfil();
+
+$(document).ready(function() {    
     badges_vezes_jogadas();
     obtemRanking();
 });
