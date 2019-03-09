@@ -41,9 +41,9 @@ function userProfile(profile) {
         html += "<ul>";
         for (i in pins) {
             if (pins[i].exibe)
-                html += "<li style='padding: 5px 15px;' class='mr10'><img class='left' src='" + pins[i].src + "' alt='' /><p>Test</p></li>";
+                html += "<li style='padding: 5px 15px;' class='mr10'><img class='left' src='" + pins[i].src + "' style='width: 12%;'/><p>Test</p></li>";
             else
-                html += "<li style='padding: 5px 15px;' class='mr10'><img class='left' src='" + pins[i].src + "' style='opacity: 0.35' alt='' /><p>Test</p></li>";
+                html += "<li style='padding: 5px 15px;' class='mr10'><img class='left' src='" + pins[i].src + "' style='width: 12%; opacity: 0.35' /><p>Test</p></li>";
         }
         html += "</ul>";
 
