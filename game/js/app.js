@@ -80,12 +80,11 @@ function verificarPrimeiroAcesso() {
         dataType: "json",
         success: function(result) { 
         	if (result.result) {        		
-                var snd = new Audio("sounds/news.mp3"); // buffers automatically when created
-                snd.play();
+                new Audio("sounds/news.mp3").play();
 
                 var html = "<img src='img/big-coin.png' alt='' style='display: block; margin-left: auto; margin-right: auto;' />";
-                html += "<br />";
-                html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
+                    html += "<br />";
+                    html += "<p class='txt-center'>Ficamos feliz porque você voltou! Volte mais vezes e ganhe mais benefícios. :)</p>";
 
                 var myModal = new Modal();
                 myModal.setCor("#f5d313");
@@ -116,6 +115,8 @@ function rankingAmigos() {
         url: rootUrl + "/Usuario/ranking",
         dataType: "json",
         success: function(result) {
+            if(!result.result) goPage("login")
+
             var html = "<ul>";
             for(var i = 0; i < 5; i++) {
                 if (result.result[i] != null) {
@@ -217,9 +218,7 @@ function getUserLifes() {
         async: false,
         url: rootUrl + "/Usuario/lifes",
         success: function(data) {
-            if(!data.result)
-                goPage("login")
-            
+            if(!data.result) goPage("login")
             lifes = data.result.qtd_vidas;
         }
     });
