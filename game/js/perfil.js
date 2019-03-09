@@ -1,6 +1,6 @@
 function userProfile(profile) {
 
-    if(profile) goPage("login");
+    if(!profile) goPage("login");
 
     console.dir(profile);
 
