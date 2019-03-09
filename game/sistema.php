@@ -51,7 +51,7 @@
 			</article>
 		</div>
 		<!-- raking -->
-		<div class="side-box col-md-4" style="">
+		<div class="side-box ranking-box col-md-4" style="">
 			<header>
 				<h3><i class="fa fa-trophy"></i> Ranking</h3>
 			</header>
@@ -61,11 +61,12 @@
 			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br />
 		</div>
 
-		<div class="side-box col-md-4" style="">
+		<div class="side-box meta-box col-md-4" style="">
 			<header>
 				<h3><i class="fa fa-bar-chart"></i> Meta diária</h3>
 			</header>
 			<article>
+				Teste
 			</article>
 			<br />
 		</div>
