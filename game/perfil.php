@@ -12,7 +12,7 @@
 				
 			</article>
 		</div>
-		<div class="friends-box col-md-4">
+		<div class="side-box friends-box col-md-4">
 			<header>
 				<h3><i class="fa fa-trophy"></i> Ranking</h3>
 			</header>
