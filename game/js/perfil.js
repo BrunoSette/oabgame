@@ -116,6 +116,7 @@ function userProfile(profile) {
     var html = "<div class='mb10' style='overflow: hidden'>";
         html +=     "<img class='left mr10' src='"+userImage+"' alt='' />";
         html +=     "<p class='large'>" + profile.nome + "</p>";
+        html +=     "<p>Nível: " + profile.nivel + "</p>"; 
         html +=     "<p>Localização: " + profile.localizacao + "</p>";
         html +=     "<p>E-mail: " + profile.email + "</p>";
         html +=     "<p>Data de Cadastro: " + profile.data_cadastro + "</p>";
