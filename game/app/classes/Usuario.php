@@ -23,11 +23,19 @@ class Usuario {
         $stmtUsuario = DB::query($sql);
     }
 
+    /*
+    * Retorna o numero de vidas do usuário autenticado. Se não houver
+    * usuário autenticado, retorna false.
+    * @return object
+    * @date 08/03
+    */
     public function get_lifes() {
+        if (!isset($_SESSION["EMAIL"]))
+            return false;
+
         $stmt = DB::prepare("SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}");
         $stmt->execute();
-        $res = $stmt->fetch();
-        return $res;
+        return $stmt->fetch();
     }
 
     /*
@@ -381,11 +389,15 @@ class Usuario {
     }
 
     /*
-    * Retorna o ranking de cinco usuários, incluindo o usuário logado (que solicita ranking)
+    * Retorna o ranking de cinco usuários, incluindo o usuário logado.
+    * Caso não exista usuário logado, returna false.
     * @return array
     * @date 31/12
     */
     public function get_ranking() {
+        if(!isset($_SESSION['FBID']))
+            return false;
+
         $sql = "SELECT id, nome, foto_profile, pontuacao_geral AS pontuacao FROM tb_usuario ORDER BY pontuacao DESC";
         $stmt = DB::prepare($sql);
         $stmt->execute();

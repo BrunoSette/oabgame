@@ -216,9 +216,6 @@ function badge_acertos() {
 function atualizaPerfil() {
     // Função a ser chamada, caso a requisição seja executada com sucesso.
     var successGetUsuario = function(e) {
-
-        console.dir(e.result);
-        
         if(!e.result) goPage("login")
 
         // Preenche moedas do usuário.
@@ -253,6 +250,9 @@ function obtemRanking() {
         url: rootUrl + "/Usuario/ranking",
         dataType: "json",
         success: function(result) { 
+            if (!result.result)
+                goPage("login");
+
             var html = "<ul>";
 
             for(var i = 0; i < 5; i++) {

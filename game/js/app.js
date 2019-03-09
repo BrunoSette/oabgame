@@ -216,7 +216,12 @@ function getUserLifes() {
         type: "get",
         async: false,
         url: rootUrl + "/Usuario/lifes",
-        success: function(data) {lifes = data.result.qtd_vidas;}
+        success: function(data) {
+            if(!data.result)
+                goPage("login")
+            
+            lifes = data.result.qtd_vidas;
+        }
     });
 
     return lifes;
