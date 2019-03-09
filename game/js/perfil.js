@@ -129,7 +129,7 @@ function userProfile(profile) {
             else
                 html += "<li style='padding: 5px 15px;' class='mr10'><img class='left' src='" + pins[i].src + "' style='width:10%; opacity: 0.35'/>";
 
-            html +=     "<span style='line-height: 120px>"+"<b>"+pins[i].title+"</b>"+" - "+pins[i].desc+"</span>";
+            html +=     "<span style='line-height: 120px'>"+"<b>"+pins[i].title+"</b>"+" - "+pins[i].desc+"</span>";
             html += "</li>";
         }
         html += "</ul>";
