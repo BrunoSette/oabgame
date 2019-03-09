@@ -58,7 +58,7 @@
 			<article>
 			</article>
 			<br />
-			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br />
+<!-- 			<button id="fb-invite" class="btn-block btn-social btn-lg btn-facebook btn-invite"><i class="fa fa-facebook"></i> Convidar Amigos</button><br /> -->
 		</div>
 
 		<div class="side-box meta-box col-md-4" style="">
