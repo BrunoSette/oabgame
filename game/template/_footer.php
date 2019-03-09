@@ -25,7 +25,6 @@
 	<div id="fb-root"></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/boots.js"></script>
-	<script src="js/respond.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/usuario.js"></script>
 	<script src="js/questoes.js"></script>
