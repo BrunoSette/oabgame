@@ -216,7 +216,10 @@ function badge_acertos() {
 function atualizaPerfil() {
     // Função a ser chamada, caso a requisição seja executada com sucesso.
     var successGetUsuario = function(e) {
+
         console.dir(e.result);
+        
+        if(!e.result) goPage("login")
 
         // Preenche moedas do usuário.
         $("#userCash").text(e.result.pontuacao);
@@ -275,7 +278,7 @@ function obtemRanking() {
 }
 
 $(document).ready(function() {
-	badges_vezes_jogadas();
 	atualizaPerfil();
+    badges_vezes_jogadas();
     obtemRanking();
 });

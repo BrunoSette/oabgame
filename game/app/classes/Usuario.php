@@ -27,11 +27,19 @@ class Usuario {
         $stmt = DB::prepare("SELECT qtd_vidas FROM tb_usuario WHERE id = {$_SESSION["FBID"]}");
         $stmt->execute();
         $res = $stmt->fetch();
-
         return $res;
     }
 
+    /*
+    * Retorna o perfil completo do usuário autenticado. Se não houver
+    * usuário autenticado, retorna false.
+    * @return object
+    * @date 08/03
+    */
     public function get_profile() {
+        if (!isset($_SESSION["EMAIL"]))
+            return false;
+
         $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:user_email)");
         $stmt->bindParam("user_email", $_SESSION["EMAIL"]);
         $stmt->execute();

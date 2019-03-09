@@ -39,9 +39,8 @@
         <div class="navbar-header">
 			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
         </div>
-      </div><!-- container -->
+      </div>
     </nav> 
-		
 </header>	
 
 <section class="land-login">

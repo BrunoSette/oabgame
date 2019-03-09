@@ -10,23 +10,8 @@ function getPontuacao() { return parseInt($("#userScore").html()); }
 function getVidas() { return parseInt($("#userLifes").html()); }
 
 function setVidas(value) {
-    var premium;
-
-    $.ajax({
-        type: "get",
-        async: false,
-        url: rootUrl + "/Usuario/premium",
-        success: function(e) { premium = e.result; }
-    });
-
-    if (premium == "1") {
-        $("#lifes").css('display', 'none');
-        $("#userLifes").html(5000);
-    }
-    else {
-        $("#lifes").css('display', 'block');
-        $("#userLifes").html(value);
-    }
+    $("#lifes").css('display', 'block');
+    $("#userLifes").html(value);
 }
 
 function perdeuVida() {
