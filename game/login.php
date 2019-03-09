@@ -46,7 +46,7 @@
 <section class="land-login">
 	<div class="container">
 		<div class="row">
-		<div class="col-md-4 col-md-offset col-xs-offset-1 col-sm-offset-1">
+		<div class="col-md-4 col-md-offset col-xs-offset-1 col-sm-offset-1 d-none d-lg-block hidden-xs">
 			<figure> <img src="img/logo.png" alt="Logomarca OABgame" /> </figure>
 		</div>
 		<div class="col-md-5 col-sm-offset">
