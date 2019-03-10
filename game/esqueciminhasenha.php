@@ -30,7 +30,7 @@
 
 </head>
 <body class="land">
-	<header class="topo">	
+<header class="topo">	
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -39,7 +39,7 @@
       </div>
     </nav> 
 </header>	
-	<section style="padding: 50px 0px;">
+	<section style="padding: 0px 0px;">
 		<div class="container">
 			<div class="row">
 				<div class="box-login">
