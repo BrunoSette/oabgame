@@ -30,16 +30,15 @@
 
 </head>
 <body class="land">
-	<header class="topo" style="border-bottom: 0px">	
-		<nav class="navbar navbar-inverse">
-	      	<div class="container">
-		        <div class="navbar-header">
-		        	<a class="navbar-brand" href="https://www.oabgame.com.br/game/"><img src="img/logo.png" class="logo" alt="logomarca"></a>
-		        </div>    
-	       	</div>
-	      	</div>
-	    </nav> 
-	</header>
+	<header class="topo">	
+	<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+        </div>
+      </div>
+    </nav> 
+</header>	
 	<section style="padding: 50px 0px;">
 		<div class="container">
 			<div class="row">
