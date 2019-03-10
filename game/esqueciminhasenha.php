@@ -58,7 +58,7 @@
 							  	<label for="resultado-soma" id="soma"></label>
 							    <input type="text" class="form-control w50" id="resultado-soma" />
 							</div>
-							<button type="submit" class="btn btn-inverse btn-lg btn-block w30" id="recuperar">Continuar</button>
+							<button type="submit" class="btn btn-inverse btn-lg btn-block w50" id="recuperar">Continuar</button>
 						</form>
 					</div>
 				</div>
