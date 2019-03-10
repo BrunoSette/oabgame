@@ -1,4 +1,13 @@
-<?php include("template/_header.php"); ?>
+<header class="topo">	
+	<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+        </div>
+      </div>
+    </nav> 
+</header>	
+
 	<section style="padding: 50px 0px;">
 		<div class="container">
 			<div class="row">
@@ -19,7 +28,7 @@
 							    <input type="password" class="form-control w50" id="confirma_senha" />
 							</div>
 							<input type="hidden" id="api_key" value="<?php echo $_GET['api_key'] ?>"/>
-							<button type="submit" class="btn btn-inverse btn-lg btn-block w30" id="recuperar_fim">Continuar</button>
+							<button type="submit" class="btn btn-inverse btn-lg btn-block w30 txt-center" id="recuperar_fim">Continuar</button>
 						</form>
 					</div>
 				</div>
