@@ -10,8 +10,8 @@ mr = (function (mr, $, window, document){
 
     mr.status = {documentReadyRan: false, windowLoadPending: false};
 
-    
-    
+    $(document).ready(documentReady);
+    $(window).on("load", windowLoad);
 
     function documentReady(context){
         
@@ -1450,7 +1450,7 @@ mr = (function (mr, $, window, document){
                         optimised: false
                     };
 
-                    markerAo.icon = typeof mapInstance.attr('data-marker-image') !== typeof undefined ? mapInstance.attr('data-marker-image'): undefined;
+                    markerAo.icon = typeof mapInstance.attr('data-marker-image') !== typeof undefined ? {url: mapInstance.attr('data-marker-image'), scaledSize: new google.maps.Size(50,50)} : undefined;
                     markerAo.title = mapInstance.attr('data-marker-title');
 
                     mapOptions = jQuery.extend({}, mapDefaults, mr.maps.options.map, mapAo);
@@ -2409,14 +2409,14 @@ mr = (function (mr, $, window, document){
 		  	});
 
 		  	if($('.radial').length){
-		  		mr.easypiecharts.init();
+		  		mr.easypiecharts.init($);
 		  		mr.easypiecharts.activate();
 		  		mr.scroll.listeners.push(mr.easypiecharts.activate);
 		  	}
 
 	  };
 
-	  mr.easypiecharts.init = function(){
+	  mr.easypiecharts.init = function($){
 
 			mr.easypiecharts.pies = [];
           
