@@ -26,16 +26,8 @@ services:
   www:
     build: .
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    depends_on:
-    - db
-    external_links:
-    - db:mysql
+  adminer:
+    image: adminer
+    restart: always
     ports:
-    - "9191:80"
-    environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: pass
-      MYSQL_ROOT_PASSWORD: pass
-      PMA_HOST: db
+      - 8080:8080
