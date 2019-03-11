@@ -3183,12 +3183,12 @@ form[action*='list-manage.com'] .small-meta {
 }
 /**! 34. Bars **/
 .bar {
-  padding: 1.85714286em 0;
+  padding: 1.25em 0;
 }
 .bar .logo {
   margin: 0;
   position: relative;
-  top: 4px;
+  top: 0px;
 }
 .bar .menu-horizontal {
   position: relative;
@@ -4746,7 +4746,7 @@ section.parallax .row .background-image-holder {
   font-family: 'Open Sans', 'Roboto', 'Helvetica', Sans-Serif;
 }
 .bar .logo {
-  max-height: 1.85714286em;
+  max-height: 6em;
   max-width: none;
 }
 .menu-horizontal > li > a,
