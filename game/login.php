@@ -37,7 +37,7 @@
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+			<a class="navbar-brand" href="/"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
         </div>
       </div>
     </nav> 

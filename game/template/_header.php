@@ -39,7 +39,7 @@
 	<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-			<a class="navbar-brand" href="index"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
+			<a class="navbar-brand" href="#"><img src="img/logo.png" class="logo" alt="logomarca" /></a>
 
           	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             	<span class="sr-only">Toggle navigation</span>
