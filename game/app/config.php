@@ -4,7 +4,7 @@
 
 	define("DB_HOST", "localhost");
 	define("DB_NAME", "aprovagame");
-	define("DB_USER", "root");
+	define("DB_USER", "wordpress");
 	define("DB_PASSWORD", "VouPassar7777!@#$");
 
 ?>
