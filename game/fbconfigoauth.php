@@ -13,11 +13,11 @@ $facebook = new Facebook(array(
 ));
 
 $user = $facebook->getUser();
+echo "<pre>";
+var_dump($user);die();
 
 if ($user != 0)
 {
-  echo "<pre>";
-  var_dump($user);die();
   try
   {        
     $user_profile = $facebook->api('/me', 'GET');
