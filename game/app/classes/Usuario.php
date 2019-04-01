@@ -45,6 +45,7 @@ class Usuario {
     * @date 08/03
     */
     public function get_profile() {
+          try {
         if (!isset($_SESSION["EMAIL"]))
             return false;
 
@@ -78,7 +79,10 @@ class Usuario {
         }
 
         return $user;
-    }
+        } catch (Exception $e) {
+            var_dump($e->getMessage());die();
+        }
+}
 
     // Verifica se ha email passado por parametro cadastrado no banco de dados
     public function get_face_profile($email, $aniversario, $localizacao, $foto, $genero) {
