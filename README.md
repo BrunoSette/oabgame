@@ -25,4 +25,5 @@ Atualizações necessárias no servidor:
 ```apt-get install php-curl```
 
 3) Reiniciar o Apache
+
 ```sudo /etc/init.d/apache2 restart```
