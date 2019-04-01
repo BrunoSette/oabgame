@@ -118,7 +118,6 @@ class Usuario {
     * @date 08/03
     */
     public function post_login($usuario) {
-        var_dump($usuario);die();
         $stmt = DB::prepare("SELECT * FROM tb_usuario WHERE (email=:login and senha=:senha)");
         $stmt->bindParam("login", $usuario->email);
         $stmt->bindParam("senha", md5($usuario->senha));
