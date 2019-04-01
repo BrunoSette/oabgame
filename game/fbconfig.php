@@ -14,6 +14,9 @@ $facebook = new Facebook(array(
 
 $user = $facebook->getUser();
 
+echo "<pre>";
+var_dump($user);die();
+
 if ($user)
 {
   try
