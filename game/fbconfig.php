@@ -3,7 +3,7 @@ require 'src/facebook.php';
 require 'app/config.php';
 require 'app/DB.php';
 require 'app/classes/Usuario.php';
-require 'app/classes/isdk/isdk.php';
+// require 'app/classes/isdk/isdk.php';
 require 'app/includes/utilities.php';
 
 $facebook = new Facebook(array(

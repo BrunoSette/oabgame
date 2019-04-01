@@ -5,7 +5,7 @@ require 'config.php';
 require 'DB.php';
 
 require 'Slim/Slim.php';
-require 'classes/isdk/isdk.php';
+// require 'classes/isdk/isdk.php';
 require 'includes/utilities.php';
 require 'classes/Swift/lib/swift_required.php';
 require 'vendor/autoload.php';
