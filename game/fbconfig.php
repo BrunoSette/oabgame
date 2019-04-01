@@ -16,8 +16,6 @@ $user = $facebook->getUser();
 
 if ($user != 0)
 {
-  echo "<pre>";
-  var_dump($user);die();
   try
   {        
     $user_profile = $facebook->api('/me', 'GET');
