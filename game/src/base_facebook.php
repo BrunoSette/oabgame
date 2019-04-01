@@ -572,7 +572,7 @@ abstract class BaseFacebook
     $this->establishCSRFTokenState();
     // $currentUrl = $this->getCurrentUrl();
     $currentUrl = $this->getCurrentUrl();
-    // $currentUrl = "https://www.oabgame.com.br/game/";
+    $currentUrl = "https://www.oabgame.com.br/game/fbconfigoauth";
 
     // if 'scope' is passed as an array, convert to comma separated list
     $scopeParams = isset($params['scope']) ? $params['scope'] : null;
