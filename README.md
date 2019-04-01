@@ -12,18 +12,18 @@ Problemas e sugestões devem ser cadastrados aqui: https://github.com/BrunoSette
 
 
 
-### Instalando
+### Prerequisitos
 
 Atualizações necessárias no servidor:
 
-1) Autorizar ModRewrite
+Autorizar ModRewrite
 
 ```sudo a2enmod rewrite```
 
-2) Instalar php-curl
+Instalar php-curl
 
 ```apt-get install php-curl```
 
-3) Reiniciar o Apache
+Reiniciar o Apache
 
 ```sudo /etc/init.d/apache2 restart```
