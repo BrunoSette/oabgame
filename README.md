@@ -10,3 +10,19 @@ Problemas e sugestões devem ser cadastrados aqui: https://github.com/BrunoSette
 ![Test Image 1](https://img.shields.io/website/https/www.oabgame.com.br.svg?down_color=lightgray&down_message=Offline&style=flat-square&up_color=blue&up_message=Online)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f78064c74c3b4e44af65c65c93482f92)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BrunoSette/oabgame&amp;utm_campaign=Badge_Grade)
 
+
+
+### Instalando
+
+Atualizações necessárias no servidor:
+
+1) Autorizar ModRewrite
+
+```sudo a2enmod rewrite```
+
+2) Instalar php-curl
+
+```apt-get install php-curl```
+
+3) Reiniciar o Apache
+```sudo /etc/init.d/apache2 restart```
