@@ -1,5 +1,4 @@
 <?php
-try {
 require 'src/facebook.php'; 
 require 'app/config.php';
 require 'app/DB.php';
@@ -82,9 +81,5 @@ else
  // $loginUrl = str_replace('http%', 'https',  $loginUrl);
  // var_dump($loginUrl);die();
  header("Location: ".$loginUrl);
-}
-  //code...
-} catch (Exception $e) {
-  var_dump($e->getMessage());die();
 }
 ?>
