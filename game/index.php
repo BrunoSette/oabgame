@@ -6,8 +6,6 @@ require 'app/classes/Usuario.php';
 require 'app/includes/utilities.php';
 require 'app/vendor/autoload.php';
 
-die('aaaa');
-
 $fb = new \Facebook\Facebook([
     'app_id' => '604815266237503',
     'app_secret' => 'bf44e169874255d0facd3f48d0cd2981',
