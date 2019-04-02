@@ -11,6 +11,7 @@
         "mautic/api-library": "dev-master",
         "knplabs/github-api": "^2.12@dev",
         "php-http/guzzle6-adapter": "^1.1",
-        "facebook/graph-sdk": "^6.0@dev"
+        "facebook/graph-sdk": "^6.0@dev",
+        "symfony/polyfill-ctype": "^1.11@dev"
     }
 }

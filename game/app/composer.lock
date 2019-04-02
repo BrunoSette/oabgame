@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f88b52935c8dac8e9f58e549432ac11",
+    "content-hash": "a8c05f53aa765758634cf22b8302585b",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -2507,7 +2507,8 @@
     "stability-flags": {
         "mautic/api-library": 20,
         "knplabs/github-api": 20,
-        "facebook/graph-sdk": 20
+        "facebook/graph-sdk": 20,
+        "symfony/polyfill-ctype": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
