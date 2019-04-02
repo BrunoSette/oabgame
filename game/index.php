@@ -14,7 +14,8 @@ $facebook = new \Facebook\Facebook([
 
 if(isset($_GET['code'])){
 try {
-    $accessToken = $facebook->getAccessToken();
+    $accessToken = $helper->getAccessToken();
+
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
     echo 'Graph returned an error: ' . $e->getMessage();
