@@ -8,7 +8,7 @@ require 'app/includes/utilities.php';
 require 'app/vendor/autoload.php';
 
 $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$currentUrl = "https://www.oabgame.com.br/game";
+$currentUrl = "https://www.oabgame.com.br/game/fbconfig.php";
 
 $facebook = new \Facebook\Facebook([
     'app_id' => '604815266237503',
@@ -42,7 +42,10 @@ if (!isset($accessToken)) {
     $permissions = ['email', 'public_profile', 'user_location', 'user_birthday'];
 
     $loginUrl = $helper->getLoginUrl($currentUrl, $permissions);
-    header("Location: " . $loginUrl);
+    echo $loginUrl;
+    // header("Location: " . $loginUrl);
   }
+} else {
+  die('ok');
 }
 ?>
