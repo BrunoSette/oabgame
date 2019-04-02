@@ -9,6 +9,8 @@ RUN a2enmod rewrite
 RUN service apache2 restart
 
 COPY / /var/www/html/
+COPY php.ini /etc/php/7.2/apache2
+
 
 
 
