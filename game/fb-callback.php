@@ -1,5 +1,11 @@
 <?php
 session_start();
+require 'app/config.php';
+require 'app/DB.php';
+require 'app/classes/Usuario.php';
+require 'app/includes/utilities.php';
+require 'app/vendor/autoload.php';
+
 $fb = new Facebook\Facebook([
     'app_id' => '{app-id}', // Replace {app-id} with your app id
     'app_secret' => '{app-secret}',
