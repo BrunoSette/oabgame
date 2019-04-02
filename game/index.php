@@ -13,6 +13,8 @@ $facebook = new \Facebook\Facebook([
 ]);
 
 if(isset($_GET['code'])){
+	$facebook->setDefaultAccessToken($_GET['code']);
+
 	$response = $facebook->get('/me');
 
 	var_dump($response);die();
