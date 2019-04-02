@@ -22,6 +22,6 @@ $helper = $facebook->getRedirectLoginHelper();
 $permissions = ['email', 'public_profile', 'user_location', 'user_birthday'];
 
 $loginUrl = $helper->getLoginUrl($currentUrl, $permissions);
-var_dump(htmlspecialchars($loginUrl));die();
-header("Location: " . htmlspecialchars($loginUrl));
+// var_dump(htmlspecialchars($loginUrl));die();
+header("Location: " . urlencode($loginUrl));
 ?>
