@@ -1,5 +1,5 @@
-FROM ubuntu:12.04
-RUN sudo apt-get update && sudo apt-get upgrade -y
+FROM ubuntu:16.04
+RUN apt-get update && sudo apt-get upgrade -y
 RUN apt-get install php-curl
 RUN apt-get clean
 RUN service apache2 restart
