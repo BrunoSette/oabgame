@@ -13,12 +13,21 @@ $facebook = new \Facebook\Facebook([
 ]);
 
 if(isset($_GET['code'])){
-	$token = $_GET['code'];
-	$facebook->setDefaultAccessToken("{$token}");
+$helper = $facebook->getRedirectLoginHelper();
 
-	$response = $facebook->get('/me');
+try {
+    $accessToken = $helper->getAccessToken();
+} catch (Facebook\Exceptions\FacebookResponseException $e) {
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    exit;
+} catch (Facebook\Exceptions\FacebookSDKException $e) {
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    exit;
+}
 
-	var_dump($response);die();
+
 } else {	
     if (isset($_SESSION['FBID'])) include_once 'sistema.php';
     else include_once 'login.php';
