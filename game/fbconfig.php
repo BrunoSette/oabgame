@@ -42,6 +42,7 @@ if (!isset($accessToken)) {
     $permissions = ['email', 'public_profile', 'user_location', 'user_birthday'];
 
     $loginUrl = $helper->getLoginUrl($currentUrl, $permissions);
+    echo  $loginUrl;die();
     header("Location: " . $loginUrl);
   }
 } else {
