@@ -9,16 +9,16 @@ require 'app/vendor/autoload.php';
 
 if(isset($_GET['code'])){
     try {
+        $token = str_replace('#_=_', '', $_GET['code']);
         $facebook = new \Facebook\Facebook([
             'app_id' => '604815266237503',
             'app_secret' => 'bf44e169874255d0facd3f48d0cd2981',
             'default_graph_version' => 'v3.2',
-            'code' => $_GET['code'],
         ]);
-    // $helper = $facebook->getRedirectLoginHelper();
-    // $accessToken = $helper->getAccessToken();
 
-    var_dump($facebook);die();
+        $res = $facebook->get('/me', $token);
+
+    var_dump($res);die();
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
