@@ -17,8 +17,9 @@ if(isset($_GET['code'])){
     ));
 
     $user = $facebook->getUser();
+    $user_profile = $facebook->api('/me', 'GET');
 
-    var_dump($user);die();
+    var_dump($user_profile);die();
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
