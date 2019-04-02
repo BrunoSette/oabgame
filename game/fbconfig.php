@@ -8,7 +8,7 @@ require 'app/includes/utilities.php';
 require 'app/vendor/autoload.php';
 
 $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$currentUrl = "https://www.oabgame.com.br/game/fb-callback.php";
+$currentUrl = "https://www.oabgame.com.br/game";
 
 $facebook = new \Facebook\Facebook([
     'app_id' => '604815266237503',
@@ -18,17 +18,17 @@ $facebook = new \Facebook\Facebook([
 
 $helper = $facebook->getRedirectLoginHelper();
 
-// try {
+try {
     $accessToken = $helper->getAccessToken();
-// } catch (Facebook\Exceptions\FacebookResponseException $e) {
-//     // When Graph returns an error
-//     echo 'Graph returned an error: ' . $e->getMessage();
-//     exit;
-// } catch (Facebook\Exceptions\FacebookSDKException $e) {
-//     // When validation fails or other local issues
-//     echo 'Facebook SDK returned an error: ' . $e->getMessage();
-//     exit;
-// }
+} catch (Facebook\Exceptions\FacebookResponseException $e) {
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    exit;
+} catch (Facebook\Exceptions\FacebookSDKException $e) {
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    exit;
+}
 
 
 if (!isset($accessToken)) {
@@ -42,7 +42,8 @@ if (!isset($accessToken)) {
     $permissions = ['email', 'public_profile', 'user_location', 'user_birthday'];
 
     $loginUrl = $helper->getLoginUrl($currentUrl, $permissions);
-    header("Location: " . urldecode($loginUrl));
+    echo  $loginUrl;die();
+    header("Location: " . $loginUrl);
   }
 } else {
   var_dump($accessToken);die();
