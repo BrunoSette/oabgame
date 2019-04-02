@@ -13,7 +13,7 @@ $currentUrl = "https://www.oabgame.com.br/game/fbconfig.php";
 $facebook = new \Facebook\Facebook([
     'app_id' => '604815266237503',
     'app_secret' => 'bf44e169874255d0facd3f48d0cd2981',
-    'default_graph_version' => 'v2.10',
+    'default_graph_version' => 'v3.2',
 ]);
 
 $helper = $facebook->getRedirectLoginHelper();
@@ -42,7 +42,6 @@ if (!isset($accessToken)) {
     $permissions = ['email', 'public_profile', 'user_location', 'user_birthday'];
 
     $loginUrl = $helper->getLoginUrl($currentUrl, $permissions);
-    echo  $loginUrl;die();
     header("Location: " . $loginUrl);
   }
 } else {
