@@ -1,20 +1,37 @@
 <?php
 session_start(); 
+require 'app/config.php';
+require 'app/DB.php';
+require 'app/classes/Usuario.php';
+require 'app/includes/utilities.php';
+require 'app/vendor/autoload.php';
 
-// if ($_SERVER['HTTPS'] != "on") {
-//     $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-//     //header("Location: $url");
-//     //exit;
+$facebook = new \Facebook\Facebook([
+    'app_id' => '604815266237503',
+    'app_secret' => 'bf44e169874255d0facd3f48d0cd2981',
+    'default_graph_version' => 'v3.2',
+]);
+
+$helper = $facebook->getRedirectLoginHelper();
+$accessToken = $helper->getAccessToken();
+
+
+
+// if (isset($_SESSION['FBID'])){
+// 	if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http'){
+// 		 header("Location: https://www.oabgame.com.br/game/#_=_");
+// 	}
 // }
 
-if (isset($_SESSION['FBID'])){
-	if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http'){
-		 header("Location: https://www.oabgame.com.br/game/#_=_");
-	}
+
+if (!isset($accessToken)) {
+	
+	if (isset($_SESSION['FBID'])) include_once 'sistema.php';   
+	
+	else include_once 'login.php';
+} else {
+	var_dump($accessToken);
+	die('aqui');
 }
-
-if (isset($_SESSION['FBID'])) include_once 'sistema.php';   
-
-else include_once 'login.php';
 
 ?>
