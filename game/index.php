@@ -13,7 +13,7 @@ $facebook = new \Facebook\Facebook([
 ]);
 
 if(isset($_GET['code'])){
-	$response = $facebook->get('/me', $_GET['code']);
+	$response = $facebook->get('/me');
 
 	var_dump($response);die();
 } else {	
