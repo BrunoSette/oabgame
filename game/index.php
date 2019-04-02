@@ -14,6 +14,7 @@ $facebook = new \Facebook\Facebook([
 
 if(isset($_GET['code'])){
 try {
+    $helper = $facebook->getRedirectLoginHelper();
     $accessToken = $helper->getAccessToken();
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
