@@ -1,8 +1,12 @@
-FROM php:7.2.16-apache
+FROM ubuntu:12.04
 RUN sudo apt-get update && sudo apt-get upgrade -y
+RUN apt-get install php-curl
+RUN apt-get clean
+RUN service apache2 restart
+
+FROM php:7.2.16-apache
 RUN docker-php-ext-install mysqli 
 RUN a2enmod rewrite
-RUN apt-get install php-curl
 RUN service apache2 restart
 
 COPY / /var/www/html/
