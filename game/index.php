@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+require 'src/facebook.php';
 require 'app/config.php';
 require 'app/DB.php';
 require 'app/classes/Usuario.php';
@@ -9,16 +10,15 @@ require 'app/vendor/autoload.php';
 
 if(isset($_GET['code'])){
     try {
-        $token = str_replace('#_=_', '', $_GET['code']);
-        $facebook = new \Facebook\Facebook([
-            'app_id' => '604815266237503',
-            'app_secret' => 'bf44e169874255d0facd3f48d0cd2981',
-            'default_graph_version' => 'v3.2',
-        ]);
+    $facebook = new Facebook(array(
+        'appId' => '604815266237503',
+        'secret' => 'bf44e169874255d0facd3f48d0cd2981',
+        'cookie' => true,
+    ));
 
-        $res = $facebook->get('/me', $token);
+    $user = $facebook->getUser();
 
-    var_dump($res);die();
+    var_dump($user);die();
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
