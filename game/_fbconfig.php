@@ -75,7 +75,7 @@ if ($user)
 else
 {
  $loginUrl = $facebook->getLoginUrl(array(
-		'scope'		=> 'email, public_profile, user_location, user_birthday', 
+		'scope'		=> 'email, public_profile, user_location, user_birthday',
 		));
 
 // //  $loginUrl = str_replace('http%', 'https',  $loginUrl);
