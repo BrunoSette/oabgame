@@ -27,3 +27,11 @@ Instalar php-curl
 Reiniciar o Apache
 
 ```sudo /etc/init.d/apache2 restart```
+
+### Instalação
+
+Após clonar o projeto navegar até a pasta game e rode um composer Install para instalar as dependências:
+
+```cd game/app && composer install```
+
+
