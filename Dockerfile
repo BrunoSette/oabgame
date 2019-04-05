@@ -10,6 +10,7 @@ RUN service apache2 restart
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer 
 COPY / /var/www/html/
 COPY php.ini /etc/php/7.2/apache2/
+COPY aprovagame.sql /docker-entrypoint-initdb.d/
 COPY apache2.conf /etc/apache2/
 WORKDIR /var/www/html/game/app
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
