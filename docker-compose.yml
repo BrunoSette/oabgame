@@ -23,12 +23,13 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: aprovagame
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: VouPassar7777!@
+      MYSQL_ROOT_PASSWORD: voupassar7777
+    #  MYSQL_DATABASE: aprovagame
+    #  MYSQL_USER: user
+    #  MYSQL_PASSWORD: voupassar7777
     ports:
       - "9906:3306"
+
 
   adminer:
     image: adminer
