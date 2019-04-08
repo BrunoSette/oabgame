@@ -5,9 +5,10 @@ version: '3'
 services:
   
   web:
+    container_name: oabgame_apache
     image: brunosette7777/oabgame:latest
     container_name: php_web
-    build: .
+    build: apache/.
     depends_on:
       - db
     volumes:
@@ -16,15 +17,16 @@ services:
       - "8100:80"
     stdin_open: true
     tty: true
-    build: .
 
   db:
-    image: mysql
+    container_name: oabgame_mysql
+    image: brunosette7777/mysql:latest
+    build: mysql/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: voupassar7777
-    #  MYSQL_DATABASE: aprovagame
+      MYSQL_DATABASE: aprovagame
     #  MYSQL_USER: user
     #  MYSQL_PASSWORD: voupassar7777
     ports:
@@ -32,6 +34,7 @@ services:
 
 
   adminer:
+    container_name: adminer
     image: adminer
     restart: always
     ports:
