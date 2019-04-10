@@ -61,3 +61,12 @@ Alterar a Brach para a LocalDev
 Rodar o Docker Compose
 
 ```docker-compose up -d```
+
+## Local Address:
+
+* [Website](http://localhost:8100) - Oab Game Website 
+* [Mysql Server](http://localhost:9906) - Dependency Management
+* [Adminer](http://localhost:8080/) - Adminer server
+
+
+
