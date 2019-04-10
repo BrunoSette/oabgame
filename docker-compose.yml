@@ -6,7 +6,7 @@ services:
   
   web:
     container_name: oabgame_apache
-    image: brunosette7777/oabgame:latest
+    image: brunosette7777/oabgame:LocalDev
     container_name: php_web
     build: apache/.
     depends_on:

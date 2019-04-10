@@ -1,6 +1,10 @@
 // variaveis globais
-var rootUrl = "https://www.oabgame.com.br/game/app";
-var clienteUrl = "https://www.oabgame.com.br/game";
+var rootUrl = "http://localhost:8100/game/app";
+var clienteUrl = "http://localhost:8100/game";
+
+// var rootUrl = "https://www.oabgame.com.br/game/app";
+// var clienteUrl = "https://www.oabgame.com.br/game";
+
 
 const RESPOSTA_CORRETA = 5;
 const PULAR_PERGUNTA = -10;
