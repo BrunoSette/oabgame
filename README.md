@@ -11,27 +11,53 @@ Problemas e sugestões devem ser cadastrados aqui: https://github.com/BrunoSette
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f78064c74c3b4e44af65c65c93482f92)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BrunoSette/oabgame&amp;utm_campaign=Badge_Grade)
 
 
+## Prerequisitos
 
-### Prerequisitos
+Istalação do Docker e Docker Compose
 
-Atualizações necessárias no servidor:
+### Docker For Mac
 
-Autorizar ModRewrite
+Download here: https://download.docker.com/mac/stable/Docker.dmg
 
-```sudo a2enmod rewrite```
+### Docker For Windows
 
-Instalar php-curl
+Download here: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
 
-```apt-get install php-curl```
+### Testing your Docker Installation 
 
-Reiniciar o Apache
+Ensure your versions of docker, docker-compose, and docker-machine are up-to-date and compatible with Docker.app. Your output may differ if you are running different versions.
 
-```sudo /etc/init.d/apache2 restart```
+````
+$ docker --version
+Docker version 18.09, build c97c6d6
 
-### Instalação
+$ docker-compose --version
+docker-compose version 1.24.0, build 8dd22a9
 
-Após clonar o projeto navegar até a pasta game e rode um composer Install para instalar as dependências:
+$ docker-machine --version
+docker-machine version 0.16.0, build 9ba6da9
+````
 
-```cd game/app && composer install```
+## Versão para Produção
 
+Baixar a versão no Git
 
+```git clone git@github.com:BrunoSette/oabgame.git```
+
+Rodar o Docker Compose
+
+```docker-compose up -d```
+
+## Versão para Desenvolvimento Local
+
+Baixar a versão no Git
+
+```git clone git@github.com:BrunoSette/oabgame.git```
+
+Alterar a Brach para a LocalDev
+
+```git checkout LocalDev```
+
+Rodar o Docker Compose
+
+```docker-compose up -d```
