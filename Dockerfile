@@ -12,8 +12,6 @@ COPY / /var/www/html/
 COPY php.ini /etc/php/7.2/apache2/
 RUN mkdir docker-entrypoint-initdb.d
 COPY *.sql /docker-entrypoint-initdb.d/
-#RUN mkdir -p /docker-entrypoint-initdb.d && mv aprovagame.sql /docker-entrypoint-initdb.d/aprovagame.sql
 COPY apache2.conf /etc/apache2/
 WORKDIR /var/www/html/game/app
-#RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 
