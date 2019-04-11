@@ -4,7 +4,8 @@ RUN apt-get update && \
     apt-get install -y git \
     zlib1g-dev \
     libzip-dev \
-    vim
+    vim \
+    php-sqlite3
 RUN docker-php-ext-install mysqli mbstring zip
 RUN a2enmod rewrite
 RUN service apache2 restart
