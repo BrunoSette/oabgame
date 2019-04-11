@@ -6,7 +6,7 @@ RUN apt-get update && \
     libzip-dev \
     vim \
     php7-sqlite3
-RUN docker-php-ext-install mysqli mbstring zip
+RUN docker-php-ext-install mysqli mbstring zip pdo pdo_mysql pdo_pgsql
 RUN a2enmod rewrite
 RUN service apache2 restart
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer 
