@@ -5,7 +5,7 @@ RUN apt-get update && \
     zlib1g-dev \
     libzip-dev \
     vim \
-    php-sqlite3
+    php7-sqlite3
 RUN docker-php-ext-install mysqli mbstring zip
 RUN a2enmod rewrite
 RUN service apache2 restart
