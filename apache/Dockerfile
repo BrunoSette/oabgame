@@ -14,4 +14,3 @@ COPY / /var/www/html/
 COPY php.ini $PHP_INI_DIR/conf.d/
 COPY apache2.conf /etc/apache2/
 WORKDIR /var/www/html/game/app
-
