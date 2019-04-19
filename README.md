@@ -1,6 +1,6 @@
 ![Test Image 1](https://www.oabgame.com.br/game/img/logo.png)
 <br><br>
-Passe na OAB estudando com esse Jogo Incrível!
+Passe na OAB estudando com esse Jogo!
 <br><br>
 https://www.oabgame.com.br
 <br><br>
