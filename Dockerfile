@@ -16,4 +16,5 @@ RUN mkdir docker-entrypoint-initdb.d
 COPY *.sql /docker-entrypoint-initdb.d/
 COPY apache2.conf /etc/apache2/
 WORKDIR /var/www/html/game/app
+RUN composer up 
 
