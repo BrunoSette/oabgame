@@ -42,7 +42,7 @@ docker-machine version 0.16.0, build 9ba6da9
 
 Baixar a versão no Git
 
-```git clone git@github.com:BrunoSette/oabgame.git```
+```git clone https://github.com/BrunoSette/oabgame.git```
 
 Rodar o Docker Compose
 
