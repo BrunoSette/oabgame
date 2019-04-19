@@ -52,7 +52,7 @@ Rodar o Docker Compose
 
 Baixar a versão no Git
 
-```git clone git@github.com:BrunoSette/oabgame.git```
+```git clone https://github.com/BrunoSette/oabgame.git```
 
 Alterar a Brach para a LocalDev
 
